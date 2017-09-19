@@ -4,6 +4,7 @@
 #include <TStyle.h>
 #include <TCanvas.h>
 #include <iostream> 
+#include <TLorentzVector.h>
 
 void semiLepTTBarLoop::Loop(std::string outFileName)
 {
@@ -32,9 +33,18 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
 //by  b_branchname->GetEntry(ientry); //read only this branch
    if (fChain == 0) return;
    const int nBins = 100;
+   const int entry_count_constant = 1000;
 
    TFile* semiLepTTBarLoopHists  = new TFile(outFileName.c_str(), "RECREATE");
    TH1F* TH1F_LeptonPt = new TH1F("TH1F_LeptonPt", "Lepton p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_BJetPt = new TH1F("TH1F_BJetPt", "BJet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_Ratio = new TH1F("TH1F_Ratio", "Ratio: p_{T}(b)/(p_{T}(b) + p_{T}(l));  p_{T}(b)/(p_{T}(b) + p_{T}(l)); count", nBins, 0, 1 );
+   TH1F* TH1F_deltaR = new TH1F("TH1F_deltaR", "#delta R BJet and Lepton; #theta_{lb} [Radians]; count", nBins, 0, 1 );
+
+   Double_t lept_ratio;
+   Double_t deltaR;
+   TLorentzVector lepton;
+   TLorentzVector leptonic_BJet;
 
    Long64_t nentries = fChain->GetEntriesFast();
 
@@ -42,11 +52,31 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
       Long64_t ientry = LoadTree(jentry);
       if (ientry < 0) break;
+      if (jentry % entry_count_constant == 0) std::cout << "Event: " << jentry << " of " << nentries << " " << jentry/nentries*100 << "%" << std::endl;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
 
+      //leptonic R:
+
+      if (LepHemiContainsAK4BtagMedium == 1){
+      	if(LeptonIsMu == 1 && MuTight == 1){
+      		lepton.SetPtEtaPhiM(LeptonPt, LeptonEta, LeptonPhi, LeptonMass);
+      		leptonic_BJet.SetPtEtaPhiM(AK4_dRminLep_Pt, AK4_dRminLep_Eta, AK4_dRminLep_Phi, AK4_dRminLep_Mass);
+
+      		deltaR = lepton.DeltaR(leptonic_BJet);
+
+      		lept_ratio = AK4_dRminLep_Pt/(AK4_dRminLep_Pt+ LeptonPt);
+
+      		TH1F_LeptonPt->Fill(LeptonPt);
+      		TH1F_BJetPt->Fill(AK4_dRminLep_Pt);
+      		TH1F_Ratio->Fill(lept_ratio);
+      		TH1F_deltaR->Fill(deltaR);
+
+      	}
+      }
+    
     	
-      TH1F_LeptonPt->Fill(LeptonPt);
+     
       
    }
    semiLepTTBarLoopHists->Write();
