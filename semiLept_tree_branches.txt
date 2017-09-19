@@ -1,0 +1,1041 @@
+******************************************************************************
+*Tree    :TreeSemiLept: TreeSemiLept                                           *
+*Entries :     1949 : Total =         2660205 bytes  File  Size =    1419701 *
+*        :          : Tree compression factor =   1.80                       *
+******************************************************************************
+*Br    0 :SemiLeptTrigPrescales : vector<int>                                *
+*Entries :     1949 : Total  Size=     325260 bytes  File Size  =      10504 *
+*Baskets :       11 : Basket Size=      32000 bytes  Compression=  30.91     *
+*............................................................................*
+*Br    1 :SemiLeptTrigPass : vector<bool>                                    *
+*Entries :     1949 : Total  Size=     102266 bytes  File Size  =      18855 *
+*Baskets :        4 : Basket Size=      32000 bytes  Compression=   5.40     *
+*............................................................................*
+*Br    2 :SemiLeptTrigAcceptBits : string                                    *
+*Entries :     1949 : Total  Size=      84668 bytes  File Size  =      18042 *
+*Baskets :        3 : Basket Size=      32000 bytes  Compression=   4.66     *
+*............................................................................*
+*Br    3 :JetNsubjetsSD : JetNsubjetsSD/I                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =        175 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  45.05     *
+*............................................................................*
+*Br    4 :JetNsubjetsSDPuppi : JetNsubjetsSDPuppi/I                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =        323 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  24.42     *
+*............................................................................*
+*Br    5 :JetPtRaw  : JetPtRaw/F                                             *
+*Entries :     1949 : Total  Size=       8365 bytes  File Size  =       6804 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br    6 :JetEtaRaw : JetEtaRaw/F                                            *
+*Entries :     1949 : Total  Size=       8370 bytes  File Size  =       7330 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br    7 :JetPhiRaw : JetPhiRaw/F                                            *
+*Entries :     1949 : Total  Size=       8370 bytes  File Size  =       7337 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br    8 :JetMassRaw : JetMassRaw/F                                          *
+*Entries :     1949 : Total  Size=       8375 bytes  File Size  =       6909 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br    9 :JetArea   : JetArea/F                                              *
+*Entries :     1949 : Total  Size=       8360 bytes  File Size  =       3038 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.59     *
+*............................................................................*
+*Br   10 :JetSDmassRaw : JetSDmassRaw/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       7160 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   11 :JetSDmassSubjetCorrL23 : JetSDmassSubjetCorrL23/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       7176 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   12 :JetSDmassSubjetCorrL123 : JetSDmassSubjetCorrL123/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =       7171 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   13 :JetSDptRaw : JetSDptRaw/F                                          *
+*Entries :     1949 : Total  Size=       8375 bytes  File Size  =       6829 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   14 :JetSDetaRaw : JetSDetaRaw/F                                        *
+*Entries :     1949 : Total  Size=       8380 bytes  File Size  =       7329 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   15 :JetSDphiRaw : JetSDphiRaw/F                                        *
+*Entries :     1949 : Total  Size=       8380 bytes  File Size  =       7352 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   16 :JetMassPruned : JetMassPruned/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       7089 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   17 :JetMassTrimmed : JetMassTrimmed/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       7070 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   18 :JetTau1   : JetTau1/F                                              *
+*Entries :     1949 : Total  Size=       8360 bytes  File Size  =       6963 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   19 :JetTau2   : JetTau2/F                                              *
+*Entries :     1949 : Total  Size=       8360 bytes  File Size  =       7035 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   20 :JetTau3   : JetTau3/F                                              *
+*Entries :     1949 : Total  Size=       8360 bytes  File Size  =       7007 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   21 :JetTau4   : JetTau4/F                                              *
+*Entries :     1949 : Total  Size=       8360 bytes  File Size  =       6969 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   22 :JetTau32  : JetTau32/F                                             *
+*Entries :     1949 : Total  Size=       8365 bytes  File Size  =       6719 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.17     *
+*............................................................................*
+*Br   23 :JetTau21  : JetTau21/F                                             *
+*Entries :     1949 : Total  Size=       8365 bytes  File Size  =       6989 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   24 :JetSDmaxbdisc : JetSDmaxbdisc/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       6970 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   25 :JetSDmaxbdiscflavHadron : JetSDmaxbdiscflavHadron/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =       1405 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   5.62     *
+*............................................................................*
+*Br   26 :JetSDmaxbdiscflavParton : JetSDmaxbdiscflavParton/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =       2115 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.73     *
+*............................................................................*
+*Br   27 :JetSDsubjet0pt : JetSDsubjet0pt/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       6908 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   28 :JetSDsubjet0mass : JetSDsubjet0mass/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7181 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br   29 :JetSDsubjet0eta : JetSDsubjet0eta/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       7327 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   30 :JetSDsubjet0phi : JetSDsubjet0phi/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       7335 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   31 :JetSDsubjet0area : JetSDsubjet0area/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       3711 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.13     *
+*............................................................................*
+*Br   32 :JetSDsubjet0flavHadron : JetSDsubjet0flavHadron/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       1340 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   5.89     *
+*............................................................................*
+*Br   33 :JetSDsubjet0flavParton : JetSDsubjet0flavParton/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       2172 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.63     *
+*............................................................................*
+*Br   34 :JetSDsubjet0matchedgenjetpt : JetSDsubjet0matchedgenjetpt/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       6960 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   35 :JetSDsubjet0tau1 : JetSDsubjet0tau1/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7115 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   36 :JetSDsubjet0tau2 : JetSDsubjet0tau2/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7020 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   37 :JetSDsubjet0tau3 : JetSDsubjet0tau3/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       6856 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   38 :JetSDsubjet0bdisc : JetSDsubjet0bdisc/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       6939 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   39 :JetSDsubjet1pt : JetSDsubjet1pt/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       7029 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   40 :JetSDsubjet1mass : JetSDsubjet1mass/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7041 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   41 :JetSDsubjet1eta : JetSDsubjet1eta/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       7338 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   42 :JetSDsubjet1phi : JetSDsubjet1phi/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       7345 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br   43 :JetSDsubjet1area : JetSDsubjet1area/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       3516 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.24     *
+*............................................................................*
+*Br   44 :JetSDsubjet1flavHadron : JetSDsubjet1flavHadron/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       1103 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   7.16     *
+*............................................................................*
+*Br   45 :JetSDsubjet1flavParton : JetSDsubjet1flavParton/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       2057 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.84     *
+*............................................................................*
+*Br   46 :JetSDsubjet1matchedgenjetpt : JetSDsubjet1matchedgenjetpt/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       7064 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   47 :JetSDsubjet1tau1 : JetSDsubjet1tau1/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       6974 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   48 :JetSDsubjet1tau2 : JetSDsubjet1tau2/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       6731 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.17     *
+*............................................................................*
+*Br   49 :JetSDsubjet1tau3 : JetSDsubjet1tau3/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       6562 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.20     *
+*............................................................................*
+*Br   50 :JetSDsubjet1bdisc : JetSDsubjet1bdisc/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       6563 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.20     *
+*............................................................................*
+*Br   51 :JetPuppiPtRaw : JetPuppiPtRaw/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       6804 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br   52 :JetPuppiEtaRaw : JetPuppiEtaRaw/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       7307 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   53 :JetPuppiPhiRaw : JetPuppiPhiRaw/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       7326 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   54 :JetPuppiMassRaw : JetPuppiMassRaw/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       7004 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   55 :JetPuppiArea : JetPuppiArea/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       3033 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.60     *
+*............................................................................*
+*Br   56 :JetPuppiMassPruned : JetPuppiMassPruned/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       7116 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   57 :JetPuppiMassTrimmed : JetPuppiMassTrimmed/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       7074 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   58 :JetPuppiSDmassRaw : JetPuppiSDmassRaw/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       7117 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   59 :JetPuppiSDmassSubjetCorr : JetPuppiSDmassSubjetCorr/F              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =       7129 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   60 :JetPuppiSDptRaw : JetPuppiSDptRaw/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       6775 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br   61 :JetPuppiSDetaRaw : JetPuppiSDetaRaw/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7274 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   62 :JetPuppiSDphiRaw : JetPuppiSDphiRaw/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7275 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   63 :JetPuppiTau1 : JetPuppiTau1/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       7027 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   64 :JetPuppiTau2 : JetPuppiTau2/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       7039 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   65 :JetPuppiTau3 : JetPuppiTau3/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       6980 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   66 :JetPuppiTau4 : JetPuppiTau4/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       6960 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   67 :JetPuppiTau32 : JetPuppiTau32/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       6739 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.17     *
+*............................................................................*
+*Br   68 :JetPuppiTau21 : JetPuppiTau21/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       7004 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   69 :JetPuppiSDmaxbdisc : JetPuppiSDmaxbdisc/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       6929 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   70 :JetPuppiSDmaxbdiscflavHadron : JetPuppiSDmaxbdiscflavHadron/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       1395 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   5.66     *
+*............................................................................*
+*Br   71 :JetPuppiSDmaxbdiscflavParton : JetPuppiSDmaxbdiscflavParton/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       2109 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.75     *
+*............................................................................*
+*Br   72 :JetPuppiSDsubjet0pt : JetPuppiSDsubjet0pt/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       6928 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   73 :JetPuppiSDsubjet0mass : JetPuppiSDsubjet0mass/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       7096 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   74 :JetPuppiSDsubjet0eta : JetPuppiSDsubjet0eta/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       7288 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   75 :JetPuppiSDsubjet0phi : JetPuppiSDsubjet0phi/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       7296 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   76 :JetPuppiSDsubjet0area : JetPuppiSDsubjet0area/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       3688 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.14     *
+*............................................................................*
+*Br   77 :JetPuppiSDsubjet0flavHadron : JetPuppiSDsubjet0flavHadron/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       1345 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   5.87     *
+*............................................................................*
+*Br   78 :JetPuppiSDsubjet0flavParton : JetPuppiSDsubjet0flavParton/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       2192 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.60     *
+*............................................................................*
+*Br   79 :JetPuppiSDsubjet0matchedgenjetpt :                                 *
+*         | JetPuppiSDsubjet0matchedgenjetpt/F                               *
+*Entries :     1949 : Total  Size=       8485 bytes  File Size  =       6912 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   80 :JetPuppiSDsubjet0tau1 : JetPuppiSDsubjet0tau1/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       7039 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br   81 :JetPuppiSDsubjet0tau2 : JetPuppiSDsubjet0tau2/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6890 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   82 :JetPuppiSDsubjet0tau3 : JetPuppiSDsubjet0tau3/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6711 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.18     *
+*............................................................................*
+*Br   83 :JetPuppiSDsubjet0bdisc : JetPuppiSDsubjet0bdisc/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       6895 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   84 :JetPuppiSDsubjet1pt : JetPuppiSDsubjet1pt/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       6963 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   85 :JetPuppiSDsubjet1mass : JetPuppiSDsubjet1mass/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6953 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br   86 :JetPuppiSDsubjet1eta : JetPuppiSDsubjet1eta/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       7282 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   87 :JetPuppiSDsubjet1phi : JetPuppiSDsubjet1phi/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       7279 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br   88 :JetPuppiSDsubjet1area : JetPuppiSDsubjet1area/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       3493 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.26     *
+*............................................................................*
+*Br   89 :JetPuppiSDsubjet1flavHadron : JetPuppiSDsubjet1flavHadron/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       1121 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   7.05     *
+*............................................................................*
+*Br   90 :JetPuppiSDsubjet1flavParton : JetPuppiSDsubjet1flavParton/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       2082 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.79     *
+*............................................................................*
+*Br   91 :JetPuppiSDsubjet1matchedgenjetpt :                                 *
+*         | JetPuppiSDsubjet1matchedgenjetpt/F                               *
+*Entries :     1949 : Total  Size=       8485 bytes  File Size  =       6997 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   92 :JetPuppiSDsubjet1tau1 : JetPuppiSDsubjet1tau1/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6835 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br   93 :JetPuppiSDsubjet1tau2 : JetPuppiSDsubjet1tau2/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6523 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.21     *
+*............................................................................*
+*Br   94 :JetPuppiSDsubjet1tau3 : JetPuppiSDsubjet1tau3/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6298 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.25     *
+*............................................................................*
+*Br   95 :JetPuppiSDsubjet1bdisc : JetPuppiSDsubjet1bdisc/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       6524 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.21     *
+*............................................................................*
+*Br   96 :JetCHF    : JetCHF/F                                               *
+*Entries :     1949 : Total  Size=       8355 bytes  File Size  =       6967 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br   97 :JetNHF    : JetNHF/F                                               *
+*Entries :     1949 : Total  Size=       8355 bytes  File Size  =       7108 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br   98 :JetCM     : JetCM/F                                                *
+*Entries :     1949 : Total  Size=       8350 bytes  File Size  =       3085 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.55     *
+*............................................................................*
+*Br   99 :JetNM     : JetNM/F                                                *
+*Entries :     1949 : Total  Size=       8350 bytes  File Size  =       3126 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.52     *
+*............................................................................*
+*Br  100 :JetNEF    : JetNEF/F                                               *
+*Entries :     1949 : Total  Size=       8355 bytes  File Size  =       6967 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  101 :JetCEF    : JetCEF/F                                               *
+*Entries :     1949 : Total  Size=       8355 bytes  File Size  =       2292 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.44     *
+*............................................................................*
+*Br  102 :JetMF     : JetMF/F                                                *
+*Entries :     1949 : Total  Size=       8350 bytes  File Size  =       2064 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.82     *
+*............................................................................*
+*Br  103 :JetMult   : JetMult/F                                              *
+*Entries :     1949 : Total  Size=       8360 bytes  File Size  =       2979 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.64     *
+*............................................................................*
+*Br  104 :JetPuppiCHF : JetPuppiCHF/F                                        *
+*Entries :     1949 : Total  Size=       8380 bytes  File Size  =       6969 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  105 :JetPuppiNHF : JetPuppiNHF/F                                        *
+*Entries :     1949 : Total  Size=       8380 bytes  File Size  =       7081 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  106 :JetPuppiCM : JetPuppiCM/F                                          *
+*Entries :     1949 : Total  Size=       8375 bytes  File Size  =       2856 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.76     *
+*............................................................................*
+*Br  107 :JetPuppiNM : JetPuppiNM/F                                          *
+*Entries :     1949 : Total  Size=       8375 bytes  File Size  =       2801 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.81     *
+*............................................................................*
+*Br  108 :JetPuppiNEF : JetPuppiNEF/F                                        *
+*Entries :     1949 : Total  Size=       8380 bytes  File Size  =       6998 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  109 :JetPuppiCEF : JetPuppiCEF/F                                        *
+*Entries :     1949 : Total  Size=       8380 bytes  File Size  =       2183 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.61     *
+*............................................................................*
+*Br  110 :JetPuppiMF : JetPuppiMF/F                                          *
+*Entries :     1949 : Total  Size=       8375 bytes  File Size  =       1566 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   5.03     *
+*............................................................................*
+*Br  111 :JetPuppiMult : JetPuppiMult/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       3199 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.46     *
+*............................................................................*
+*Br  112 :JetMassCorrFactor : JetMassCorrFactor/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       6103 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.29     *
+*............................................................................*
+*Br  113 :JetMassCorrFactorUp : JetMassCorrFactorUp/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       6102 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.29     *
+*............................................................................*
+*Br  114 :JetMassCorrFactorDn : JetMassCorrFactorDn/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       6104 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.29     *
+*............................................................................*
+*Br  115 :JetCorrFactor : JetCorrFactor/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       6457 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.22     *
+*............................................................................*
+*Br  116 :JetCorrFactorUp : JetCorrFactorUp/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       6456 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.22     *
+*............................................................................*
+*Br  117 :JetCorrFactorDn : JetCorrFactorDn/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       6455 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.22     *
+*............................................................................*
+*Br  118 :JetPtSmearFactor : JetPtSmearFactor/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       6128 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.29     *
+*............................................................................*
+*Br  119 :JetPtSmearFactorUp : JetPtSmearFactorUp/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       6170 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.28     *
+*............................................................................*
+*Br  120 :JetPtSmearFactorDn : JetPtSmearFactorDn/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       6074 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.30     *
+*............................................................................*
+*Br  121 :JetPuppiMassCorrFactor : JetPuppiMassCorrFactor/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =        176 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  44.85     *
+*............................................................................*
+*Br  122 :JetPuppiMassCorrFactorUp : JetPuppiMassCorrFactorUp/F              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =        177 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  44.60     *
+*............................................................................*
+*Br  123 :JetPuppiMassCorrFactorDn : JetPuppiMassCorrFactorDn/F              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =        178 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  44.35     *
+*............................................................................*
+*Br  124 :JetPuppiCorrFactor : JetPuppiCorrFactor/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       6352 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.24     *
+*............................................................................*
+*Br  125 :JetPuppiCorrFactorUp : JetPuppiCorrFactorUp/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       6379 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.24     *
+*............................................................................*
+*Br  126 :JetPuppiCorrFactorDn : JetPuppiCorrFactorDn/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       6342 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.24     *
+*............................................................................*
+*Br  127 :JetPuppiPtSmearFactor : JetPuppiPtSmearFactor/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6195 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.27     *
+*............................................................................*
+*Br  128 :JetPuppiPtSmearFactorUp : JetPuppiPtSmearFactorUp/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =       6233 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.27     *
+*............................................................................*
+*Br  129 :JetPuppiPtSmearFactorDn : JetPuppiPtSmearFactorDn/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =       6151 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.28     *
+*............................................................................*
+*Br  130 :JetMatchedGenJetPt : JetMatchedGenJetPt/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       6853 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br  131 :JetMatchedGenJetMass : JetMatchedGenJetMass/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       6979 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  132 :JetPuppiMatchedGenJetPt : JetPuppiMatchedGenJetPt/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =       6838 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br  133 :JetPuppiMatchedGenJetMass : JetPuppiMatchedGenJetMass/F            *
+*Entries :     1949 : Total  Size=       8450 bytes  File Size  =       6973 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  134 :JetGenMatched_TopHadronic : JetGenMatched_TopHadronic/I            *
+*Entries :     1949 : Total  Size=       8450 bytes  File Size  =        911 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.67     *
+*............................................................................*
+*Br  135 :JetGenMatched_TopPt : JetGenMatched_TopPt/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       6973 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  136 :JetGenMatched_TopEta : JetGenMatched_TopEta/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       7339 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br  137 :JetGenMatched_TopPhi : JetGenMatched_TopPhi/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       7344 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  138 :JetGenMatched_TopMass : JetGenMatched_TopMass/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       6184 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.28     *
+*............................................................................*
+*Br  139 :JetGenMatched_bPt : JetGenMatched_bPt/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       7143 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  140 :JetGenMatched_WPt : JetGenMatched_WPt/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       7079 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  141 :JetGenMatched_Wd1Pt : JetGenMatched_Wd1Pt/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       7139 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  142 :JetGenMatched_Wd2Pt : JetGenMatched_Wd2Pt/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       7144 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  143 :JetGenMatched_Wd1ID : JetGenMatched_Wd1ID/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       1875 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   4.21     *
+*............................................................................*
+*Br  144 :JetGenMatched_Wd2ID : JetGenMatched_Wd2ID/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       2157 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   3.66     *
+*............................................................................*
+*Br  145 :JetGenMatched_MaxDeltaRPartonTop :                                 *
+*         | JetGenMatched_MaxDeltaRPartonTop/F                               *
+*Entries :     1949 : Total  Size=       8485 bytes  File Size  =       7045 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br  146 :JetGenMatched_MaxDeltaRWPartonTop :                                *
+*         | JetGenMatched_MaxDeltaRWPartonTop/F                              *
+*Entries :     1949 : Total  Size=       8490 bytes  File Size  =       7091 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  147 :JetGenMatched_MaxDeltaRWPartonW : JetGenMatched_MaxDeltaRWPartonW/F*
+*Entries :     1949 : Total  Size=       8480 bytes  File Size  =       7124 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  148 :JetGenMatched_DeltaR_t_b : JetGenMatched_DeltaR_t_b/F              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =       7177 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  149 :JetGenMatched_DeltaR_t_W : JetGenMatched_DeltaR_t_W/F              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =       7143 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  150 :JetGenMatched_DeltaR_t_Wd1 : JetGenMatched_DeltaR_t_Wd1/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7159 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  151 :JetGenMatched_DeltaR_t_Wd2 : JetGenMatched_DeltaR_t_Wd2/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7158 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  152 :JetGenMatched_DeltaR_W_b1 : JetGenMatched_DeltaR_W_b1/F            *
+*Entries :     1949 : Total  Size=       8450 bytes  File Size  =       7055 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br  153 :JetGenMatched_DeltaR_W_Wd1 : JetGenMatched_DeltaR_W_Wd1/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7167 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  154 :JetGenMatched_DeltaR_W_Wd2 : JetGenMatched_DeltaR_W_Wd2/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7186 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  155 :JetGenMatched_DeltaR_Wd1_Wd2 : JetGenMatched_DeltaR_Wd1_Wd2/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       7047 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br  156 :JetGenMatched_DeltaR_Wd1_b : JetGenMatched_DeltaR_Wd1_b/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7095 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  157 :JetGenMatched_DeltaR_Wd2_b : JetGenMatched_DeltaR_Wd2_b/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7057 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br  158 :JetGenMatched_DeltaR_jet_t : JetGenMatched_DeltaR_jet_t/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7222 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  159 :JetGenMatched_DeltaR_jet_W : JetGenMatched_DeltaR_jet_W/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7291 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br  160 :JetGenMatched_DeltaR_jet_b : JetGenMatched_DeltaR_jet_b/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7254 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  161 :JetGenMatched_DeltaR_jet_Wd1 : JetGenMatched_DeltaR_jet_Wd1/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       7207 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  162 :JetGenMatched_DeltaR_jet_Wd2 : JetGenMatched_DeltaR_jet_Wd2/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       7220 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  163 :JetGenMatched_DeltaR_pup0_b : JetGenMatched_DeltaR_pup0_b/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       7269 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  164 :JetGenMatched_DeltaR_pup0_Wd1 : JetGenMatched_DeltaR_pup0_Wd1/F    *
+*Entries :     1949 : Total  Size=       8470 bytes  File Size  =       7206 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  165 :JetGenMatched_DeltaR_pup0_Wd2 : JetGenMatched_DeltaR_pup0_Wd2/F    *
+*Entries :     1949 : Total  Size=       8470 bytes  File Size  =       7225 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  166 :JetGenMatched_DeltaR_pup1_b : JetGenMatched_DeltaR_pup1_b/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       7186 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  167 :JetGenMatched_DeltaR_pup1_Wd1 : JetGenMatched_DeltaR_pup1_Wd1/F    *
+*Entries :     1949 : Total  Size=       8470 bytes  File Size  =       7251 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  168 :JetGenMatched_DeltaR_pup1_Wd2 : JetGenMatched_DeltaR_pup1_Wd2/F    *
+*Entries :     1949 : Total  Size=       8470 bytes  File Size  =       7231 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  169 :JetGenMatched_partonPt : JetGenMatched_partonPt/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =        176 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  44.85     *
+*............................................................................*
+*Br  170 :JetGenMatched_partonEta : JetGenMatched_partonEta/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =        177 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  44.60     *
+*............................................................................*
+*Br  171 :JetGenMatched_partonPhi : JetGenMatched_partonPhi/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =        165 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  47.84     *
+*............................................................................*
+*Br  172 :JetGenMatched_partonMass : JetGenMatched_partonMass/F              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =        166 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  47.56     *
+*............................................................................*
+*Br  173 :JetGenMatched_partonID : JetGenMatched_partonID/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =        164 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  48.13     *
+*............................................................................*
+*Br  174 :JetGenMatched_DeltaRjetParton : JetGenMatched_DeltaRjetParton/F    *
+*Entries :     1949 : Total  Size=       8470 bytes  File Size  =        184 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  42.93     *
+*............................................................................*
+*Br  175 :SemiLeptMETpx : SemiLeptMETpx/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       7391 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  176 :SemiLeptMETpy : SemiLeptMETpy/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       7391 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  177 :SemiLeptMETpt : SemiLeptMETpt/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       7111 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  178 :SemiLeptMETphi : SemiLeptMETphi/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       7336 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  179 :SemiLeptMETsumET : SemiLeptMETsumET/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       6985 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  180 :SemiLeptMETgenMET : SemiLeptMETgenMET/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       7154 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  181 :SemiLeptMETuncorPt : SemiLeptMETuncorPt/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       7114 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  182 :SemiLeptMETshiftedPtJetEnUp : SemiLeptMETshiftedPtJetEnUp/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       7115 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  183 :SemiLeptMETshiftedPtJetEnDn : SemiLeptMETshiftedPtJetEnDn/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =       7114 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  184 :SemiLeptMETshiftedPtElEnUp : SemiLeptMETshiftedPtElEnUp/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7122 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  185 :SemiLeptMETshiftedPtElEnDn : SemiLeptMETshiftedPtElEnDn/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7123 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  186 :SemiLeptMETshiftedPtMuEnUp : SemiLeptMETshiftedPtMuEnUp/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7127 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  187 :SemiLeptMETshiftedPtMuEnDn : SemiLeptMETshiftedPtMuEnDn/F          *
+*Entries :     1949 : Total  Size=       8455 bytes  File Size  =       7122 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  188 :SemiLeptMETshiftedPtJetResUp : SemiLeptMETshiftedPtJetResUp/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       7115 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  189 :SemiLeptMETshiftedPtJetResDn : SemiLeptMETshiftedPtJetResDn/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       7121 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  190 :SemiLeptMETshiftedPtUnclEnUp : SemiLeptMETshiftedPtUnclEnUp/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       7115 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  191 :SemiLeptMETshiftedPtUnclEnDn : SemiLeptMETshiftedPtUnclEnDn/F      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       7118 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  192 :SemiLeptNvtx : SemiLeptNvtx/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       2701 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.92     *
+*............................................................................*
+*Br  193 :SemiLeptNvtxGood : SemiLeptNvtxGood/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       2649 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.98     *
+*............................................................................*
+*Br  194 :SemiLeptRho : SemiLeptRho/F                                        *
+*Entries :     1949 : Total  Size=       8380 bytes  File Size  =       6937 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br  195 :SemiLeptEventWeight : SemiLeptEventWeight/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =        170 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  46.41     *
+*............................................................................*
+*Br  196 :SemiLeptPUweight : SemiLeptPUweight/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       2806 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.81     *
+*............................................................................*
+*Br  197 :SemiLeptPUweight_MBup : SemiLeptPUweight_MBup/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       2668 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.96     *
+*............................................................................*
+*Br  198 :SemiLeptPUweight_MBdn : SemiLeptPUweight_MBdn/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       2719 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.90     *
+*............................................................................*
+*Br  199 :SemiLeptGenTTmass : SemiLeptGenTTmass/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       6976 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  200 :SemiLeptGenCountHadTop : SemiLeptGenCountHadTop/I                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =        998 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   7.91     *
+*............................................................................*
+*Br  201 :HTlep     : HTlep/F                                                *
+*Entries :     1949 : Total  Size=       8350 bytes  File Size  =       6999 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  202 :ST        : ST/F                                                   *
+*Entries :     1949 : Total  Size=       8335 bytes  File Size  =       6889 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br  203 :ST_CorrDn : ST_CorrDn/F                                            *
+*Entries :     1949 : Total  Size=       8370 bytes  File Size  =       6910 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br  204 :ST_CorrUp : ST_CorrUp/F                                            *
+*Entries :     1949 : Total  Size=       8370 bytes  File Size  =       6880 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br  205 :ST_PtSmearNom : ST_PtSmearNom/F                                    *
+*Entries :     1949 : Total  Size=       8390 bytes  File Size  =       6901 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br  206 :ST_PtSmearUp : ST_PtSmearUp/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       6908 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br  207 :ST_PtSmearDn : ST_PtSmearDn/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       6892 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.14     *
+*............................................................................*
+*Br  208 :SemiLeptQ2weight_CorrDn : SemiLeptQ2weight_CorrDn/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =        175 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  45.11     *
+*............................................................................*
+*Br  209 :SemiLeptQ2weight_CorrUp : SemiLeptQ2weight_CorrUp/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =        175 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  45.11     *
+*............................................................................*
+*Br  210 :SemiLeptNNPDF3weight_CorrDn : SemiLeptNNPDF3weight_CorrDn/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =        179 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  44.12     *
+*............................................................................*
+*Br  211 :SemiLeptNNPDF3weight_CorrUp : SemiLeptNNPDF3weight_CorrUp/F        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =        179 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  44.12     *
+*............................................................................*
+*Br  212 :SemiLeptRunNum : SemiLeptRunNum/I                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =        163 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  48.37     *
+*............................................................................*
+*Br  213 :SemiLeptLumiBlock : SemiLeptLumiBlock/I                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       1327 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   5.94     *
+*............................................................................*
+*Br  214 :SemiLeptEventNum : SemiLeptEventNum/I                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       3793 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.08     *
+*............................................................................*
+*Br  215 :SemiLeptPassMETFilters : SemiLeptPassMETFilters/I                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =        164 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=  48.13     *
+*............................................................................*
+*Br  216 :AK4_dRminLep_Pt : AK4_dRminLep_Pt/F                                *
+*Entries :     1949 : Total  Size=       8400 bytes  File Size  =       7098 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  217 :AK4_dRminLep_Eta : AK4_dRminLep_Eta/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7359 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  218 :AK4_dRminLep_Phi : AK4_dRminLep_Phi/F                              *
+*Entries :     1949 : Total  Size=       8405 bytes  File Size  =       7338 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  219 :AK4_dRminLep_Mass : AK4_dRminLep_Mass/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       7055 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.12     *
+*............................................................................*
+*Br  220 :AK4_dRminLep_Bdisc : AK4_dRminLep_Bdisc/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       7002 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  221 :AK4_dRminLep_dRlep : AK4_dRminLep_dRlep/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       7142 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.10     *
+*............................................................................*
+*Br  222 :AK4_dRminLep_dRak8 : AK4_dRminLep_dRak8/F                          *
+*Entries :     1949 : Total  Size=       8415 bytes  File Size  =       6841 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.15     *
+*............................................................................*
+*Br  223 :AK4_dRminLep_PtSmear : AK4_dRminLep_PtSmear/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       6435 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.23     *
+*............................................................................*
+*Br  224 :AK4_dRminLep_PtSmearUp : AK4_dRminLep_PtSmearUp/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       6461 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.22     *
+*............................................................................*
+*Br  225 :AK4_dRminLep_PtSmearDn : AK4_dRminLep_PtSmearDn/F                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =       6398 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.23     *
+*............................................................................*
+*Br  226 :AK4_dRminLep_PtUncorr : AK4_dRminLep_PtUncorr/F                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =       7095 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.11     *
+*............................................................................*
+*Br  227 :AK4_dRminLep_Corr : AK4_dRminLep_Corr/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       6502 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.21     *
+*............................................................................*
+*Br  228 :AK4_dRminLep_CorrUp : AK4_dRminLep_CorrUp/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       6498 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.21     *
+*............................................................................*
+*Br  229 :AK4_dRminLep_CorrDn : AK4_dRminLep_CorrDn/F                        *
+*Entries :     1949 : Total  Size=       8420 bytes  File Size  =       6509 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.21     *
+*............................................................................*
+*Br  230 :LepHemiContainsAK4BtagLoose : LepHemiContainsAK4BtagLoose/I        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =        918 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.60     *
+*............................................................................*
+*Br  231 :LepHemiContainsAK4BtagMedium : LepHemiContainsAK4BtagMedium/I      *
+*Entries :     1949 : Total  Size=       8465 bytes  File Size  =       1002 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   7.88     *
+*............................................................................*
+*Br  232 :LepHemiContainsAK4BtagTight : LepHemiContainsAK4BtagTight/I        *
+*Entries :     1949 : Total  Size=       8460 bytes  File Size  =        952 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.30     *
+*............................................................................*
+*Br  233 :LeptonPhi : LeptonPhi/F                                            *
+*Entries :     1949 : Total  Size=       8370 bytes  File Size  =       7335 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.07     *
+*............................................................................*
+*Br  234 :LeptonPt  : LeptonPt/F                                             *
+*Entries :     1949 : Total  Size=       8365 bytes  File Size  =       6994 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.13     *
+*............................................................................*
+*Br  235 :LeptonEta : LeptonEta/F                                            *
+*Entries :     1949 : Total  Size=       8370 bytes  File Size  =       7320 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.08     *
+*............................................................................*
+*Br  236 :LeptonMass : LeptonMass/F                                          *
+*Entries :     1949 : Total  Size=       8375 bytes  File Size  =       3762 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.09     *
+*............................................................................*
+*Br  237 :PtRel     : PtRel/F                                                *
+*Entries :     1949 : Total  Size=       8350 bytes  File Size  =       7223 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.09     *
+*............................................................................*
+*Br  238 :LeptonIsMu : LeptonIsMu/I                                          *
+*Entries :     1949 : Total  Size=       8375 bytes  File Size  =        960 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.21     *
+*............................................................................*
+*Br  239 :MuMedium  : MuMedium/I                                             *
+*Entries :     1949 : Total  Size=       8365 bytes  File Size  =        972 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.11     *
+*............................................................................*
+*Br  240 :MuTight   : MuTight/I                                              *
+*Entries :     1949 : Total  Size=       8360 bytes  File Size  =        968 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.14     *
+*............................................................................*
+*Br  241 :MuHighPt  : MuHighPt/I                                             *
+*Entries :     1949 : Total  Size=       8365 bytes  File Size  =        956 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.24     *
+*............................................................................*
+*Br  242 :DeltaRJetLep : DeltaRJetLep/F                                      *
+*Entries :     1949 : Total  Size=       8385 bytes  File Size  =       6773 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.16     *
+*............................................................................*
+*Br  243 :DeltaPhiJetLep : DeltaPhiJetLep/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       6736 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.17     *
+*............................................................................*
+*Br  244 :MuIso     : MuIso/F                                                *
+*Entries :     1949 : Total  Size=       8350 bytes  File Size  =       4965 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.59     *
+*............................................................................*
+*Br  245 :Elecron_absiso : Elecron_absiso/F                                  *
+*Entries :     1949 : Total  Size=       8395 bytes  File Size  =       3125 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.52     *
+*............................................................................*
+*Br  246 :Elecron_relIsoWithDBeta : Elecron_relIsoWithDBeta/F                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =       3136 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.52     *
+*............................................................................*
+*Br  247 :Elecron_absiso_EA : Elecron_absiso_EA/F                            *
+*Entries :     1949 : Total  Size=       8410 bytes  File Size  =       2855 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.76     *
+*............................................................................*
+*Br  248 :Elecron_relIsoWithEA : Elecron_relIsoWithEA/F                      *
+*Entries :     1949 : Total  Size=       8425 bytes  File Size  =       2855 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   2.76     *
+*............................................................................*
+*Br  249 :Electron_iso_passHLTpre : Electron_iso_passHLTpre/I                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =        861 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   9.17     *
+*............................................................................*
+*Br  250 :Electron_iso_passLoose : Electron_iso_passLoose/I                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =        895 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.82     *
+*............................................................................*
+*Br  251 :Electron_iso_passMedium : Electron_iso_passMedium/I                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =        888 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.89     *
+*............................................................................*
+*Br  252 :Electron_iso_passTight : Electron_iso_passTight/I                  *
+*Entries :     1949 : Total  Size=       8435 bytes  File Size  =        859 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   9.19     *
+*............................................................................*
+*Br  253 :Electron_iso_passHEEP : Electron_iso_passHEEP/I                    *
+*Entries :     1949 : Total  Size=       8430 bytes  File Size  =        874 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   9.03     *
+*............................................................................*
+*Br  254 :Electron_noiso_passLoose : Electron_noiso_passLoose/I              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =        929 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.50     *
+*............................................................................*
+*Br  255 :Electron_noiso_passMedium : Electron_noiso_passMedium/I            *
+*Entries :     1949 : Total  Size=       8450 bytes  File Size  =        917 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.61     *
+*............................................................................*
+*Br  256 :Electron_noiso_passTight : Electron_noiso_passTight/I              *
+*Entries :     1949 : Total  Size=       8445 bytes  File Size  =        906 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.71     *
+*............................................................................*
+*Br  257 :Electron_noiso_passHEEP : Electron_noiso_passHEEP/I                *
+*Entries :     1949 : Total  Size=       8440 bytes  File Size  =        904 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   8.73     *
+*............................................................................*
