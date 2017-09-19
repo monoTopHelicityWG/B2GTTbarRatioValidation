@@ -48,12 +48,14 @@ from ROOT import *
 ###
 chain = TChain(options.inTreeName)
 inFiles = []
+count = 0
 #for inFile in filter(None,popen("xrdfs root://cmseos.fnal.gov/ ls -u "+options.inDir).read().split('\n')):
 for inFile in filter(None,popen("xrdfs root://cmseos.fnal.gov/ ls -u "+options.inDir).read().split('\n')):
   print inFile
+  count = count+ 1
   if ".root" in inFile:
     inFiles.append(inFile)
-    break
+    if count > 5: break
 for sample in inFiles:
   chain.Add(sample)
 

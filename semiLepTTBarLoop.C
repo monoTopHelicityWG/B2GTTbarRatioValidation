@@ -6,6 +6,8 @@
 #include <iostream> 
 #include <TLorentzVector.h>
 
+
+
 void semiLepTTBarLoop::Loop(std::string outFileName)
 {
 //   In a ROOT session, you can do:
@@ -36,15 +38,36 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
    const int entry_count_constant = 1000;
 
    TFile* semiLepTTBarLoopHists  = new TFile(outFileName.c_str(), "RECREATE");
-   TH1F* TH1F_LeptonPt = new TH1F("TH1F_LeptonPt", "Lepton p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_BJetPt = new TH1F("TH1F_BJetPt", "BJet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_Ratio = new TH1F("TH1F_Ratio", "Ratio: p_{T}(b)/(p_{T}(b) + p_{T}(l));  p_{T}(b)/(p_{T}(b) + p_{T}(l)); count", nBins, 0, 1 );
-   TH1F* TH1F_deltaR = new TH1F("TH1F_deltaR", "#delta R BJet and Lepton; #theta_{lb} [Radians]; count", nBins, 0, 1 );
+   
+   TH1F* TH1F_lep_LeptonPt = new TH1F("TH1F_lep_LeptonPt", "Lepton p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_lep_BJetPt = new TH1F("TH1F_lep_BJetPt", "BJet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_lep_Ratio = new TH1F("TH1F_lep_Ratio", "Ratio: p_{T}(b)/(p_{T}(b) + p_{T}(l));  p_{T}(b)/(p_{T}(b) + p_{T}(l)); count", nBins, 0, 1.5 );
+   TH1F* TH1F_lep_deltaR = new TH1F("TH1F_lep_deltaR", "#delta R BJet and Lepton; #theta_{lb}; count", nBins, 0, 1.5 );
 
-   Double_t lept_ratio;
-   Double_t deltaR;
-   TLorentzVector lepton;
-   TLorentzVector leptonic_BJet;
+   TH1F* TH1F_had_AK8Puppi_SD_pt = new TH1F("TH1F_had_AK8Puppi_pt", "AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_AK8Puppi_SD_mass = new TH1F("TH1F_had_AK8Puppi_mass", "AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_LF_subJetPt = new TH1F("TH1F_had_LF_subJetPt", "Light Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_B_subJetPt = new TH1F("TH1F_had_B_subJetPt", "Heavy (b) Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_Ratio = new TH1F("TH1F_had_Ratio", "Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
+   TH1F* TH1F_had_deltaR = new TH1F("TH1F_had_deltaR", "#delta R BJet and Other Subjet; #theta_{jb}; count", nBins, 0, 1.5 );
+
+   Float_t lept_ratio;
+   Float_t lept_deltaR;
+   TLorentzVector TL_lepton;
+   TLorentzVector TL_leptonic_BJet;
+
+
+   Int_t total = 0;
+   Int_t mass_cut = 0;
+   Int_t tau_cut = 0;
+   Int_t b_cut = 0;
+   Float_t had_ratio;
+   Float_t had_deltaR;
+   TLorentzVector TL_LF_subJetPt;
+   TLorentzVector TL_B_subJetPt;
+   TLorentzVector TL_AK8;
+
+
 
    Long64_t nentries = fChain->GetEntriesFast();
 
@@ -59,28 +82,63 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
       //leptonic R:
 
       if (LepHemiContainsAK4BtagMedium == 1){
-      	if(LeptonIsMu == 1 && MuTight == 1){
-      		lepton.SetPtEtaPhiM(LeptonPt, LeptonEta, LeptonPhi, LeptonMass);
-      		leptonic_BJet.SetPtEtaPhiM(AK4_dRminLep_Pt, AK4_dRminLep_Eta, AK4_dRminLep_Phi, AK4_dRminLep_Mass);
+        if(LeptonIsMu == 1 && MuTight == 1){
+            TL_lepton.SetPtEtaPhiM(LeptonPt, LeptonEta, LeptonPhi, LeptonMass);
+            TL_leptonic_BJet.SetPtEtaPhiM(AK4_dRminLep_Pt, AK4_dRminLep_Eta, AK4_dRminLep_Phi, AK4_dRminLep_Mass);
 
-      		deltaR = lepton.DeltaR(leptonic_BJet);
+            lept_deltaR = TL_lepton.DeltaR(TL_leptonic_BJet);
 
-      		lept_ratio = AK4_dRminLep_Pt/(AK4_dRminLep_Pt+ LeptonPt);
+            lept_ratio = AK4_dRminLep_Pt/(AK4_dRminLep_Pt+ LeptonPt);
 
-      		TH1F_LeptonPt->Fill(LeptonPt);
-      		TH1F_BJetPt->Fill(AK4_dRminLep_Pt);
-      		TH1F_Ratio->Fill(lept_ratio);
-      		TH1F_deltaR->Fill(deltaR);
+            TH1F_lep_LeptonPt->Fill(LeptonPt);
+            TH1F_lep_BJetPt->Fill(AK4_dRminLep_Pt);
+            TH1F_lep_Ratio->Fill(lept_ratio);
+            TH1F_lep_deltaR->Fill(lept_deltaR);
 
-      	}
+        }
       }
     
-    	
+      if (JetPuppiSDsubjet0bdisc > JetPuppiSDsubjet1bdisc){
+         TL_LF_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet1pt, JetPuppiSDsubjet1eta, JetPuppiSDsubjet1phi, JetPuppiSDsubjet1mass);
+         TL_B_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet0pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);
+      } else {
+         TL_LF_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet0pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);
+         TL_B_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet1pt, JetPuppiSDsubjet1eta, JetPuppiSDsubjet1phi, JetPuppiSDsubjet1mass);           
+      }
+      std::cout << JetPuppiSDmassRaw  << " gen " << JetMatchedGenJetMass << std::endl;
+      total++;
+      if (JetMassRaw*JetMassCorrFactor < 250 && JetMassRaw*JetMassCorrFactor > 80){
+         mass_cut++;
+         if(JetPuppiTau32 > .55 && JetPuppiTau21 > .1){
+            tau_cut++;
+            if (JetPuppiSDmaxbdisc > 0.679){
+               b_cut++;
+
+      
+               
+               TL_AK8.SetPtEtaPhiM(JetPuppiSDptRaw, JetPuppiSDetaRaw,JetPuppiSDphiRaw,JetPuppiSDmassRaw);
+      
+               had_ratio = TL_B_subJetPt.E()/TL_AK8.E();
+      
+               had_deltaR = TL_B_subJetPt.DeltaR(TL_AK8);
+      
+               TH1F_had_AK8Puppi_SD_pt->Fill(JetPuppiSDptRaw);
+               TH1F_had_AK8Puppi_SD_mass->Fill(JetPuppiSDmassRaw);
+               TH1F_had_LF_subJetPt->Fill(TL_LF_subJetPt.Pt());
+               TH1F_had_B_subJetPt->Fill(TL_B_subJetPt.Pt());
+               TH1F_had_Ratio->Fill(had_ratio);
+               TH1F_had_deltaR->Fill(had_deltaR);
+            }
+         }
+      }
      
       
    }
    semiLepTTBarLoopHists->Write();
    semiLepTTBarLoopHists->Close();
 
+   std::cout << "mass cut: " << mass_cut  << "percent total " << mass_cut/(double)total << std::endl;
+   std::cout << "tau cut: " << tau_cut  << "percent total " << tau_cut/(double)total << std::endl;
+   std::cout << "b cut: " << b_cut  << "percent total " << b_cut/(double)total << std::endl;
 
 }
