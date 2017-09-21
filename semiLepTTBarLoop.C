@@ -8,7 +8,7 @@
 
 
 
-void semiLepTTBarLoop::Loop(std::string outFileName)
+void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
 {
 //   In a ROOT session, you can do:
 //      root> .L semiLepTTBarLoop.C
@@ -51,6 +51,17 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
    TH1F* TH1F_had_Ratio = new TH1F("TH1F_had_Ratio", "Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_had_deltaR = new TH1F("TH1F_had_deltaR", "#delta R BJet and Other Subjet; #theta_{jb}; count", nBins, 0, 1.5 );
 
+   //gen level plots
+   TH2F* TH2F_gen_pt_raw_mass = new TH2F("TH2F_gen_pt_raw_mass", "Gen p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
+   TH2F* TH2F_gen_mass_raw_mass = new TH2F("TH2F_gen_mass_raw_mass", "Gen Mass vs Raw AK8 Jet Mass; Gen Mass; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
+   TH2F* TH2F_gen_pt_raw_pt = new TH2F("TH2F_gen_pt_raw_pt", "Gen p_{T} vs Raw AK8 Jet p_{T}; Gen p_{T}; Raw p_{T} [GeV]", nBins, 0, 1000, nBins, 0, 1000 );
+   
+   //lept had plots:
+   TH2F* TH2F_lept_b_pt_raw_mass = new TH2F("TH2F_lept_b_pt_raw_mass", "Lepton + B p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
+   TH2F* TH2F_lept_b_pt_raw_pt = new TH2F("TH2F_lept_b_pt_raw_pt", "Lepton + B p_{T} vs Raw AK8 Jet p_{T}; p_{T}(l) + p_{T}(b) [GeV]; Raw p_{T} [GeV]", nBins, 0, 1000, nBins, 0, 1000 );
+   TH2F* TH2F_lept_R_had_R = new TH2F("TH2F_lept_R_had_R", "Leptonic Ratio vs Hadronic Ratio; Leptonic Ratio; Hadronic Ratio", nBins, 0, 1.5, nBins, 0, 1.5 );
+
+
    Float_t lept_ratio;
    Float_t lept_deltaR;
    TLorentzVector TL_lepton;
@@ -67,6 +78,9 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
    TLorentzVector TL_B_subJetPt;
    TLorentzVector TL_AK8;
 
+   Bool_t lept_cut = false;
+   Bool_t had_cut = false;
+
 
 
    Long64_t nentries = fChain->GetEntriesFast();
@@ -79,6 +93,9 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
 
+
+      lept_cut = false;
+      had_cut = false;
       //leptonic R:
 
       if (LepHemiContainsAK4BtagMedium == 1){
@@ -95,6 +112,7 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
             TH1F_lep_Ratio->Fill(lept_ratio);
             TH1F_lep_deltaR->Fill(lept_deltaR);
 
+            lept_cut = true;
         }
       }
     
@@ -105,17 +123,15 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
          TL_LF_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet0pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);
          TL_B_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet1pt, JetPuppiSDsubjet1eta, JetPuppiSDsubjet1phi, JetPuppiSDsubjet1mass);           
       }
-      std::cout << JetPuppiSDmassRaw  << " gen " << JetMatchedGenJetMass << std::endl;
+      //std::cout << JetPuppiSDmassRaw  << " gen " << JetMatchedGenJetMass << std::endl;
       total++;
-      if (JetMassRaw*JetMassCorrFactor < 250 && JetMassRaw*JetMassCorrFactor > 80){
+      if (JetMassRaw*JetMassCorrFactor < 250 && JetMassRaw*JetMassCorrFactor > 140){
          mass_cut++;
          if(JetPuppiTau32 > .55 && JetPuppiTau21 > .1){
             tau_cut++;
             if (JetPuppiSDmaxbdisc > 0.679){
                b_cut++;
 
-      
-               
                TL_AK8.SetPtEtaPhiM(JetPuppiSDptRaw, JetPuppiSDetaRaw,JetPuppiSDphiRaw,JetPuppiSDmassRaw);
       
                had_ratio = TL_B_subJetPt.E()/TL_AK8.E();
@@ -128,12 +144,28 @@ void semiLepTTBarLoop::Loop(std::string outFileName)
                TH1F_had_B_subJetPt->Fill(TL_B_subJetPt.Pt());
                TH1F_had_Ratio->Fill(had_ratio);
                TH1F_had_deltaR->Fill(had_deltaR);
+
+               had_cut = true;
+
+ 
             }
          }
       }
-     
-      
+  
+              if(gen==true && JetGenMatched_TopHadronic == 1){
+                  TH2F_gen_pt_raw_mass->Fill(JetMatchedGenJetPt ,JetMassRaw);
+                  TH2F_gen_mass_raw_mass->Fill(JetMatchedGenJetMass ,JetMassRaw);
+                  TH2F_gen_pt_raw_pt->Fill(JetMatchedGenJetPt, JetPtRaw);
+               }
+
+               if(had_cut == true && lept_cut == true ){
+                  TH2F_lept_b_pt_raw_mass->Fill(LeptonPt + AK4_dRminLep_Pt, JetMassRaw);
+                  TH2F_lept_R_had_R->Fill(lept_ratio,had_ratio);
+                  TH2F_lept_b_pt_raw_pt->Fill(LeptonPt + AK4_dRminLep_Pt, JetPtRaw);
+               }
+
    }
+
    semiLepTTBarLoopHists->Write();
    semiLepTTBarLoopHists->Close();
 

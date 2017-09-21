@@ -7,7 +7,9 @@ from os.path import isfile, join, exists
 # Since we have a lot of data, we will write this so that it loops over a directory
 # filled with our input files, and spits out a one output file 
 # corresponding to the entire directory.
-#python runTree.py -i /store/user/rymuelle/MonoTop/B2GTTBar/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_b2gtreeV5_TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_RunIISummer16MiniAODv2/170914_223209/0000 -o test.root -t ana/TreeSemiLept
+#python runTree.py -i /store/user/rymuelle/MonoTop/B2GTTBar/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_b2gtreeV5_TT_TuneCUETP8M2T4_13TeV-powheg-pythia8_RunIISummer16MiniAODv2/170914_223209/0000 -o test.root -t ana/TreeSemiLept -m
+#python runTree.py -i /store/user/rymuelle/MonoTop/B2GTTBar/JetHT/crab_b2gtreeV5_JetHT_Run2016F-23Sep2016-v1_JSONfinal_dryRun/170919_162328/0000  -o data.root -t ana/TreeSemiLept
+
 ###
 usage = """%prog [options]
 This script takes as input a directory of input .root files, and runs the semiLepTTBarLoop.C macro on them."""
@@ -30,6 +32,9 @@ parser.add_option("-t", "--inTreeName", dest = "inTreeName",
                   help = "the name of the input tree inside the input file" )
 parser.add_option("-o", "--outFileName", dest = "outFileName",
                   help = "the output root file name. It will be located within the 'output' directory" )
+parser.add_option("-m", "--MC", dest = "mc",
+                  action = "store_true", default = False,
+                  help = "generate MC plots using gen information")
 (options, args) = parser.parse_args()
 
 ###
@@ -55,7 +60,7 @@ for inFile in filter(None,popen("xrdfs root://cmseos.fnal.gov/ ls -u "+options.i
   count = count+ 1
   if ".root" in inFile:
     inFiles.append(inFile)
-    if count > 5: break
+    #if count > 100: break
 for sample in inFiles:
   chain.Add(sample)
 
@@ -89,4 +94,4 @@ instance = semiLepTTBarLoop(chain)
 ###
 if not exists("output"):
   mkdir("output")
-instance.Loop("output/%s" % options.outFileName)
+instance.Loop("output/%s" % options.outFileName, options.mc)
