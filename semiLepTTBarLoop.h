@@ -2,7 +2,7 @@
 // This class has been automatically generated on
 // Tue Sep 19 13:53:44 2017 by ROOT version 6.08/07
 // from TTree TreeSemiLept/TreeSemiLept
-// found on file: b2gtreeV5_MC_ttbar_978.root
+// found on file: b2gtreeV5_MC_ttbar.root
 //////////////////////////////////////////////////////////
 
 #ifndef semiLepTTBarLoop_h
@@ -34,6 +34,10 @@ public :
    Float_t         JetEtaRaw;
    Float_t         JetPhiRaw;
    Float_t         JetMassRaw;
+   Float_t         Jet2PtRaw;
+   Float_t         Jet2EtaRaw;
+   Float_t         Jet2PhiRaw;
+   Float_t         Jet2MassRaw;
    Float_t         JetArea;
    Float_t         JetSDmassRaw;
    Float_t         JetSDmassSubjetCorrL23;
@@ -255,6 +259,36 @@ public :
    Float_t         AK4_dRminLep_Corr;
    Float_t         AK4_dRminLep_CorrUp;
    Float_t         AK4_dRminLep_CorrDn;
+
+   Float_t         AK4_hadTop_jet0_Pt;
+   Float_t         AK4_hadTop_jet0_Eta;
+   Float_t         AK4_hadTop_jet0_Phi;
+   Float_t         AK4_hadTop_jet0_Mass;
+   Float_t         AK4_hadTop_jet0_Bdisc;
+   Float_t         AK4_hadTop_jet0_dRlep;
+   Float_t         AK4_hadTop_jet0_PtSmear;
+   Float_t         AK4_hadTop_jet0_PtSmearUp;
+   Float_t         AK4_hadTop_jet0_PtSmearDn;
+   Float_t         AK4_hadTop_jet0_PtUncorr;
+   Float_t         AK4_hadTop_jet0_Corr;
+   Float_t         AK4_hadTop_jet0_CorrUp;
+   Float_t         AK4_hadTop_jet0_CorrDn;
+
+
+   Float_t         AK4_hadTop_jet1_Pt;
+   Float_t         AK4_hadTop_jet1_Eta;
+   Float_t         AK4_hadTop_jet1_Phi;
+   Float_t         AK4_hadTop_jet1_Mass;
+   Float_t         AK4_hadTop_jet1_Bdisc;
+   Float_t         AK4_hadTop_jet1_dRlep;
+   Float_t         AK4_hadTop_jet1_PtSmear;
+   Float_t         AK4_hadTop_jet1_PtSmearUp;
+   Float_t         AK4_hadTop_jet1_PtSmearDn;
+   Float_t         AK4_hadTop_jet1_PtUncorr;
+   Float_t         AK4_hadTop_jet1_Corr;
+   Float_t         AK4_hadTop_jet1_CorrUp;
+   Float_t         AK4_hadTop_jet1_CorrDn;
+
    Int_t           LepHemiContainsAK4BtagLoose;
    Int_t           LepHemiContainsAK4BtagMedium;
    Int_t           LepHemiContainsAK4BtagTight;
@@ -294,6 +328,10 @@ public :
    TBranch        *b_JetEtaRaw;   //!
    TBranch        *b_JetPhiRaw;   //!
    TBranch        *b_JetMassRaw;   //!
+   TBranch        *b_Jet2PtRaw;   //!
+   TBranch        *b_Jet2EtaRaw;   //!
+   TBranch        *b_Jet2PhiRaw;   //!
+   TBranch        *b_Jet2MassRaw;   //!
    TBranch        *b_JetArea;   //!
    TBranch        *b_JetSDmassRaw;   //!
    TBranch        *b_JetSDmassSubjetCorrL23;   //!
@@ -515,6 +553,35 @@ public :
    TBranch        *b_AK4_dRminLep_Corr;   //!
    TBranch        *b_AK4_dRminLep_CorrUp;   //!
    TBranch        *b_AK4_dRminLep_CorrDn;   //!
+
+   TBranch        *b_AK4_hadTop_jet0_Pt;   //!
+   TBranch        *b_AK4_hadTop_jet0_Eta;   //!
+   TBranch        *b_AK4_hadTop_jet0_Phi;   //!
+   TBranch        *b_AK4_hadTop_jet0_Mass;   //!
+   TBranch        *b_AK4_hadTop_jet0_Bdisc;   //!
+   TBranch        *b_AK4_hadTop_jet0_dRlep;   //!
+   TBranch        *b_AK4_hadTop_jet0_PtSmear;   //!
+   TBranch        *b_AK4_hadTop_jet0_PtSmearUp;   //!
+   TBranch        *b_AK4_hadTop_jet0_PtSmearDn;   //!
+   TBranch        *b_AK4_hadTop_jet0_PtUncorr;   //!
+   TBranch        *b_AK4_hadTop_jet0_Corr;   //!
+   TBranch        *b_AK4_hadTop_jet0_CorrUp;   //!
+   TBranch        *b_AK4_hadTop_jet0_CorrDn;   //!
+
+   TBranch        *b_AK4_hadTop_jet1_Pt;   //!
+   TBranch        *b_AK4_hadTop_jet1_Eta;   //!
+   TBranch        *b_AK4_hadTop_jet1_Phi;   //!
+   TBranch        *b_AK4_hadTop_jet1_Mass;   //!
+   TBranch        *b_AK4_hadTop_jet1_Bdisc;   //!
+   TBranch        *b_AK4_hadTop_jet1_dRlep;   //!
+   TBranch        *b_AK4_hadTop_jet1_PtSmear;   //!
+   TBranch        *b_AK4_hadTop_jet1_PtSmearUp;   //!
+   TBranch        *b_AK4_hadTop_jet1_PtSmearDn;   //!
+   TBranch        *b_AK4_hadTop_jet1_PtUncorr;   //!
+   TBranch        *b_AK4_hadTop_jet1_Corr;   //!
+   TBranch        *b_AK4_hadTop_jet1_CorrUp;   //!
+   TBranch        *b_AK4_hadTop_jet1_CorrDn;   //!
+
    TBranch        *b_LepHemiContainsAK4BtagLoose;   //!
    TBranch        *b_LepHemiContainsAK4BtagMedium;   //!
    TBranch        *b_LepHemiContainsAK4BtagTight;   //!
@@ -563,11 +630,11 @@ semiLepTTBarLoop::semiLepTTBarLoop(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("b2gtreeV5_MC_ttbar_978.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("b2gtreeV5_MC_ttbar.root");
       if (!f || !f->IsOpen()) {
-         f = new TFile("b2gtreeV5_MC_ttbar_978.root");
+         f = new TFile("b2gtreeV5_MC_ttbar.root");
       }
-      TDirectory * dir = (TDirectory*)f->Get("b2gtreeV5_MC_ttbar_978.root:/ana");
+      TDirectory * dir = (TDirectory*)f->Get("b2gtreeV5_MC_ttbar.root:/ana");
       dir->GetObject("TreeSemiLept",tree);
 
    }
@@ -628,6 +695,10 @@ void semiLepTTBarLoop::Init(TTree *tree)
    fChain->SetBranchAddress("JetEtaRaw", &JetEtaRaw, &b_JetEtaRaw);
    fChain->SetBranchAddress("JetPhiRaw", &JetPhiRaw, &b_JetPhiRaw);
    fChain->SetBranchAddress("JetMassRaw", &JetMassRaw, &b_JetMassRaw);
+   fChain->SetBranchAddress("Jet2PtRaw", &Jet2PtRaw, &b_Jet2PtRaw);
+   fChain->SetBranchAddress("Jet2EtaRaw", &Jet2EtaRaw, &b_Jet2EtaRaw);
+   fChain->SetBranchAddress("Jet2PhiRaw", &Jet2PhiRaw, &b_Jet2PhiRaw);
+   fChain->SetBranchAddress("Jet2MassRaw", &Jet2MassRaw, &b_Jet2MassRaw);
    fChain->SetBranchAddress("JetArea", &JetArea, &b_JetArea);
    fChain->SetBranchAddress("JetSDmassRaw", &JetSDmassRaw, &b_JetSDmassRaw);
    fChain->SetBranchAddress("JetSDmassSubjetCorrL23", &JetSDmassSubjetCorrL23, &b_JetSDmassSubjetCorrL23);
@@ -849,6 +920,35 @@ void semiLepTTBarLoop::Init(TTree *tree)
    fChain->SetBranchAddress("AK4_dRminLep_Corr", &AK4_dRminLep_Corr, &b_AK4_dRminLep_Corr);
    fChain->SetBranchAddress("AK4_dRminLep_CorrUp", &AK4_dRminLep_CorrUp, &b_AK4_dRminLep_CorrUp);
    fChain->SetBranchAddress("AK4_dRminLep_CorrDn", &AK4_dRminLep_CorrDn, &b_AK4_dRminLep_CorrDn);
+
+   fChain->SetBranchAddress("AK4_hadTop_jet0_Pt", &AK4_hadTop_jet0_Pt, &b_AK4_hadTop_jet0_Pt);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_Eta", &AK4_hadTop_jet0_Eta, &b_AK4_hadTop_jet0_Eta);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_Phi", &AK4_hadTop_jet0_Phi, &b_AK4_hadTop_jet0_Phi);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_Mass", &AK4_hadTop_jet0_Mass, &b_AK4_hadTop_jet0_Mass);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_Bdisc", &AK4_hadTop_jet0_Bdisc, &b_AK4_hadTop_jet0_Bdisc);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_dRlep", &AK4_hadTop_jet0_dRlep, &b_AK4_hadTop_jet0_dRlep);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_PtSmear", &AK4_hadTop_jet0_PtSmear, &b_AK4_hadTop_jet0_PtSmear);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_PtSmearUp", &AK4_hadTop_jet0_PtSmearUp, &b_AK4_hadTop_jet0_PtSmearUp);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_PtSmearDn", &AK4_hadTop_jet0_PtSmearDn, &b_AK4_hadTop_jet0_PtSmearDn);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_PtUncorr", &AK4_hadTop_jet0_PtUncorr, &b_AK4_hadTop_jet0_PtUncorr);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_Corr", &AK4_hadTop_jet0_Corr, &b_AK4_hadTop_jet0_Corr);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_CorrUp", &AK4_hadTop_jet0_CorrUp, &b_AK4_hadTop_jet0_CorrUp);
+   fChain->SetBranchAddress("AK4_hadTop_jet0_CorrDn", &AK4_hadTop_jet0_CorrDn, &b_AK4_hadTop_jet0_CorrDn);
+
+   fChain->SetBranchAddress("AK4_hadTop_jet1_Pt", &AK4_hadTop_jet1_Pt, &b_AK4_hadTop_jet1_Pt);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_Eta", &AK4_hadTop_jet1_Eta, &b_AK4_hadTop_jet1_Eta);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_Phi", &AK4_hadTop_jet1_Phi, &b_AK4_hadTop_jet1_Phi);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_Mass", &AK4_hadTop_jet1_Mass, &b_AK4_hadTop_jet1_Mass);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_Bdisc", &AK4_hadTop_jet1_Bdisc, &b_AK4_hadTop_jet1_Bdisc);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_dRlep", &AK4_hadTop_jet1_dRlep, &b_AK4_hadTop_jet1_dRlep);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_PtSmear", &AK4_hadTop_jet1_PtSmear, &b_AK4_hadTop_jet1_PtSmear);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_PtSmearUp", &AK4_hadTop_jet1_PtSmearUp, &b_AK4_hadTop_jet1_PtSmearUp);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_PtSmearDn", &AK4_hadTop_jet1_PtSmearDn, &b_AK4_hadTop_jet1_PtSmearDn);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_PtUncorr", &AK4_hadTop_jet1_PtUncorr, &b_AK4_hadTop_jet1_PtUncorr);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_Corr", &AK4_hadTop_jet1_Corr, &b_AK4_hadTop_jet1_Corr);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_CorrUp", &AK4_hadTop_jet1_CorrUp, &b_AK4_hadTop_jet1_CorrUp);
+   fChain->SetBranchAddress("AK4_hadTop_jet1_CorrDn", &AK4_hadTop_jet1_CorrDn, &b_AK4_hadTop_jet1_CorrDn);
+
    fChain->SetBranchAddress("LepHemiContainsAK4BtagLoose", &LepHemiContainsAK4BtagLoose, &b_LepHemiContainsAK4BtagLoose);
    fChain->SetBranchAddress("LepHemiContainsAK4BtagMedium", &LepHemiContainsAK4BtagMedium, &b_LepHemiContainsAK4BtagMedium);
    fChain->SetBranchAddress("LepHemiContainsAK4BtagTight", &LepHemiContainsAK4BtagTight, &b_LepHemiContainsAK4BtagTight);

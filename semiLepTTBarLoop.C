@@ -51,6 +51,8 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
    TH1F* TH1F_had_Ratio = new TH1F("TH1F_had_Ratio", "Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_had_deltaR = new TH1F("TH1F_had_deltaR", "#delta R BJet and Other Subjet; #theta_{jb}; count", nBins, 0, 1.5 );
 
+   TH1F* TH1F_had_AK4_mass = new TH1F("TH1F_had_AK4_mass", "AK4 Mass; Mass [GeV]; count", nBins, 0, 1000 );
+
    //gen level plots
    TH2F* TH2F_gen_pt_raw_mass = new TH2F("TH2F_gen_pt_raw_mass", "Gen p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
    TH2F* TH2F_gen_mass_raw_mass = new TH2F("TH2F_gen_mass_raw_mass", "Gen Mass vs Raw AK8 Jet Mass; Gen Mass; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
@@ -77,6 +79,9 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
    TLorentzVector TL_LF_subJetPt;
    TLorentzVector TL_B_subJetPt;
    TLorentzVector TL_AK8;
+   TLorentzVector TL_AK8_2;
+   TLorentzVector TL_AK4;
+   TLorentzVector TL_AK4_1;
 
    Bool_t lept_cut = false;
    Bool_t had_cut = false;
@@ -123,6 +128,33 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
          TL_LF_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet0pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);
          TL_B_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet1pt, JetPuppiSDsubjet1eta, JetPuppiSDsubjet1phi, JetPuppiSDsubjet1mass);           
       }
+	TL_AK8.SetPtEtaPhiM(JetPtRaw,JetEtaRaw,JetPhiRaw,JetMassRaw);
+	TL_AK8_2.SetPtEtaPhiM(Jet2PtRaw,Jet2EtaRaw,Jet2PhiRaw,Jet2MassRaw);
+
+   TL_AK4.SetPtEtaPhiM(AK4_hadTop_jet0_Pt,AK4_hadTop_jet0_Eta,AK4_hadTop_jet0_Phi,AK4_hadTop_jet0_Mass);
+   TL_AK4_1.SetPtEtaPhiM(AK4_hadTop_jet1_Pt,AK4_hadTop_jet1_Eta,AK4_hadTop_jet1_Phi,AK4_hadTop_jet1_Mass);
+
+
+   std::cout << "ak8 " <<  JetPtRaw << " " << JetEtaRaw << " " << JetPhiRaw << " " << JetMassRaw << std::endl;
+   //std::cout << Jet2PtRaw << " " << Jet2EtaRaw << " " << Jet2PhiRaw << " " << Jet2MassRaw << std::endl;
+  
+   std::cout << "gen top " << JetGenMatched_TopPt << " " << JetGenMatched_TopEta << " " << JetGenMatched_TopPhi << " " << JetGenMatched_TopMass << std::endl;
+   std::cout << "gen b " << JetGenMatched_bPt << std::endl;
+   std::cout << "gen w " << JetGenMatched_WPt << std::endl;
+   std::cout << "jet 0 " << AK4_hadTop_jet0_Pt << " " << AK4_hadTop_jet0_Eta << " " << AK4_hadTop_jet0_Phi << " " << AK4_hadTop_jet0_Mass << std::endl;
+   std::cout << "jet 1 " << AK4_hadTop_jet1_Pt << " " << AK4_hadTop_jet1_Eta << " " << AK4_hadTop_jet1_Phi << " " << AK4_hadTop_jet1_Mass << std::endl;
+   std::cout << "jet 1 + 0 " << (TL_AK4+TL_AK4_1).Pt() << " " << (TL_AK4+TL_AK4_1).Eta() << " " << (TL_AK4+TL_AK4_1).Phi() << " " << (TL_AK4+TL_AK4_1).M() << std::endl;
+
+    
+
+
+	if(JetPtRaw*Jet2PtRaw > 0) std::cout << "mass of 2 jets " <<  (TL_AK8+ TL_AK8_2).M() << std::endl;
+   if(AK4_hadTop_jet1_Pt*AK4_hadTop_jet0_Pt > 0){
+      TH1F_had_AK4_mass->Fill( (TL_AK4+ TL_AK4_1).M() );
+      std::cout << "mass of 2 jets " <<  (TL_AK4+ TL_AK4_1).M() << std::endl;;
+   } 
+
+	//std::cout << "deltaR" << TL_AK8.DeltaR(TL_AK8_2) << std::endl; 
       //std::cout << JetPuppiSDmassRaw  << " gen " << JetMatchedGenJetMass << std::endl;
       total++;
       if (JetMassRaw*JetMassCorrFactor < 250 && JetMassRaw*JetMassCorrFactor > 140){
