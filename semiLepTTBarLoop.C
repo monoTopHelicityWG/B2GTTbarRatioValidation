@@ -44,19 +44,25 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
    TH1F* TH1F_lep_Ratio = new TH1F("TH1F_lep_Ratio", "Ratio: p_{T}(b)/(p_{T}(b) + p_{T}(l));  p_{T}(b)/(p_{T}(b) + p_{T}(l)); count", nBins, 0, 1.5 );
    TH1F* TH1F_lep_deltaR = new TH1F("TH1F_lep_deltaR", "#delta R BJet and Lepton; #theta_{lb}; count", nBins, 0, 1.5 );
 
-   TH1F* TH1F_had_AK8Puppi_SD_pt = new TH1F("TH1F_had_AK8Puppi_pt", "AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_had_AK8Puppi_SD_mass = new TH1F("TH1F_had_AK8Puppi_mass", "AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_AK8Puppi_SD_pt = new TH1F("TH1F_had_AK8Puppi_SD_pt", "AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_AK8Puppi_SD_mass = new TH1F("TH1F_had_AK8Puppi_SD_mass", "AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
    TH1F* TH1F_had_LF_subJetPt = new TH1F("TH1F_had_LF_subJetPt", "Light Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
    TH1F* TH1F_had_B_subJetPt = new TH1F("TH1F_had_B_subJetPt", "Heavy (b) Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
    TH1F* TH1F_had_Ratio = new TH1F("TH1F_had_Ratio", "Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_had_deltaR = new TH1F("TH1F_had_deltaR", "#delta R BJet and Other Subjet; #theta_{jb}; count", nBins, 0, 1.5 );
 
+<<<<<<< HEAD
    TH1F* TH1F_had_AK4_mass = new TH1F("TH1F_had_AK4_mass", "AK4 Mass; Mass [GeV]; count", nBins, 0, 1000 );
 
+=======
+   TH2F* TH2F_pt_SD_mass = new TH2F("TH2F_pt_SD_mass", "SD p_{T} vs SD AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
+>>>>>>> 7b01282
    //gen level plots
    TH2F* TH2F_gen_pt_raw_mass = new TH2F("TH2F_gen_pt_raw_mass", "Gen p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
    TH2F* TH2F_gen_mass_raw_mass = new TH2F("TH2F_gen_mass_raw_mass", "Gen Mass vs Raw AK8 Jet Mass; Gen Mass; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
    TH2F* TH2F_gen_pt_raw_pt = new TH2F("TH2F_gen_pt_raw_pt", "Gen p_{T} vs Raw AK8 Jet p_{T}; Gen p_{T}; Raw p_{T} [GeV]", nBins, 0, 1000, nBins, 0, 1000 );
+   TH2F* TH2F_gen_pt_top_matched = new TH2F("TH2F_gen_pt_top_matched", "Gen p_{T} vs Top Matched; Gen p_{T}; Top Matched", nBins, 0, 1000, 2, 0, 1 );
+   
    
    //lept had plots:
    TH2F* TH2F_lept_b_pt_raw_mass = new TH2F("TH2F_lept_b_pt_raw_mass", "Lepton + B p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
@@ -74,6 +80,10 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
    Int_t mass_cut = 0;
    Int_t tau_cut = 0;
    Int_t b_cut = 0;
+   Int_t delta_r_matched_no_cut = 0;
+   Int_t B2G_matched_no_cut = 0;
+   Int_t top_tag_cut = 0;
+   Int_t top_tag_match_cut = 0;
    Float_t had_ratio;
    Float_t had_deltaR;
    TLorentzVector TL_LF_subJetPt;
@@ -82,6 +92,7 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
    TLorentzVector TL_AK8_2;
    TLorentzVector TL_AK4;
    TLorentzVector TL_AK4_1;
+   TLorentzVector TL_Gen_Top;
 
    Bool_t lept_cut = false;
    Bool_t had_cut = false;
@@ -156,15 +167,21 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
 
 	//std::cout << "deltaR" << TL_AK8.DeltaR(TL_AK8_2) << std::endl; 
       //std::cout << JetPuppiSDmassRaw  << " gen " << JetMatchedGenJetMass << std::endl;
+      TL_AK8.SetPtEtaPhiM(JetPuppiSDptRaw*JetPuppiCorrFactor, JetPuppiSDetaRaw,JetPuppiSDphiRaw,JetPuppiSDmassRaw*JetPuppiMassCorrFactor);
+
+      TH2F_pt_SD_mass->Fill(JetPuppiSDptRaw, JetPuppiSDmassRaw);
+
       total++;
-      if (JetMassRaw*JetMassCorrFactor < 250 && JetMassRaw*JetMassCorrFactor > 140){
+
+
+      if (JetPuppiSDptRaw*JetPuppiCorrFactor > 300 && JetMassRaw*JetMassCorrFactor < 250 && JetMassRaw*JetMassCorrFactor > 140){
          mass_cut++;
          if(JetPuppiTau32 > .55 && JetPuppiTau21 > .1){
             tau_cut++;
             if (JetPuppiSDmaxbdisc > 0.679){
                b_cut++;
-
-               TL_AK8.SetPtEtaPhiM(JetPuppiSDptRaw, JetPuppiSDetaRaw,JetPuppiSDphiRaw,JetPuppiSDmassRaw);
+               top_tag_cut++;
+               if (JetGenMatched_TopHadronic == 1) top_tag_match_cut++;
       
                had_ratio = TL_B_subJetPt.E()/TL_AK8.E();
       
@@ -183,18 +200,27 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
             }
          }
       }
-  
-              if(gen==true && JetGenMatched_TopHadronic == 1){
-                  TH2F_gen_pt_raw_mass->Fill(JetMatchedGenJetPt ,JetMassRaw);
-                  TH2F_gen_mass_raw_mass->Fill(JetMatchedGenJetMass ,JetMassRaw);
-                  TH2F_gen_pt_raw_pt->Fill(JetMatchedGenJetPt, JetPtRaw);
-               }
 
-               if(had_cut == true && lept_cut == true ){
-                  TH2F_lept_b_pt_raw_mass->Fill(LeptonPt + AK4_dRminLep_Pt, JetMassRaw);
-                  TH2F_lept_R_had_R->Fill(lept_ratio,had_ratio);
-                  TH2F_lept_b_pt_raw_pt->Fill(LeptonPt + AK4_dRminLep_Pt, JetPtRaw);
-               }
+      if (gen == true){
+         TL_Gen_Top.SetPtEtaPhiM(JetGenMatched_TopPt,JetGenMatched_TopEta,JetGenMatched_TopPhi,JetGenMatched_TopMass);
+         //std::cout << "delta R gen vs Ak8 " << TL_Gen_Top.DeltaR( TL_AK8) << std::endl;
+         if (TL_Gen_Top.DeltaR( TL_AK8) < .5) delta_r_matched_no_cut++;
+         TH2F_gen_pt_top_matched->Fill(JetGenMatched_TopPt, JetGenMatched_TopHadronic);
+
+      }
+  
+      if(gen==true && JetGenMatched_TopHadronic == 1){
+          B2G_matched_no_cut++;
+          TH2F_gen_pt_raw_mass->Fill(JetMatchedGenJetPt ,JetMassRaw);
+          TH2F_gen_mass_raw_mass->Fill(JetMatchedGenJetMass ,JetMassRaw);
+          TH2F_gen_pt_raw_pt->Fill(JetMatchedGenJetPt, JetPtRaw);
+      }
+      
+      if(had_cut == true && lept_cut == true ){
+         TH2F_lept_b_pt_raw_mass->Fill(LeptonPt + AK4_dRminLep_Pt, JetMassRaw);
+         TH2F_lept_R_had_R->Fill(lept_ratio,had_ratio);
+         TH2F_lept_b_pt_raw_pt->Fill(LeptonPt + AK4_dRminLep_Pt, JetPtRaw);
+      }
 
    }
 
@@ -204,5 +230,10 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
    std::cout << "mass cut: " << mass_cut  << "percent total " << mass_cut/(double)total << std::endl;
    std::cout << "tau cut: " << tau_cut  << "percent total " << tau_cut/(double)total << std::endl;
    std::cout << "b cut: " << b_cut  << "percent total " << b_cut/(double)total << std::endl;
+
+   std::cout << "top_tag_cut: " << top_tag_cut  << "percent total " << top_tag_cut/(double)total << std::endl;
+   std::cout << "top_tag_match_cut: " << top_tag_match_cut  << "percent total " << top_tag_match_cut/(double)total << std::endl;
+   std::cout << "B2G_matched_no_cut: " << B2G_matched_no_cut  << "percent total " << B2G_matched_no_cut/(double)total << std::endl;
+   std::cout << "delta_r_matched_no_cut: " << delta_r_matched_no_cut  << "percent total " << delta_r_matched_no_cut/(double)total << std::endl;
 
 }
