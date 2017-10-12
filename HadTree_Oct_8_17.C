@@ -3,6 +3,8 @@
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
+#include <TLorentzVector.h>
+#include <iostream>
 
 void HadTree_Oct_8_17::Loop(std::string outFileName, Bool_t gen)
 {
@@ -36,8 +38,8 @@ void HadTree_Oct_8_17::Loop(std::string outFileName, Bool_t gen)
    const int nBins = 100;
    const int entry_count_constant = 1000;
 
-   TH1F* TH1F_had_AK8Puppi_SD_pt = new TH1F("TH1F_had_AK8Puppi_pt", "AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_had_AK8Puppi_SD_mass = new TH1F("TH1F_had_AK8Puppi_mass", "AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_AK8Puppi_SD_pt = new TH1F("TH1F_had_AK8Puppi_SD_pt", "AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_AK8Puppi_SD_mass = new TH1F("TH1F_had_AK8Puppi_SD_mass", "AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
    TH1F* TH1F_had_AK8Puppi_pt = new TH1F("TH1F_had_AK8Puppi_pt", "AK8 Puppi p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
    TH1F* TH1F_had_AK8Puppi_mass = new TH1F("TH1F_had_AK8Puppi_mass", "AK8 Puppi Mass; Mass [GeV]; count", nBins, 0, 1000 );
    TH1F* TH1F_had_LF_subJetPt = new TH1F("TH1F_had_LF_subJetPt", "Light Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
@@ -45,22 +47,50 @@ void HadTree_Oct_8_17::Loop(std::string outFileName, Bool_t gen)
    TH1F* TH1F_had_Ratio = new TH1F("TH1F_had_Ratio", "Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_had_deltaR = new TH1F("TH1F_had_deltaR", "#delta R BJet and Top; #theta_{Tb}; count", nBins, 0, 1.5 );
 
-   TH1F* TH1F_puppi_ECF1 = new TH1F("TH1F_puppi_ECF1", "ECF1 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 1400 );
-   TH1F* TH1F_puppi_ECF2 = new TH1F("TH1F_puppi_ECF2", "ECF2 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 150000 );
-   TH1F* TH1F_puppi_ECF3 = new TH1F("TH1F_puppi_ECF3", "ECF3 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 5000000 );
-   TH1F* TH1F_puppi_ECF4 = new TH1F("TH1F_puppi_ECF4", "ECF4 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 100000000 );
-   TH1F* TH1F_puppi_ECF5 = new TH1F("TH1F_puppi_ECF5", "ECF5 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 500000000 );
+   TH1F* TH1F_had_difference = new TH1F("TH1F_had_difference", "(E(b)-E(W))/E(T);  (E(b)-E(W))/E(T); count", nBins, -1, 1 );
+   TH2F* TH2F_bTau21_ratio = new TH2F("TH2F_bTau21_ratio", "Subjet b #Tau_{2}/#Tau_{1}vs. Ratio: E(b)/E(t); Subjet b #Tau_{2}/#Tau_{1};  E(b)/E(t)", nBins, 0, 1, nBins, 0, 1 );
+   TH2F* TH2F_bTau21_WTau21 = new TH2F("TH2F_bTau21_WTau21", "Subjet b #Tau_{2}/#Tau_{1} vs.Subjet W #Tau_{2}/#Tau_{1}; Subjet b #Tau_{2}/#Tau_{1};  Subjet W #Tau_{2}/#Tau_{1}", nBins, 0, 1, nBins, 0, 1 );
 
-   TH1F* TH1F_puppi_ECF_C2 = new TH1F("TH1F_puppi_ECF_C2", "ECF C_{2} #beta = 1 of Puppi SD jet; C_{2}; count", nBins, 0, .005 );
-   TH1F* TH1F_puppi_ECF_D2 = new TH1F("TH1F_puppi_ECF_D2", "ECF D_{2} #beta = 1 of Puppi SD jet; D_{2}; count", nBins, 0, .000001 );
-   TH1F* TH1F_puppi_ECF_C3 = new TH1F("TH1F_puppi_ECF_C3", "ECF C_{3} #beta = 1 of Puppi SD jet; C_{3}; count", nBins, 0, .0001 );
-   TH1F* TH1F_puppi_ECF_D3 = new TH1F("TH1F_puppi_ECF_D3", "ECF D_{3} #beta = 1 of Puppi SD jet; D_{3}; count", nBins, 0, .000001 );
+   TH1F* TH1F_had_difference_WTau21_btau21 = new TH1F("TH1F_had_difference_WTau21_btau21", "(W #Tau_{2}/#Tau_{1}-b #Tau_{2}/#Tau_{1});  (W #Tau_{2}/#Tau_{1}-b #Tau_{2}/#Tau_{1}); count", nBins, -1, 1 );
+
+   TH1F* TH1F_had_difference_ratio_btau21 = new TH1F("TH1F_had_difference_ratio_btau21", "(E(b)/E(T)-#Tau_{2}/#Tau_{1});  (E(b)/E(T)-#Tau_{2}/#Tau_{1}); count", nBins, -1, 1 );
+   TH1F* TH1F_had_sum_ratio_btau21 = new TH1F("TH1F_had_sum_ratio_btau21", "(E(b)/E(T)+#Tau_{2}/#Tau_{1});  (E(b)/E(T)+#Tau_{2}/#Tau_{1}); count", nBins, 0, 2 );
+   
+
+    TH2F* TH2F_leading_tau21_ratio = new TH2F("TH2F_leading_tau21_ratio", "Leading Subjet #Tau_{2}/#Tau_{1}vs. Ratio: E(b)/E(t); Leading Subjet  #Tau_{2}/#Tau_{1};  E(b)/E(t)", nBins, 0, 1, nBins, 0, 1 );
+
+
+   TH2F* TH2F_bTau21_ratio_rotated = new TH2F("TH2F_bTau21_ratio_rotated", "Subjet b #Tau_{2}/#Tau_{1}vs. Ratio: E(b)/E(t) rotated; Subjet b #Tau_{2}/#Tau_{1};  E(b)/E(t)", nBins, -1, 1, nBins, 0, 1 );
+
+   TH1F* TH1F_had_ratio_deltaR_ratio = new TH1F("TH1F_had_ratio_deltaR_ratio", "E(b)/(E(t)) -delta R BJet and Top; E(b)/E(t) -#theta_{Tb}; count", nBins, -.4, 1.4 );
+
+
+   TH1F* TH1F_puppi_ECF1 = new TH1F("TH1F_puppi_ECF1", "ECF1 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 1000 );
+   TH1F* TH1F_puppi_ECF2 = new TH1F("TH1F_puppi_ECF2", "ECF2 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 100000 );
+   TH1F* TH1F_puppi_ECF3 = new TH1F("TH1F_puppi_ECF3", "ECF3 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 3000000 );
+   TH1F* TH1F_puppi_ECF4 = new TH1F("TH1F_puppi_ECF4", "ECF4 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 20000000 );
+   TH1F* TH1F_puppi_ECF5 = new TH1F("TH1F_puppi_ECF5", "ECF5 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 200000000 );
+
+   TH1F* TH1F_puppi_ECF_C2 = new TH1F("TH1F_puppi_ECF_C2", "ECF C_{2} #beta = 1 of Puppi SD jet; C_{2}; count", nBins, 0, .002 );
+   TH1F* TH1F_puppi_ECF_D2 = new TH1F("TH1F_puppi_ECF_D2", "ECF D_{2} #beta = 1 of Puppi SD jet; D_{2}; count", nBins, 0, .0000001 );
+   TH1F* TH1F_puppi_ECF_C3 = new TH1F("TH1F_puppi_ECF_C3", "ECF C_{3} #beta = 1 of Puppi SD jet; C_{3}; count", nBins, 0, .00003 );
+   TH1F* TH1F_puppi_ECF_D3 = new TH1F("TH1F_puppi_ECF_D3", "ECF D_{3} #beta = 1 of Puppi SD jet; D_{3}; count", nBins, 0, .00000000006 );
+
+   TH1F* TH1F_puppi_subb_tau32 = new TH1F("TH1F_puppi_sub0_tau32", "Subjet b #Tau_{3}/#Tau_{2};#Tau_{3}/#Tau_{2}", nBins, 0, 1 );
+   TH1F* TH1F_puppi_subb_tau21 = new TH1F("TH1F_puppi_sub0_tau21", "Subjet b #Tau_{2}/#Tau_{1};#Tau_{2}/#Tau_{1} ; count", nBins, 0, 1 );
+   TH1F* TH1F_puppi_subLF_tau32 = new TH1F("TH1F_puppi_sub1_tau32", "Subjet W #Tau_{3}/#Tau_{2};#Tau_{3}/#Tau_{2}", nBins, 0, 1 );
+   TH1F* TH1F_puppi_subLF_tau21 = new TH1F("TH1F_puppi_sub1_tau21", "Subjet W #Tau_{2}/#Tau_{1};#Tau_{2}/#Tau_{1} ; count", nBins, 0, 1 );
 
 
 
 
-   TH1F* TH1F_maxbdisc_Puppi_SD = new TH1F("TH1F_maxbdisc_Puppi_SD", "Max bDisc SD; bdisc; count", nBins, 0, 1 );
-   TH1F* TH1F_maxbdisc_SD = new TH1F("TH1F_maxbdisc_SD", "Max bDisc; bdisc; count", nBins, 0, 1 );
+   TH1F* TH1F_puppi_Tau32 = new TH1F("TH1F_puppi_Tau32", "#Tau_{3}/#Tau_{2};#Tau_{3}/#Tau_{2} ; count", nBins, 0, 1 );
+   TH1F* TH1F_puppi_Tau21 = new TH1F("TH1F_puppi_Tau21", "#Tau_{2}/#Tau_{1};#Tau_{2}/#Tau_{1} ; count", nBins, 0, 1 );
+
+   TH2F* TH2F_deltaR_ratio = new TH2F("TH2F_deltaR_ratio", "#delta R BJet and Top vs. Ratio: E(b)/E(t); #theta_{Tb};  E(b)/E(t)", nBins, 0, 1, nBins, 0, 1.6 );
+
+   TH1F* TH1F_maxbdisc_Puppi_SD = new TH1F("TH1F_maxbdisc_Puppi_SD", "Max bDisc SD; bdisc; count", nBins, 0, 1.1 );
+   TH1F* TH1F_maxbdisc_SD = new TH1F("TH1F_maxbdisc_SD", "Max bDisc; bdisc; count", nBins, 0, 1.1 );
 
    TH1F* TH1F_gen_had_AK8Puppi_SD_pt = new TH1F("TH1F_gen_had_AK8Puppi_pt", "Gen AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
    TH1F* TH1F_gen_had_AK8Puppi_SD_mass = new TH1F("TH1F_gen_had_AK8Puppi_mass", "Gen AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
@@ -88,12 +118,19 @@ void HadTree_Oct_8_17::Loop(std::string outFileName, Bool_t gen)
    Int_t top_tag_match_cut = 0;
    Float_t had_ratio;
    Float_t had_deltaR;
+   Float_t gen_ratio;
+   Float_t gen_deltaR;
    TLorentzVector TL_LF_subJetPt;
    TLorentzVector TL_B_subJetPt;
    TLorentzVector TL_AK8;
    TLorentzVector TL_Gen_Top;
    TLorentzVector TL_Gen_b;
    TLorentzVector TL_Gen_W;
+
+   Float_t b_Tau21 = 0;
+   Float_t W_Tau21 = 0;
+   Float_t b_Tau32 = 0;
+   Float_t W_Tau32 = 0;
 
    Bool_t had_cut = false;
 
@@ -108,42 +145,112 @@ void HadTree_Oct_8_17::Loop(std::string outFileName, Bool_t gen)
       // if (Cut(ientry) < 0) continue;
 
 
-	  TH1F_maxbdisc_SD->Fill(JetSDmaxbdisc);
-      TH1F_maxbdisc_Puppi_SD->Fill(JetPuppiSDsubjet0bdisc); 
 
       if (JetPuppiSDsubjet0bdisc > JetPuppiSDsubjet1bdisc){
-         TL_LF_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet1pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);
+         TL_LF_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet1pt, JetPuppiSDsubjet1eta, JetPuppiSDsubjet1phi, JetPuppiSDsubjet1mass);
          TL_B_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet0pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);
+         b_Tau21 = JetPuppiSDsubjet0tau2/JetPuppiSDsubjet0tau1;
+         W_Tau21 = JetPuppiSDsubjet1tau2/JetPuppiSDsubjet1tau1;
+         b_Tau32 = JetPuppiSDsubjet0tau3/JetPuppiSDsubjet0tau2;
+         W_Tau32 = JetPuppiSDsubjet1tau3/JetPuppiSDsubjet1tau2;
+
       } else {
          TL_LF_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet0pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);
-         TL_B_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet0pt, JetPuppiSDsubjet0eta, JetPuppiSDsubjet0phi, JetPuppiSDsubjet0mass);           
+         TL_B_subJetPt.SetPtEtaPhiM(JetPuppiSDsubjet1pt, JetPuppiSDsubjet1eta, JetPuppiSDsubjet1phi, JetPuppiSDsubjet1mass);
+         b_Tau21 = JetPuppiSDsubjet1tau2/JetPuppiSDsubjet1tau1;
+         W_Tau21 = JetPuppiSDsubjet0tau2/JetPuppiSDsubjet0tau1;
+         b_Tau32 = JetPuppiSDsubjet1tau3/JetPuppiSDsubjet1tau2;
+         W_Tau32 = JetPuppiSDsubjet0tau3/JetPuppiSDsubjet0tau2;         
       }
       //std::cout
 
       had_cut = false;
       TL_AK8.SetPtEtaPhiM(JetPuppiPtRaw, JetPuppiEtaRaw,JetPuppiPhiRaw,JetPuppiSDmassSubjetCorr);
 
-      TH2F_pt_SD_mass->Fill(JetPuppiPtRaw, JetPuppiSDmassSubjetCorr);
-      TH1F_had_AK8Puppi_pt->Fill(JetPuppiPtRaw);
-      TH1F_had_AK8Puppi_mass->Fill(JetSDmassRaw);
+      if (gen ==true){
+
+         TL_Gen_Top.SetPtEtaPhiM(JetGenMatched_TopPt, JetGenMatched_TopEta,JetGenMatched_TopPhi,JetGenMatched_TopMass);
+         TL_Gen_b.SetPtEtaPhiM(Gen_array_b_p4[0], Gen_array_b_p4[1],Gen_array_b_p4[2],Gen_array_b_p4[3]);
+         TL_Gen_W.SetPtEtaPhiM(Gen_array_W_p4[0], Gen_array_W_p4[1],Gen_array_W_p4[2],Gen_array_W_p4[3]);
+         had_ratio = TL_B_subJetPt.E()/TL_AK8.E();
+         gen_ratio = TL_Gen_b.E()/TL_Gen_Top.E();
+         //if (had_ratio < gen_ratio*1.2) continue;
+         //if (had_ratio > gen_ratio*1.2) continue; == good
+      }
 
 
-      if (JetPuppiPtRaw > 300 && JetPuppiSDmassSubjetCorr < 250 && JetPuppiSDmassSubjetCorr > 140){
+      TH1F_maxbdisc_SD->Fill(JetSDmaxbdisc);
+      TH1F_maxbdisc_Puppi_SD->Fill(JetPuppiSDsubjet0bdisc); 
+
+
+      TH1F_puppi_Tau32->Fill(JetPuppiTau32);
+      TH1F_puppi_Tau21->Fill(JetPuppiTau21);
+
+      if (JetPuppiPtRaw > 90 && JetPuppiSDmassSubjetCorr < 250 && JetPuppiSDmassSubjetCorr > 140 ){
          mass_cut++;
          if(JetPuppiTau32 <.65 ){
             tau_cut++;
             if (JetPuppiSDmaxbdisc > 0.679){
-            	//std::cout << JetPuppiSDsubjet0bdisc<<" "<<JetPuppiSDsubjet1bdisc<<std::endl;
+                //std::cout << JetPuppiSDsubjet0bdisc<<" "<<JetPuppiSDsubjet1bdisc<<std::endl;
 
+
+
+
+
+                TH2F_pt_SD_mass->Fill(JetPuppiPtRaw, JetPuppiSDmassSubjetCorr);
+                TH1F_had_AK8Puppi_pt->Fill(JetPuppiPtRaw);
+                TH1F_had_AK8Puppi_mass->Fill(JetSDmassRaw);
+
+               // if (JetPuppiSDsubjet0bdisc > JetPuppiSDsubjet1bdisc){
+               //    TH1F_puppi_subb_tau32->Fill(JetPuppiSDsubjet0tau3/JetPuppiSDsubjet0tau2);
+               //    TH1F_puppi_subb_tau21->Fill(JetPuppiSDsubjet0tau2/JetPuppiSDsubjet0tau1);
+               //    TH1F_puppi_subLF_tau32->Fill(JetPuppiSDsubjet1tau3/JetPuppiSDsubjet1tau2);
+               //    TH1F_puppi_subLF_tau21->Fill(JetPuppiSDsubjet1tau2/JetPuppiSDsubjet1tau1);
+               //} else {
+               //    TH1F_puppi_subb_tau32->Fill(JetPuppiSDsubjet1tau3/JetPuppiSDsubjet1tau2);
+               //    TH1F_puppi_subb_tau21->Fill(JetPuppiSDsubjet1tau2/JetPuppiSDsubjet1tau1);
+               //    TH1F_puppi_subLF_tau32->Fill(JetPuppiSDsubjet0tau3/JetPuppiSDsubjet0tau2);
+               //    TH1F_puppi_subLF_tau21->Fill(JetPuppiSDsubjet0tau2/JetPuppiSDsubjet0tau1);  
+               //}
+
+               TH1F_puppi_subb_tau32->Fill(b_Tau32);
+               TH1F_puppi_subb_tau21->Fill(b_Tau21);
+               TH1F_puppi_subLF_tau32->Fill(W_Tau32);
+               TH1F_puppi_subLF_tau21->Fill(W_Tau21);
+
+
+
+               TH2F_bTau21_WTau21->Fill(b_Tau21,W_Tau21);
 
                had_ratio = TL_B_subJetPt.E()/TL_AK8.E();
                had_deltaR = TL_B_subJetPt.DeltaR(TL_AK8);
+
+               TH1F_had_difference_ratio_btau21->Fill(had_ratio-b_Tau21);
+               TH1F_had_difference_WTau21_btau21->Fill(W_Tau21-b_Tau21);
+               TH1F_had_sum_ratio_btau21->Fill(had_ratio+b_Tau21);
+
+               TH1F_had_difference->Fill((TL_B_subJetPt.E() - TL_LF_subJetPt.E())/TL_AK8.E());
+               TH2F_bTau21_ratio->Fill(b_Tau21, had_ratio);
+               TH2F_bTau21_ratio_rotated->Fill((b_Tau21-had_ratio)*0.7071, (b_Tau21+had_ratio)*0.7071 );
+
+
+               TH2F_leading_tau21_ratio->Fill(JetPuppiSDsubjet0tau2/JetPuppiSDsubjet0tau1,had_ratio);
+               TH1F_had_ratio_deltaR_ratio->Fill(had_ratio-had_deltaR);
       
+               TH2F_deltaR_ratio->Fill(had_deltaR,had_ratio);
+
                TH1F_had_AK8Puppi_SD_pt->Fill(JetPuppiPtRaw);
                TH1F_had_AK8Puppi_SD_mass->Fill(JetPuppiMassRaw);
                TH1F_had_LF_subJetPt->Fill(TL_LF_subJetPt.Pt());
                TH1F_had_B_subJetPt->Fill(TL_B_subJetPt.Pt());
-               TH1F_had_Ratio->Fill(had_ratio);
+               if(JetPuppiSDsubjet0tau2/JetPuppiSDsubjet0tau1 > .5){
+                        TH1F_had_Ratio->Fill(had_ratio+.5);
+                        std::cout << "first" << std::endl;
+                     } else {
+                        std::cout << "else" << std::endl;
+                        TH1F_had_Ratio->Fill(had_ratio);
+                     }
+         
                TH1F_had_deltaR->Fill(had_deltaR);
 
                TH1F_puppi_ECF1->Fill(JetPuppiSDECF1);
@@ -153,8 +260,8 @@ void HadTree_Oct_8_17::Loop(std::string outFileName, Bool_t gen)
                TH1F_puppi_ECF5->Fill(JetPuppiSDECF5);
 
                TH1F_puppi_ECF_C2->Fill(JetPuppiSDC_2);
-               TH1F_puppi_ECF_D2->Fill(JetPuppiSDD_3);
-               TH1F_puppi_ECF_C3->Fill(JetPuppiSDC_2);
+               TH1F_puppi_ECF_D2->Fill(JetPuppiSDD_2);
+               TH1F_puppi_ECF_C3->Fill(JetPuppiSDC_3);
                TH1F_puppi_ECF_D3->Fill(JetPuppiSDD_3);
 
                had_cut = true;
