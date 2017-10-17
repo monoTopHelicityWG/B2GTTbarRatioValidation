@@ -62,7 +62,7 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
 
    TH2F* TH2F_bTau21_ratio_rotated = new TH2F("TH2F_bTau21_ratio_rotated", "Subjet b #Tau_{2}/#Tau_{1}vs. Ratio: E(b)/E(t) rotated; Subjet b #Tau_{2}/#Tau_{1};  E(b)/E(t)", nBins, -1, 1, nBins, 0, 1 );
 
-   TH1F* TH1F_had_ratio_deltaR_ratio = new TH1F("TH1F_had_ratio_deltaR_ratio", "E(b)/(E(t)) -delta R BJet and Top; E(b)/E(t) -#theta_{Tb}; count", nBins, -.4, 1.4 );
+   TH1F* TH1F_had_ratio_deltaR_ratio = new TH1F("TH1F_had_ratio_deltaR_ratio", "E(b)/(E(t)) -delta R BJet and Top; E(b)/E(t) -#theta_{Tb}; count", nBins, -1.4, 1.4 );
 
 
    TH1F* TH1F_puppi_ECF1 = new TH1F("TH1F_puppi_ECF1", "ECF1 #beta = 1 of Puppi SD jet; ECF1; count", nBins, 0, 1000 );
@@ -84,6 +84,8 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
 
 
 
+
+
    TH1F* TH1F_puppi_Tau32 = new TH1F("TH1F_puppi_Tau32", "#Tau_{3}/#Tau_{2};#Tau_{3}/#Tau_{2} ; count", nBins, 0, 1 );
    TH1F* TH1F_puppi_Tau21 = new TH1F("TH1F_puppi_Tau21", "#Tau_{2}/#Tau_{1};#Tau_{2}/#Tau_{1} ; count", nBins, 0, 1 );
 
@@ -99,7 +101,61 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
    TH1F* TH1F_gen_had_Ratio = new TH1F("TH1F_gen_had_Ratio", "Gen Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_gen_had_deltaR = new TH1F("TH1F_gen_had_deltaR", "Gen #delta R BJet and Top; #theta_{Tb}; count", nBins, 0, 1.5 );
 
-  
+   TH2F* TH2F_deltaR_W_b_Tau21 = new TH2F("TH2F_deltaR_W_b_Tau21", "#delta R W jet 1 vs jet 2 vs. b #Tau_{2}/Tau_{1}; #D_{R} W1 W2;  b #Tau_{2}/Tau_{1}", nBins, 0.1, 2, nBins, 0.1, 1 );
+   TH2F* TH2F_W_mass_b_Tau21 = new TH2F("TH2F_W_mass_b_Tau21", "Mass W vs b #Tau_{2}/Tau_{1}; #D_{R} W1 W2;  b #Tau_{2}/Tau_{1}", nBins, 10, 140, nBins, 0.1, 1 );
+   TH2F* TH2F_R_Eb_Et_b_Tau21 = new TH2F("TH2F_R_Eb_Et_b_Tau21", "Ak4 E(b)/E(t)vs b #Tau_{2}/Tau_{1}; E(b)/E(t);  b #Tau_{2}/Tau_{1}", nBins, .1, 1.2, nBins, 0.1, 1 );
+   TH2F* TH2F_R_Eb_Et_W_mass = new TH2F("TH2F_R_Eb_Et_W_mass", "Ak4 E(b)/E(t) vs Mass W; E(b)/E(t);  Mass W", nBins, .1, 1.2, nBins, 10, 140 );
+   TH2F* TH2F_Gen_AK4_Eb_Et_W_mass = new TH2F("TH2F_Gen_AK4_Eb_Et_W_mass", "AK4/Gen E(b)/E(t) vs Mass W; AK4/Gen E(b)/E(t);  Mass W", nBins, .1, 2, nBins, 2, 140 );
+   TH2F* TH2F_Gen_AK4_Eb_Et_b_mass = new TH2F("TH2F_Gen_AK4_Eb_Et_b_mass", "AK4/Gen E(b)/E(t) vs Mass b; AK4/Gen E(b)/E(t);  Mass b", nBins, .1, 2, nBins, 2, 140 );
+   TH2F* TH2F_W_mass_b_mass = new TH2F("TH2F_W_mass_b_mass", "Mass W vs Mass b; Mass W;  Mass b", nBins, .1, 140, nBins, .1, 140 );
+   
+
+
+
+ 
+   TH1F* TH1F_gen_deltaR_AK4_top = new TH1F("TH1F_gen_deltaR_AK4_top", "Gen AK4 #delta R Top ;  #delta_{R} ; count", nBins, 0, .5 );
+   TH1F* TH1F_gen_deltaR_AK4_top_full_pi = new TH1F("TH1F_gen_deltaR_AK4_top_full_pi", "Gen AK4 #delta R Top ;  #delta_{R} ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_deltaR_AK4_b = new TH1F("TH1F_gen_deltaR_AK4_b", "Gen AK4 #delta R b ;  #delta_{R} ; count", nBins, 0, .5 );
+   TH1F* TH1F_gen_deltaR_AK4_b_full_pi = new TH1F("TH1F_gen_deltaR_AK4_b_full_pi", "Gen AK4 #delta R b ;  #delta_{R} ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_deltaR_AK4_W = new TH1F("TH1F_gen_deltaR_AK4_W", "Gen AK4 #delta R W ;  #delta_{R} ; count", nBins, 0, .5 );
+   TH1F* TH1F_gen_deltaR_AK4_W_full_pi = new TH1F("TH1F_gen_deltaR_AK4_W_full_pi", "Gen AK4 #delta R W ;  #delta_{R} ; count", nBins, 0, 3.2 );
+
+
+   TH1F* TH1F_gen_E_ratio_AK4_top = new TH1F("TH1F_gen_E_ratio_AK4_top", "Gen Top to AK4 energy ;  E(AK4)/E(gen) ; count", nBins, .5,1.5 );
+   TH1F* TH1F_gen_E_ratio_AK4_top_wider_look = new TH1F("TH1F_gen_E_ratio_AK4_top_wider_look", "Gen Top to Ak4 energy ;  E(AK4)/E(gen) ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_E_ratio_AK4_b = new TH1F("TH1F_gen_E_ratio_AK4_b", "Gen b to Ak4 energy ; E(AK4)/E(gen) ; count", nBins, .5, 1.5 );
+   TH1F* TH1F_gen_E_ratio_AK4_b_wider_look = new TH1F("TH1F_gen_E_ratio_AK4_b_wider_look", "Gen b to Ak4 energy; E(AK4)/E(gen) ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_E_ratio_AK4_W = new TH1F("TH1F_gen_E_ratio_AK4_W", "Gen W to Ak4 energy ; E(AK4)/E(gen) ; count", nBins, .5, 1.5 );
+   TH1F* TH1F_gen_E_ratio_AK4_W_wider_look = new TH1F("TH1F_gen_E_ratio_AK4_W_wider_look", "Gen W to Ak4 energy; E(AK4)/E(gen) ; count", nBins, 0, 3.2 );
+
+
+
+   TH1F* TH1F_gen_deltaR_AK8_top = new TH1F("TH1F_gen_deltaR_AK8_top", "Gen AK8 #delta R Top;  #delta_{R} ; count", nBins, 0, .5 );
+   TH1F* TH1F_gen_deltaR_AK8_top_full_pi = new TH1F("TH1F_gen_deltaR_AK8_top_full_pi", "Gen AK8 #delta R Top ;  #delta_{R} ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_deltaR_AK8_b = new TH1F("TH1F_gen_deltaR_AK8_b", "Gen AK8 #delta R b;  #delta_{R} ; count", nBins, 0, .5 );
+   TH1F* TH1F_gen_deltaR_AK8_b_full_pi = new TH1F("TH1F_gen_deltaR_AK8_b_full_pi", "Gen AK8 #delta R b ;  #delta_{R} ; count", nBins, 0, 3.2 );
+
+   TH1F* TH1F_gen_E_ratio_AK8_top = new TH1F("TH1F_gen_E_ratio_AK8_top", "Gen Top to AK8 energy ;  E(AK8)/E(gen) ; count", nBins, .5,1.5 );
+   TH1F* TH1F_gen_E_ratio_AK8_top_wider_look = new TH1F("TH1F_gen_E_ratio_AK8_top_wider_look", "Gen Top to Ak8 energy ;  E(AK8)/E(gen) ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_E_ratio_AK8_b = new TH1F("TH1F_gen_E_ratio_AK8_b", "Gen b to Ak8 energy ; E(AK8)/E(gen) ; count", nBins, .5, 1.5 );
+   TH1F* TH1F_gen_E_ratio_AK8_b_wider_look = new TH1F("TH1F_gen_E_ratio_AK8_b_wider_look", "Gen b to Ak8 energy; E(AK8)/E(gen) ; count", nBins, 0, 3.2 );
+
+
+   TH1F* TH1F_gen_deltaR_CA12_top = new TH1F("TH1F_gen_deltaR_CA12_top", "Gen CA12 #delta R Top;  #delta_{R} ; count", nBins, 0, .5 );
+   TH1F* TH1F_gen_deltaR_CA12_top_full_pi = new TH1F("TH1F_gen_deltaR_CA12_top_full_pi", "Gen CA12 #delta R Top ;  #delta_{R} ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_deltaR_CA12_b = new TH1F("TH1F_gen_deltaR_CA12_b", "Gen CA12 #delta R b;  #delta_{R} ; count", nBins, 0, .5 );
+   TH1F* TH1F_gen_deltaR_CA12_b_full_pi = new TH1F("TH1F_gen_deltaR_CA12_b_full_pi", "Gen CA12 #delta R b;  #delta_{R} ; count", nBins, 0, 3.2 );
+
+   TH1F* TH1F_gen_E_ratio_CA12_top = new TH1F("TH1F_gen_E_ratio_CA12_top", "Gen Top to CA12 energy;  E(CA12)/E(gen) ; count", nBins, .5,1.5 );
+   TH1F* TH1F_gen_E_ratio_CA12_top_wider_look = new TH1F("TH1F_gen_E_ratio_CA12_top_wider_look", "Gen Top to CA12 energy ;  E CA12)/E(gen) ; count", nBins, 0, 3.2 );
+   TH1F* TH1F_gen_E_ratio_CA12_b = new TH1F("TH1F_gen_E_ratio_CA12_b", "Gen b to CA12 energy E(CA12)/E(gen) ; count", nBins, .5, 1.5 );
+   TH1F* TH1F_gen_E_ratio_CA12_b_wider_look = new TH1F("TH1F_gen_E_ratio_CA12_b_wider_look", "Gen b to CA12 energy ; E(CA12)/E(gen) ; count", nBins, 0, 3.2 );
+
+
+
+
+
+
    TH2F* TH2F_pt_SD_mass = new TH2F("TH2F_pt_SD_mass", "SD p_{T} vs SD AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1500, nBins, 0, 500 );
    //gen level plots
    TH2F* TH2F_gen_pt_raw_mass = new TH2F("TH2F_gen_pt_raw_mass", "Gen p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
@@ -132,6 +188,8 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
    TH2F* TH2F_Top_deltaR_gen_AK8_top_pt = new TH2F("TH2F_Top_deltaR_gen_AK8_top_pt", " Delta R between Gen t and AK8 t vs Top p_{T}; #delta_{R}(Gen, AK8); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, 700 );
    TH2F* TH2F_Top_gen_ratio_AK8_ratio = new TH2F("TH2F_Top_gen_ratio_AK8_ratio", "E(b})/E(t) Gen vs AK8 ; Gen; AK8", nBins, 0, 1.2, nBins, 0, 1.2 );
    TH2F* TH2F_Top_gen_deltaR_AK8_ratio = new TH2F("TH2F_Top_gen_deltaR_AK8_ratio", "#delta_{R} Gen vs AK8 ; Gen; AK8", nBins, 0, 1.2, nBins, 0, 1.2 );
+
+
 
 
    Int_t total = 0;
@@ -201,14 +259,12 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
       had_cut = false;
       TL_AK8.SetPtEtaPhiM(JetPuppiPtRaw, JetPuppiEtaRaw,JetPuppiPhiRaw,JetPuppiSDmassSubjetCorr);
 
-      if(AK4ReconstructedJetPt > 0){
-         TL_AK4_LF_subJetPt0.SetPtEtaPhiM(AK4WJetPtRaw, AK4WJetEtaRaw, AK4WJetPhiRaw, AK4WJetMassRaw);
-         TL_AK4_LF_subJetPt1.SetPtEtaPhiM(AK4W2JetPtRaw, AK4W2JetEtaRaw, AK4W2JetPhiRaw, AK4W2JetMassRaw);
-         TL_AK4_B_subJetPt.SetPtEtaPhiM(AK4bJetPtRaw, AK4bJetEtaRaw, AK4bJetPhiRaw, AK4bJetMassRaw);
-         TL_AK4.SetPtEtaPhiM(AK4ReconstructedJetPt, AK4ReconstructedJetEta, AK4ReconstructedJetPhi, AK4ReconstructedJetMass);
-      }
 
-     
+
+      TLorentzVector best_top;
+      TLorentzVector TL_AK4_W_subJetPt;
+
+
       if(CA12JetPtRaw > 0){
 
          if (CA12Jetsubjet0bdisc > CA12Jetsubjet1bdisc){
@@ -223,15 +279,37 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
          TL_CA12.SetPtEtaPhiM(CA12JetPtRaw, CA12JetEtaRaw,CA12JetPhiRaw,CA12JetMassRaw);
        }
 
+      if(AK4ReconstructedJetPt > 0){
+         TL_AK4_LF_subJetPt0.SetPtEtaPhiM(AK4WJetPtRaw, AK4WJetEtaRaw, AK4WJetPhiRaw, AK4WJetMassRaw);
+         TL_AK4_LF_subJetPt1.SetPtEtaPhiM(AK4W2JetPtRaw, AK4W2JetEtaRaw, AK4W2JetPhiRaw, AK4W2JetMassRaw);
+         TL_AK4_B_subJetPt.SetPtEtaPhiM(AK4bJetPtRaw, AK4bJetEtaRaw, AK4bJetPhiRaw, AK4bJetMassRaw);
+         TL_AK4.SetPtEtaPhiM(AK4ReconstructedJetPt, AK4ReconstructedJetEta, AK4ReconstructedJetPhi, AK4ReconstructedJetMass);
+
+         TL_AK4_W_subJetPt = TL_AK4_LF_subJetPt1+TL_AK4_LF_subJetPt0;
+         TH2F_W_mass_b_Tau21->Fill(TL_AK4_W_subJetPt.M(), b_Tau21);
+         TH2F_deltaR_W_b_Tau21->Fill(TL_AK4_LF_subJetPt1.DeltaR(TL_AK4_LF_subJetPt0), b_Tau21);
+
+         TH2F_R_Eb_Et_b_Tau21->Fill(TL_AK4_B_subJetPt.E()/TL_AK4.E(), b_Tau21);
+         TH2F_R_Eb_Et_W_mass->Fill(TL_AK4_B_subJetPt.E()/TL_AK4.E(), TL_AK4_W_subJetPt.M());
+
+
+      }
+
+     
+
+
       if (gen ==true){
 
          TL_Gen_Top.SetPtEtaPhiM(JetGenMatched_TopPt, JetGenMatched_TopEta,JetGenMatched_TopPhi,JetGenMatched_TopMass);
          TL_Gen_b.SetPtEtaPhiM(Gen_array_b_p4[0], Gen_array_b_p4[1],Gen_array_b_p4[2],Gen_array_b_p4[3]);
          TL_Gen_W.SetPtEtaPhiM(Gen_array_W_p4[0], Gen_array_W_p4[1],Gen_array_W_p4[2],Gen_array_W_p4[3]);
-         had_ratio = TL_AK4_B_subJetPt.E()/TL_AK4.E();
+         had_ratio = TL_AK4_B_subJetPt.E()/TL_CA12.E();
          gen_ratio = TL_Gen_b.E()/TL_Gen_Top.E();
          //if (had_ratio < gen_ratio*1.2) continue;
          //if (had_ratio > gen_ratio*1.2) continue; == good
+         TH2F_Gen_AK4_Eb_Et_W_mass->Fill(had_ratio/gen_ratio, TL_AK4_W_subJetPt.M());
+         TH2F_Gen_AK4_Eb_Et_b_mass->Fill(had_ratio/gen_ratio, TL_AK4_B_subJetPt.M());
+         TH2F_W_mass_b_mass->Fill(TL_AK4_W_subJetPt.M(), TL_AK4_B_subJetPt.M());
       }
 
 
@@ -242,7 +320,10 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
       TH1F_puppi_Tau32->Fill(JetPuppiTau32);
       TH1F_puppi_Tau21->Fill(JetPuppiTau21);
 
-      if (JetPuppiPtRaw > 90 && JetPuppiSDmassSubjetCorr < 250 && JetPuppiSDmassSubjetCorr > 140 ){
+
+
+
+      if (JetPuppiPtRaw > 90 && JetPuppiSDmassSubjetCorr < 250 && JetPuppiSDmassSubjetCorr > 140  && (TL_AK4_B_subJetPt.M() < 30 || TL_AK4_W_subJetPt.M() > 30) ){
          mass_cut++;
          if(JetPuppiTau32 <.65 ){
             tau_cut++;
@@ -278,14 +359,14 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
 
                TH2F_bTau21_WTau21->Fill(b_Tau21,W_Tau21);
 
-               had_ratio = TL_AK4_B_subJetPt.E()/TL_CA12.E();
-               had_deltaR = TL_AK4_B_subJetPt.DeltaR(TL_CA12);
+               had_ratio = TL_AK4_B_subJetPt.E()/TL_AK4.E();
+               had_deltaR = TL_AK4_B_subJetPt.DeltaR(TL_AK4);
 
                TH1F_had_difference_ratio_btau21->Fill(had_ratio-b_Tau21);
                TH1F_had_difference_WTau21_btau21->Fill(W_Tau21-b_Tau21);
                TH1F_had_sum_ratio_btau21->Fill(had_ratio+b_Tau21);
 
-               TH1F_had_difference->Fill((TL_AK8_B_subJetPt.E() - TL_AK8_LF_subJetPt.E())/TL_AK8.E());
+               TH1F_had_difference->Fill((TL_AK4_B_subJetPt.E() - (TL_AK4_LF_subJetPt1.E() + TL_AK4_LF_subJetPt0.E() ) )/TL_AK4.E());
                TH2F_bTau21_ratio->Fill(b_Tau21, had_ratio);
                TH2F_bTau21_ratio_rotated->Fill((b_Tau21-had_ratio)*0.7071, (b_Tau21+had_ratio)*0.7071 );
 
@@ -323,15 +404,57 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
 
 
 
-      if(gen == true){
+
+      if(gen == true && had_cut == true){
+
+         if( abs(TL_AK8.M() - 172) < abs(TL_CA12.M() - 172) ){
+            best_top = TL_AK4;
+         } else {
+             best_top = TL_CA12;
+         }
+
+         
+
+         TH1F_gen_deltaR_AK4_top->Fill(TL_AK4.DeltaR(TL_Gen_Top));
+         TH1F_gen_deltaR_AK4_top_full_pi->Fill(TL_AK4.DeltaR(TL_Gen_Top));
+         TH1F_gen_deltaR_AK4_b->Fill(TL_AK4_B_subJetPt.DeltaR(TL_Gen_b));
+         TH1F_gen_deltaR_AK4_b_full_pi->Fill(TL_AK4_B_subJetPt.DeltaR(TL_Gen_b));
+         TH1F_gen_deltaR_AK4_W->Fill(TL_AK4_W_subJetPt.DeltaR(TL_Gen_W));
+         TH1F_gen_deltaR_AK4_W_full_pi->Fill(TL_AK4_W_subJetPt.DeltaR(TL_Gen_W));
+
+         TH1F_gen_E_ratio_AK4_top->Fill(TL_AK4.E()/TL_Gen_Top.E());
+         TH1F_gen_E_ratio_AK4_top_wider_look->Fill(TL_AK4.E()/TL_Gen_Top.E());
+         TH1F_gen_E_ratio_AK4_b->Fill(TL_AK4_B_subJetPt.E()/TL_Gen_b.E());
+         TH1F_gen_E_ratio_AK4_b_wider_look->Fill(TL_AK4_B_subJetPt.E()/TL_Gen_W.E());
+         TH1F_gen_E_ratio_AK4_W->Fill( TL_AK4_W_subJetPt.E()/TL_Gen_W.E());
+         TH1F_gen_E_ratio_AK4_W_wider_look->Fill(TL_AK4_W_subJetPt.E()/TL_Gen_W.E());
+
+         TH1F_gen_deltaR_AK8_top->Fill(TL_AK8.DeltaR(TL_Gen_Top));
+         TH1F_gen_deltaR_AK8_top_full_pi->Fill(TL_AK8.DeltaR(TL_Gen_Top));
+         TH1F_gen_deltaR_AK8_b->Fill(TL_AK8_B_subJetPt.DeltaR(TL_Gen_b));
+         TH1F_gen_deltaR_AK8_b_full_pi->Fill(TL_AK8_B_subJetPt.DeltaR(TL_Gen_b));
+         TH1F_gen_E_ratio_AK8_top->Fill(TL_AK8.E()/TL_Gen_Top.E());
+         TH1F_gen_E_ratio_AK8_top_wider_look->Fill(TL_AK8.E()/TL_Gen_Top.E());
+         TH1F_gen_E_ratio_AK8_b->Fill(TL_AK8_B_subJetPt.E()/TL_Gen_b.E());
+         TH1F_gen_E_ratio_AK8_b_wider_look->Fill(TL_AK8_B_subJetPt.E()/TL_Gen_b.E());
+
+         TH1F_gen_deltaR_CA12_top->Fill(TL_CA12.DeltaR(TL_Gen_Top));
+         TH1F_gen_deltaR_CA12_top_full_pi->Fill(TL_CA12.DeltaR(TL_Gen_Top));
+         TH1F_gen_deltaR_CA12_b->Fill(TL_CA12_B_subJetPt.DeltaR(TL_Gen_b));
+         TH1F_gen_deltaR_CA12_b_full_pi->Fill(TL_CA12_B_subJetPt.DeltaR(TL_Gen_b));
+         TH1F_gen_E_ratio_CA12_top->Fill(TL_CA12.E()/TL_Gen_Top.E());
+         TH1F_gen_E_ratio_CA12_top_wider_look->Fill(TL_CA12.E()/TL_Gen_Top.E());
+         TH1F_gen_E_ratio_CA12_b->Fill(TL_CA12_B_subJetPt.E()/TL_Gen_b.E());
+         TH1F_gen_E_ratio_CA12_b_wider_look->Fill(TL_CA12_B_subJetPt.E()/TL_Gen_b.E());
 
 
+         // cout << best_top.DeltaR(TL_Gen_Top) << endl;
          TH2F_b_deltaR_gen_AK4_top_pt->Fill(TL_AK4_B_subJetPt.DeltaR(TL_Gen_b),TL_Gen_Top.Pt());
          TH2F_b_ratio_gen_AK4_top_pt->Fill(TL_AK4_B_subJetPt.E()/TL_Gen_b.E(), TL_Gen_Top.Pt());
-         TH2F_Top_ratio_gen_AK4_top_pt->Fill(TL_AK4.E()/TL_Gen_Top.E(), TL_Gen_Top.Pt());
-         TH2F_Top_deltaR_gen_AK4_top_pt->Fill(TL_AK4.DeltaR(TL_Gen_Top),TL_Gen_Top.Pt());
-         TH2F_Top_gen_ratio_AK4_ratio->Fill(TL_Gen_b.E()/TL_Gen_Top.E(), TL_AK4_B_subJetPt.E()/TL_AK4.E());
-         TH2F_Top_gen_deltaR_AK4_ratio->Fill(TL_Gen_b.DeltaR(TL_Gen_Top), TL_AK4_B_subJetPt.DeltaR(TL_AK4));
+         TH2F_Top_ratio_gen_AK4_top_pt->Fill(best_top.E()/TL_Gen_Top.E(), TL_Gen_Top.Pt());
+         TH2F_Top_deltaR_gen_AK4_top_pt->Fill(best_top.DeltaR(TL_Gen_Top),TL_Gen_Top.Pt());
+         TH2F_Top_gen_ratio_AK4_ratio->Fill(TL_Gen_b.E()/TL_Gen_Top.E(), TL_AK4_B_subJetPt.E()/best_top.E());
+         TH2F_Top_gen_deltaR_AK4_ratio->Fill(TL_Gen_b.DeltaR(TL_Gen_Top), TL_AK4_B_subJetPt.DeltaR(best_top));
    
          TH2F_b_deltaR_gen_AK8_top_pt->Fill(TL_AK8_B_subJetPt.DeltaR(TL_Gen_b),TL_Gen_Top.Pt());
          TH2F_b_ratio_gen_AK8_top_pt->Fill(TL_AK8_B_subJetPt.E()/TL_Gen_b.E(), TL_Gen_Top.Pt());
