@@ -16,6 +16,15 @@ from os.path import isfile, join, exists
 #python runHadTree.py -i /store/user/rymuelle/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/B2GMonoTopNtuples_Oct_6_2017/CRAB_UserFiles/crab_monotopTreeV1_MT_1TeV_RH_13TeV/171006_224636/0000 -o MT_1TeV_RH.root -t ana/TreeHad -m
 #python runHadTree.py -i /store/user/rymuelle/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/CRAB_UserFiles/crab_monotopTreeV1_MT_1TeV_RH_13TeV_V2/171013_201849/0000 -o MT_1TeV_RH.root -t ana/TreeHad -m
 ###
+
+
+
+#python runHadTree.py -i /store/user/rymuelle/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/CRAB_UserFiles/crab_monotopTreeV1_MT_2TeV_LH_13TeV_V2/171019_164917/0000 -o MT_2TeV_LH.root -t ana/TreeHad -m
+
+#python runHadTree.py -i /store/user/rymuelle/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/CRAB_UserFiles/crab_monotopTreeV1_MT_2TeV_RH_13TeV_V2/171019_162945/0000 -o MT_2TeV_RH.root -t ana/TreeHad -m
+
+
+
 usage = """%prog [options]
 This script takes as input a directory of input .root files, and runs the HadTree_Oct_12_17.C macro on them."""
 

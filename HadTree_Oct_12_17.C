@@ -38,12 +38,21 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
    const int nBins = 100;
    const int entry_count_constant = 1000;
 
-   TH1F* TH1F_had_AK8Puppi_SD_pt = new TH1F("TH1F_had_AK8Puppi_SD_pt", "AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   const double maxPt = 1000;
+
+   TH1F* TH1F_had_CA12_pt = new TH1F("TH1F_had_CA12_pt", "CA12 SD p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
+   TH1F* TH1F_had_AK4b_pt = new TH1F("TH1F_had_AK4b_pt", "AK4 b p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
+   TH1F* TH1F_had_AK4W_pt = new TH1F("TH1F_had_AK4W_pt", "AK4 W p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
+   TH1F* TH1F_had_top_pt = new TH1F("TH1F_had_top_pt", "Gen Top p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
+   TH1F* TH1F_mass_W = new TH1F("TH1F_mass_W_pt", "AK4 W mass; mass [GeV]; count", nBins, 0, 110 );
+   TH1F* TH1F_ratio_reco_gen = new TH1F("TH1F_ratio_reco_gen", "AK4[E(b)/E(t)]/Gen[E(b)/E(t)]; AK4[E(b)/E(t)]/Gen[E(b)/E(t)]; count", nBins, 0, 2 );
+
+   TH1F* TH1F_had_AK8Puppi_SD_pt = new TH1F("TH1F_had_AK8Puppi_SD_pt", "AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
    TH1F* TH1F_had_AK8Puppi_SD_mass = new TH1F("TH1F_had_AK8Puppi_SD_mass", "AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_had_AK8Puppi_pt = new TH1F("TH1F_had_AK8Puppi_pt", "AK8 Puppi p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_AK8Puppi_pt = new TH1F("TH1F_had_AK8Puppi_pt", "AK8 Puppi p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
    TH1F* TH1F_had_AK8Puppi_mass = new TH1F("TH1F_had_AK8Puppi_mass", "AK8 Puppi Mass; Mass [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_had_LF_subJetPt = new TH1F("TH1F_had_LF_subJetPt", "Light Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_had_B_subJetPt = new TH1F("TH1F_had_B_subJetPt", "Heavy (b) Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_had_LF_subJetPt = new TH1F("TH1F_had_LF_subJetPt", "Light Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
+   TH1F* TH1F_had_B_subJetPt = new TH1F("TH1F_had_B_subJetPt", "Heavy (b) Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
    TH1F* TH1F_had_Ratio = new TH1F("TH1F_had_Ratio", "Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_had_deltaR = new TH1F("TH1F_had_deltaR", "#delta R BJet and Top; #theta_{Tb}; count", nBins, 0, 1.5 );
 
@@ -94,10 +103,10 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
    TH1F* TH1F_maxbdisc_Puppi_SD = new TH1F("TH1F_maxbdisc_Puppi_SD", "Max bDisc SD; bdisc; count", nBins, 0, 1.1 );
    TH1F* TH1F_maxbdisc_SD = new TH1F("TH1F_maxbdisc_SD", "Max bDisc; bdisc; count", nBins, 0, 1.1 );
 
-   TH1F* TH1F_gen_had_AK8Puppi_SD_pt = new TH1F("TH1F_gen_had_AK8Puppi_pt", "Gen AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_gen_had_AK8Puppi_SD_pt = new TH1F("TH1F_gen_had_AK8Puppi_pt", "Gen AK8 Puppi SD p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
    TH1F* TH1F_gen_had_AK8Puppi_SD_mass = new TH1F("TH1F_gen_had_AK8Puppi_mass", "Gen AK8 Puppi SD Mass; Mass [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_gen_had_LF_subJetPt = new TH1F("TH1F_gen_had_LF_subJetPt", "Gen Light Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
-   TH1F* TH1F_gen_had_B_subJetPt = new TH1F("TH1F_gen_had_B_subJetPt", "Gen Heavy (b) Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, 1000 );
+   TH1F* TH1F_gen_had_LF_subJetPt = new TH1F("TH1F_gen_had_LF_subJetPt", "Gen Light Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
+   TH1F* TH1F_gen_had_B_subJetPt = new TH1F("TH1F_gen_had_B_subJetPt", "Gen Heavy (b) Flavor Subjet p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
    TH1F* TH1F_gen_had_Ratio = new TH1F("TH1F_gen_had_Ratio", "Gen Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_gen_had_deltaR = new TH1F("TH1F_gen_had_deltaR", "Gen #delta R BJet and Top; #theta_{Tb}; count", nBins, 0, 1.5 );
 
@@ -156,36 +165,36 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
 
 
 
-   TH2F* TH2F_pt_SD_mass = new TH2F("TH2F_pt_SD_mass", "SD p_{T} vs SD AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1500, nBins, 0, 500 );
+   TH2F* TH2F_pt_SD_mass = new TH2F("TH2F_pt_SD_mass", "SD p_{T} vs SD AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1500, nBins, 0, maxPt );
    //gen level plots
-   TH2F* TH2F_gen_pt_raw_mass = new TH2F("TH2F_gen_pt_raw_mass", "Gen p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
+   TH2F* TH2F_gen_pt_raw_mass = new TH2F("TH2F_gen_pt_raw_mass", "Gen p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, maxPt );
    TH2F* TH2F_gen_mass_raw_mass = new TH2F("TH2F_gen_mass_raw_mass", "Gen Mass vs Raw AK8 Jet Mass; Gen Mass; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
-   TH2F* TH2F_gen_pt_raw_pt = new TH2F("TH2F_gen_pt_raw_pt", "Gen p_{T} vs Raw AK8 Jet p_{T}; Gen p_{T}; Raw p_{T} [GeV]", nBins, 0, 1000, nBins, 0, 1000 );
-   TH2F* TH2F_gen_pt_top_matched = new TH2F("TH2F_gen_pt_top_matched", "Gen p_{T} vs Top Matched; Gen p_{T}; Top Matched", nBins, 0, 1000, 2, 0, 1 );
+   TH2F* TH2F_gen_pt_raw_pt = new TH2F("TH2F_gen_pt_raw_pt", "Gen p_{T} vs Raw AK8 Jet p_{T}; Gen p_{T}; Raw p_{T} [GeV]", nBins, 0, maxPt, nBins, 0, maxPt );
+   TH2F* TH2F_gen_pt_top_matched = new TH2F("TH2F_gen_pt_top_matched", "Gen p_{T} vs Top Matched; Gen p_{T}; Top Matched", nBins, 0, maxPt, 2, 0, 1 );
    TH2F* TH2F_gen_ratio_puppi_ratio = new TH2F("TH2F_gen_ratio_puppi_ratio", "Gen Ratio = E(b)/E(t) vs Puppi Subjets; Gen; MC", nBins, 0, 1.5, nBins, 0, 1.5 );
    TH2F* TH2F_gen_deltaR_puppi_deltaR = new TH2F("TH2F_gen_deltaR_puppi_deltaR", "Gen Delta R between b and Top vs puppi; Gen; MC", nBins, 0, 1.5, nBins, 0, 1.5 );
 
-   TH2F* TH2F_b_deltaR_gen_AK4_top_pt = new TH2F("TH2F_b_deltaR_gen_AK4", " Delta R between Gen b and AK4 b vs Top p_{T}; #delta_{R}(Gen, AK4); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, 700 );
-   TH2F* TH2F_b_ratio_gen_AK4_top_pt = new TH2F("TH2F_b_ratio_gen_AK4_top_pt", "E(b_{gen})/E(b_{AK4}) vs Top p_{T}; #E(b_{gen})/E(b_{AK4}); Gen Top p_{T}", nBins, 0, 5, nBins, 0, 700 );
-   TH2F* TH2F_Top_ratio_gen_AK4_top_pt = new TH2F("TH2F_Top_ratio_gen_AK4_top_pt", "E(t_{gen})/E(t_{AK4}) vs Top p_{T}; #E(t_{gen})/E(t_{AK4}); Gen Top p_{T}", nBins, 0, 2, nBins, 0, 700 );
-   TH2F* TH2F_Top_deltaR_gen_AK4_top_pt = new TH2F("TH2F_Top_deltaR_gen_AK4_top_pt", " Delta R between Gen t and AK4 t vs Top p_{T}; #delta_{R}(Gen, AK4); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, 700 );
+   TH2F* TH2F_b_deltaR_gen_AK4_top_pt = new TH2F("TH2F_b_deltaR_gen_AK4", " Delta R between Gen b and AK4 b vs Top p_{T}; #delta_{R}(Gen, AK4); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, maxPt );
+   TH2F* TH2F_b_ratio_gen_AK4_top_pt = new TH2F("TH2F_b_ratio_gen_AK4_top_pt", "E(b_{gen})/E(b_{AK4}) vs Top p_{T}; #E(b_{gen})/E(b_{AK4}); Gen Top p_{T}", nBins, 0, 5, nBins, 0, maxPt );
+   TH2F* TH2F_Top_ratio_gen_AK4_top_pt = new TH2F("TH2F_Top_ratio_gen_AK4_top_pt", "E(t_{gen})/E(t_{AK4}) vs Top p_{T}; #E(t_{gen})/E(t_{AK4}); Gen Top p_{T}", nBins, 0, 2, nBins, 0, maxPt );
+   TH2F* TH2F_Top_deltaR_gen_AK4_top_pt = new TH2F("TH2F_Top_deltaR_gen_AK4_top_pt", " Delta R between Gen t and AK4 t vs Top p_{T}; #delta_{R}(Gen, AK4); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, maxPt );
    TH2F* TH2F_Top_gen_ratio_AK4_ratio = new TH2F("TH2F_Top_gen_ratio_AK4_ratio", "E(b})/E(t) Gen vs AK4 ; Gen; Ak4", nBins, 0, 1.2, nBins, 0, 1.2 );
    TH2F* TH2F_Top_gen_deltaR_AK4_ratio = new TH2F("TH2F_Top_gen_deltaR_AK4_ratio", "#delta_{R} Gen vs AK4 ; Gen; Ak4", nBins, 0, 1.2, nBins, 0, 1.2 );
 
 
-   TH2F* TH2F_b_deltaR_gen_CA12_top_pt = new TH2F("TH2F_b_deltaR_gen_CA12", " Delta R between Gen b and CA12 b vs Top p_{T}; #delta_{R}(Gen, CA12); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, 700 );
-   TH2F* TH2F_b_ratio_gen_CA12_top_pt = new TH2F("TH2F_b_ratio_gen_CA12_top_pt", "E(b_{gen})/E(b_{CA12}) vs Top p_{T}; #E(b_{gen})/E(b_{CA12}); Gen Top p_{T}", nBins, 0, 5, nBins, 0, 700 );
-   TH2F* TH2F_Top_ratio_gen_CA12_top_pt = new TH2F("TH2F_Top_ratio_gen_CA12_top_pt", "E(t_{gen})/E(t_{CA12}) vs Top p_{T}; #E(t_{gen})/E(t_{CA12}); Gen Top p_{T}", nBins, 0, 2, nBins, 0, 700 );
-   TH2F* TH2F_Top_deltaR_gen_CA12_top_pt = new TH2F("TH2F_Top_deltaR_gen_CA12_top_pt", " Delta R between Gen t and CA12 t vs Top p_{T}; #delta_{R}(Gen, CA12); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, 700 );
+   TH2F* TH2F_b_deltaR_gen_CA12_top_pt = new TH2F("TH2F_b_deltaR_gen_CA12", " Delta R between Gen b and CA12 b vs Top p_{T}; #delta_{R}(Gen, CA12); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, maxPt );
+   TH2F* TH2F_b_ratio_gen_CA12_top_pt = new TH2F("TH2F_b_ratio_gen_CA12_top_pt", "E(b_{gen})/E(b_{CA12}) vs Top p_{T}; #E(b_{gen})/E(b_{CA12}); Gen Top p_{T}", nBins, 0, 5, nBins, 0, maxPt );
+   TH2F* TH2F_Top_ratio_gen_CA12_top_pt = new TH2F("TH2F_Top_ratio_gen_CA12_top_pt", "E(t_{gen})/E(t_{CA12}) vs Top p_{T}; #E(t_{gen})/E(t_{CA12}); Gen Top p_{T}", nBins, 0, 2, nBins, 0, maxPt );
+   TH2F* TH2F_Top_deltaR_gen_CA12_top_pt = new TH2F("TH2F_Top_deltaR_gen_CA12_top_pt", " Delta R between Gen t and CA12 t vs Top p_{T}; #delta_{R}(Gen, CA12); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, maxPt );
    TH2F* TH2F_Top_gen_ratio_CA12_ratio = new TH2F("TH2F_Top_gen_ratio_CA12_ratio", "E(b})/E(t) Gen vs CA12 ; Gen; CA12", nBins, 0, 1.2, nBins, 0, 1.2 );
    TH2F* TH2F_Top_gen_deltaR_CA12_ratio = new TH2F("TH2F_Top_gen_deltaR_CA12_ratio", "#delta_{R} Gen vs CA12 ; Gen; CA12", nBins, 0, 1.2, nBins, 0, 1.2 );
 
 
 
-   TH2F* TH2F_b_deltaR_gen_AK8_top_pt = new TH2F("TH2F_b_deltaR_gen_AK8", " Delta R between Gen b and AK8 b vs Top p_{T}; #delta_{R}(Gen, AK8); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, 700 );
-   TH2F* TH2F_b_ratio_gen_AK8_top_pt = new TH2F("TH2F_b_ratio_gen_AK8_top_pt", "E(b_{gen})/E(b_{AK8}) vs Top p_{T}; #E(b_{gen})/E(b_{AK8}); Gen Top p_{T}", nBins, 0, 5, nBins, 0, 700 );
-   TH2F* TH2F_Top_ratio_gen_AK8_top_pt = new TH2F("TH2F_Top_ratio_gen_AK8_top_pt", "E(t_{gen})/E(t_{AK8}) vs Top p_{T}; #E(t_{gen})/E(t_{AK8}); Gen Top p_{T}", nBins, 0, 2, nBins, 0, 700 );
-   TH2F* TH2F_Top_deltaR_gen_AK8_top_pt = new TH2F("TH2F_Top_deltaR_gen_AK8_top_pt", " Delta R between Gen t and AK8 t vs Top p_{T}; #delta_{R}(Gen, AK8); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, 700 );
+   TH2F* TH2F_b_deltaR_gen_AK8_top_pt = new TH2F("TH2F_b_deltaR_gen_AK8", " Delta R between Gen b and AK8 b vs Top p_{T}; #delta_{R}(Gen, AK8); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, maxPt );
+   TH2F* TH2F_b_ratio_gen_AK8_top_pt = new TH2F("TH2F_b_ratio_gen_AK8_top_pt", "E(b_{gen})/E(b_{AK8}) vs Top p_{T}; #E(b_{gen})/E(b_{AK8}); Gen Top p_{T}", nBins, 0, 5, nBins, 0, maxPt );
+   TH2F* TH2F_Top_ratio_gen_AK8_top_pt = new TH2F("TH2F_Top_ratio_gen_AK8_top_pt", "E(t_{gen})/E(t_{AK8}) vs Top p_{T}; #E(t_{gen})/E(t_{AK8}); Gen Top p_{T}", nBins, 0, 2, nBins, 0, maxPt );
+   TH2F* TH2F_Top_deltaR_gen_AK8_top_pt = new TH2F("TH2F_Top_deltaR_gen_AK8_top_pt", " Delta R between Gen t and AK8 t vs Top p_{T}; #delta_{R}(Gen, AK8); Gen Top p_{T}", nBins, 0, 1.5, nBins, 0, maxPt );
    TH2F* TH2F_Top_gen_ratio_AK8_ratio = new TH2F("TH2F_Top_gen_ratio_AK8_ratio", "E(b})/E(t) Gen vs AK8 ; Gen; AK8", nBins, 0, 1.2, nBins, 0, 1.2 );
    TH2F* TH2F_Top_gen_deltaR_AK8_ratio = new TH2F("TH2F_Top_gen_deltaR_AK8_ratio", "#delta_{R} Gen vs AK8 ; Gen; AK8", nBins, 0, 1.2, nBins, 0, 1.2 );
 
@@ -225,6 +234,8 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
    Float_t W_Tau32 = 0;
 
    Bool_t had_cut = false;
+   Bool_t met_cut = false;
+
 
 
    Long64_t nentries = fChain->GetEntriesFast();
@@ -303,7 +314,8 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
          TL_Gen_Top.SetPtEtaPhiM(JetGenMatched_TopPt, JetGenMatched_TopEta,JetGenMatched_TopPhi,JetGenMatched_TopMass);
          TL_Gen_b.SetPtEtaPhiM(Gen_array_b_p4[0], Gen_array_b_p4[1],Gen_array_b_p4[2],Gen_array_b_p4[3]);
          TL_Gen_W.SetPtEtaPhiM(Gen_array_W_p4[0], Gen_array_W_p4[1],Gen_array_W_p4[2],Gen_array_W_p4[3]);
-         had_ratio = TL_AK4_B_subJetPt.E()/TL_CA12.E();
+         //had_ratio = TL_AK4_B_subJetPt.E()/TL_CA12.E();
+         had_ratio = TL_AK4_B_subJetPt.E()/TL_AK4.E();
          gen_ratio = TL_Gen_b.E()/TL_Gen_Top.E();
          //if (had_ratio < gen_ratio*1.2) continue;
          //if (had_ratio > gen_ratio*1.2) continue; == good
@@ -320,14 +332,17 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
       TH1F_puppi_Tau32->Fill(JetPuppiTau32);
       TH1F_puppi_Tau21->Fill(JetPuppiTau21);
 
+      if(HadMETpt > 350 && TL_AK4_B_subJetPt.Pt() > 70 && abs(TL_AK4_B_subJetPt.Eta()) < 2.5){
+         met_cut =  true;
+      }
 
 
-
-      if (JetPuppiPtRaw > 90 && JetPuppiSDmassSubjetCorr < 250 && JetPuppiSDmassSubjetCorr > 140  && (TL_AK4_B_subJetPt.M() < 30 || TL_AK4_W_subJetPt.M() > 30) ){
+      if (TL_CA12.M() < 250 && TL_CA12.M() > 110 && met_cut == true/*|| (JetPuppiPtRaw > 90 && JetPuppiSDmassSubjetCorr < 250 && JetPuppiSDmassSubjetCorr > 140) */ /*TL_CA12_LF_subJetPt.M() > 30*/ ){
          mass_cut++;
          if(JetPuppiTau32 <.65 ){
             tau_cut++;
-            if (JetPuppiSDmaxbdisc > 0.679){
+            if ( JetPuppiSDmaxbdisc > 0.679){
+               b_cut++;
                 //std::cout << JetPuppiSDsubjet0bdisc<<" "<<JetPuppiSDsubjet1bdisc<<std::endl;
 
 
@@ -359,8 +374,10 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
 
                TH2F_bTau21_WTau21->Fill(b_Tau21,W_Tau21);
 
+               //had_ratio = TL_AK4_B_subJetPt.E()/TL_AK4.E();
+               //had_deltaR = TL_AK4_B_subJetPt.DeltaR(TL_AK4);
                had_ratio = TL_AK4_B_subJetPt.E()/TL_AK4.E();
-               had_deltaR = TL_AK4_B_subJetPt.DeltaR(TL_AK4);
+               had_deltaR = TL_CA12_B_subJetPt.DeltaR(TL_CA12);
 
                TH1F_had_difference_ratio_btau21->Fill(had_ratio-b_Tau21);
                TH1F_had_difference_WTau21_btau21->Fill(W_Tau21-b_Tau21);
@@ -405,13 +422,27 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
 
 
 
-      if(gen == true && had_cut == true){
+
+
+      if(gen == true && had_cut == true && met_cut == true){
 
          if( abs(TL_AK8.M() - 172) < abs(TL_CA12.M() - 172) ){
             best_top = TL_AK4;
          } else {
              best_top = TL_CA12;
          }
+
+
+
+
+
+
+         TH1F_had_CA12_pt->Fill(TL_CA12.Pt());
+         TH1F_had_AK4b_pt->Fill(TL_AK4_B_subJetPt.Pt());
+         TH1F_had_AK4W_pt->Fill(TL_AK4_W_subJetPt.Pt());
+         TH1F_had_top_pt->Fill(TL_Gen_Top.Pt());
+         TH1F_mass_W->Fill(TL_AK4_W_subJetPt.M());
+         TH1F_ratio_reco_gen->Fill(had_ratio/gen_ratio);
 
          
 
@@ -467,11 +498,11 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
          TH2F_b_ratio_gen_CA12_top_pt->Fill(TL_CA12_B_subJetPt.E()/TL_Gen_b.E(), TL_Gen_Top.Pt());
          TH2F_Top_ratio_gen_CA12_top_pt->Fill(TL_CA12.E()/TL_Gen_Top.E(), TL_Gen_Top.Pt());
          TH2F_Top_deltaR_gen_CA12_top_pt->Fill(TL_CA12.DeltaR(TL_Gen_Top),TL_Gen_Top.Pt());
-         TH2F_Top_gen_ratio_CA12_ratio->Fill(TL_Gen_b.E()/TL_Gen_Top.E(), TL_CA12_B_subJetPt.E()/TL_CA12.E());
+         TH2F_Top_gen_ratio_CA12_ratio->Fill(TL_Gen_b.E()/TL_Gen_Top.E(), TL_AK4_B_subJetPt.E()/TL_AK4.E());
          TH2F_Top_gen_deltaR_CA12_ratio->Fill(TL_Gen_b.DeltaR(TL_Gen_Top), TL_CA12_B_subJetPt.DeltaR(TL_CA12));
       }
 
-      if(gen == true && had_cut==true){
+      if(gen == true && had_cut == true && met_cut == true){
 
          TL_Gen_Top.SetPtEtaPhiM(JetGenMatched_TopPt, JetGenMatched_TopEta,JetGenMatched_TopPhi,JetGenMatched_TopMass);
          TL_Gen_b.SetPtEtaPhiM(Gen_array_b_p4[0], Gen_array_b_p4[1],Gen_array_b_p4[2],Gen_array_b_p4[3]);
