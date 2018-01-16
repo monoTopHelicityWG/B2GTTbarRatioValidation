@@ -67,7 +67,7 @@ struct Arg: public option::Arg
   }
 };
 
-enum  optionIndex { UNKNOWN, HELP, INPUT, OUTPUT };
+enum  optionIndex { UNKNOWN, HELP, INPUT, OUTPUT, VERBOSE };
 const option::Descriptor usage[] =
 {
  {UNKNOWN, 0,"" , ""    ,option::Arg::None, "USAGE: example [options]\n\n"
@@ -75,6 +75,7 @@ const option::Descriptor usage[] =
  {HELP,    0,"" , "help",option::Arg::None, "  --help  \tPrint usage and exit." },
  {INPUT,    0,"i", "input",Arg::Required, "  --input, -i  \tInput file" },
  {OUTPUT,    0,"o", "output",Arg::Required, "  --output, -i  \tOutput file" },
+ {VERBOSE,    0,"v", "verbose",Arg::None, "  --verbose, -v  \tVerbose output" },
  {UNKNOWN, 0,"" ,  ""   ,option::Arg::None, "\nExamples:\n"
                                             "  example --unknown -- --this_is_no_option\n"
                                             "  example -unk --plus -ppp file1 file2\n" },
@@ -100,6 +101,7 @@ int main(int argc, char* argv[])
 std::string inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
 std::string outputFile;
 
+bool verbose = false;
 
 for (int i = 0; i < parse.optionsCount(); ++i)
   {
@@ -112,14 +114,20 @@ for (int i = 0; i < parse.optionsCount(); ++i)
       case INPUT:
         if (opt.arg)
           fprintf(stdout, "--input '%s'\n", opt.arg);
+          inputFile = opt.arg;
         break;
       case OUTPUT:
         fprintf(stdout, "--output '%s'\n", opt.arg);
+        outputFile = opt.arg;
+        break;
+      case VERBOSE:
+        verbose = true;
+        fprintf(stdout, "Verbose output\n");
         break;
     }
   }
 
-inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
+
 
 
 
@@ -135,7 +143,7 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
      
      
     TFile *tf = TFile::Open(inputFile.c_str()); //2 is LH mt_had_2tev_rh_miniaod.root mt_had_2tev_lh_miniaod.root
-    TFile* hadMonoTopLoopHists  = new TFile("RH_susy_top_test_2TeV_lowMetCut.root", "RECREATE");
+    TFile* hadMonoTopLoopHists  = new TFile(outputFile.c_str(), "RECREATE");
     //TFile *tf = TFile::Open("exampleInputs.root");
 
     //Get tree from file
@@ -230,6 +238,8 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
     std::vector<double>** AK8SubjetLV_eta = new std::vector<double>*();
     std::vector<double>** AK8SubjetLV_phi = new std::vector<double>*();
     std::vector<double>** AK8SubjetLV_mass = new std::vector<double>*();
+
+
     
     tree->SetBranchStatus("AK4JetLV_pt", 1);
     tree->SetBranchAddress("AK4JetLV_pt", AK4JetLV_pt);
@@ -255,7 +265,25 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
     tree->SetBranchAddress("AK8SubjetLV_phi", AK8SubjetLV_phi);
     tree->SetBranchStatus("AK8SubjetLV_mass", 1);
     tree->SetBranchAddress("AK8SubjetLV_mass", AK8SubjetLV_mass);
-    
+
+
+    std::vector<float>** MuPt = new std::vector<float>*();
+    tree->SetBranchStatus("MuPt", 1);
+    tree->SetBranchAddress("MuPt", MuPt);
+
+    std::vector<float>** MuPhi = new std::vector<float>*();
+    tree->SetBranchStatus("MuPhi", 1);
+    tree->SetBranchAddress("MuPhi", MuPhi);
+
+    std::vector<float>** Electron_Pt = new std::vector<float>*();
+    tree->SetBranchStatus("Electron_Pt", 1);
+    tree->SetBranchAddress("Electron_Pt", Electron_Pt);
+
+    std::vector<float>** Electron_Phi = new std::vector<float>*();
+    tree->SetBranchStatus("Electron_Phi", 1);
+    tree->SetBranchAddress("Electron_Phi", Electron_Phi);
+
+
     //AK8 jet tau1 variable
     tree->SetBranchStatus( "AK8JetTau1_p", 1);
     tree->SetBranchAddress("AK8JetTau1_p", AK8JetTau1);
@@ -356,7 +384,8 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
          AK4JetLV_p->clear();
          AK8SubjetLV_p->clear();
          AK4JetBtagBinary_p->clear();
-         printf("ak8 jets size: %i\n",  (*AK8JetLV_pt)->size());
+         if (verbose) printf("ak8 jets size: %i\n",  (*AK8JetLV_pt)->size());
+
 
          for(unsigned int i=0; i<(*AK8JetLV_pt)->size() ;i++){
            //printf("ak8 jets: %i\n", i);
@@ -365,21 +394,74 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
            (*AK8JetLV)->push_back(temp);
          }
 
-        double BtageBinary = 0.0;
+
+//         d8888 888    d8P     d8888         888888          888             
+//        d88888 888   d8P     d8P888           "88b          888             
+//       d88P888 888  d8P     d8P 888            888          888             
+//      d88P 888 888d88K     d8P  888            888  .d88b.  888888 .d8888b  
+//     d88P  888 8888888b   d88   888            888 d8P  Y8b 888    88K      
+//    d88P   888 888  Y88b  8888888888           888 88888888 888    "Y8888b. 
+//   d8888888888 888   Y88b       888            88P Y8b.     Y88b.       X88 
+//  d88P     888 888    Y88b      888            888  "Y8888   "Y888  88888P' 
+//                                             .d88P                          
+//                                           .d88P"                           
+//                                          888P"                             
+        double BtagBinary = 0.0;
+        int nNotBjets = 0;
+        int nBjets = 0;
          for(unsigned int i=0; i<(*AK4JetLV_pt)->size() ;i++){
            //cout << AK4JetLV_pt->at(i) << endl;
           //printf("ak4 jets: %i\n", i);
            //if ((*AK4JetLV_pt)->at(i) < 30) break;
-           BtageBinary = 0.0;
-           if ((*AK4JetBtag)->at(i) > .62 ) BtageBinary = 1.0;
 
-           (*AK4JetBtagBinary)->push_back(BtageBinary);
+
+
+           BtagBinary = 0.0;
+           if ((*AK4JetBtag)->at(i) > .62 ) BtagBinary = 1.0;
+
+           (*AK4JetBtagBinary)->push_back(BtagBinary);
            temp.SetPtEtaPhiM((*AK4JetLV_pt)->at(i),(*AK4JetLV_eta)->at(i),(*AK4JetLV_phi)->at(i),(*AK4JetLV_mass)->at(i));
            (*AK4JetLV)->push_back(temp);
+
+            if ( (*AK4JetLV_pt)->at(i) > 70 && abs((*AK4JetLV_eta)->at(i)) < 2.5 && BtagBinary){
+                nBjets++;
+            } else if ( (*AK4JetLV_pt)->at(i) > 30 && abs((*AK4JetLV_eta)->at(i)) < 2.5 ){
+                nNotBjets++;
+            }
           // printf("btag #: %f\n", (*AK4JetBtagBinary)->at(i));
+
+
 
    //
          }
+
+
+//  888                       888                              
+//  888                       888                              
+//  888                       888                              
+//  888      .d88b.  88888b.  888888 .d88b.  88888b.  .d8888b  
+//  888     d8P  Y8b 888 "88b 888   d88""88b 888 "88b 88K      
+//  888     88888888 888  888 888   888  888 888  888 "Y8888b. 
+//  888     Y8b.     888 d88P Y88b. Y88..88P 888  888      X88 
+//  88888888 "Y8888  88888P"   "Y888 "Y88P"  888  888  88888P' 
+//                   888                                       
+//                   888                                       
+//                   888                                       
+        int nMu = 0;
+        for(unsigned int i=0; i<(*MuPt)->size() ;i++){
+            if (verbose) printf("muon #: %f\n", (*MuPt)->at(i));
+            if( (*MuPt)->at(i) > 30 and (*MuPhi)->at(i) < 2.1){
+                nMu++;
+            }
+        }
+        int nEl = 0;
+        for(unsigned int i=0; i<(*Electron_Pt)->size() ;i++){
+            if (verbose) printf("muon #: %f\n", (*Electron_Pt)->at(i));
+            if( (*Electron_Pt)->at(i) > 30 and (*Electron_Phi)->at(i) < 2.1){
+                nEl++;
+            }
+        }
+        int nLep = nMu + nEl;
    //
          for(unsigned int i=0; i<(*AK8SubjetLV_pt)->size() ;i++){
            //cout << AK8SubjetLV_pt->at(i) << endl;
@@ -391,7 +473,7 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
    
 
          //Print event number 
-         printf("Event #: %i %i %i\n", Nevt, (*AK4JetLV)->size(), (*AK4JetBtagBinary)->size());
+         if (verbose) printf("Event #: %i %i %i\n", Nevt, (*AK4JetLV)->size(), (*AK4JetBtagBinary)->size());
 
          //Use helper function to create input list 
          //Create AK4 inputs object
@@ -421,7 +503,7 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
          const std::vector<TopObject*>& tops = ttr.getTops();
 
          //print the number of tops found in the event 
-         printf("\tN tops: %ld\n", tops.size());
+         if (verbose) printf("\tN tops: %ld\n", tops.size());
 
          //print top properties
          for(const TopObject* top : tops)
@@ -431,8 +513,8 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
              //3 for resolved tops 
              //2 for W+jet tops
              //1 for fully merged AK8 tops
-             printf("\tTop properties: N constituents: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", top->getNConstituents(), top->p().Pt(), top->p().Eta(), top->p().Phi());
-             printf("\tGen Top properties: Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", TL_Gen_Top.Pt(),TL_Gen_Top.Eta(), TL_Gen_Top.Phi());
+             if (verbose) printf("\tTop properties: N constituents: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", top->getNConstituents(), top->p().Pt(), top->p().Eta(), top->p().Phi());
+             if (verbose) printf("\tGen Top properties: Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", TL_Gen_Top.Pt(),TL_Gen_Top.Eta(), TL_Gen_Top.Phi());
              //get vector of top constituents 
              const std::vector<Constituent const *>& constituents = top->getConstituents();
 
@@ -447,15 +529,37 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
                          TL_AK4_B_subJetPt.SetPtEtaPhiM((*AK4JetLV)->at(i).Pt(),(*AK4JetLV)->at(i).Eta(),(*AK4JetLV)->at(i).Phi(),(*AK4JetLV)->at(i).M());
                          bTagMax = (*AK4JetBtag)->at(i);
                      }
-                     printf("\t\tAK4 properties: Pt: %6.1lf  BTag: %7.3lf\n" ,(*AK4JetLV)->at(i).Pt(),  (*AK4JetBtag)->at(i));
+                     if (verbose) printf("\t\tAK4 properties: Pt: %6.1lf  BTag: %7.3lf\n" ,(*AK4JetLV)->at(i).Pt(),  (*AK4JetBtag)->at(i));
                  }
              }
-             printf("\t\t\t Gen b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_Gen_b.Pt(),  bTagMax);
-             printf("\t\t\t AK4 b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_AK4_B_subJetPt.Pt(),  bTagMax);
+             if (verbose) printf("\t\t\t Gen b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_Gen_b.Pt(),  bTagMax);
+             if (verbose) printf("\t\t\t AK4 b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_AK4_B_subJetPt.Pt(),  bTagMax);
 
-             if (TL_AK4_B_subJetPt.Pt() < 70){continue;}
-             if ( abs(TL_AK4_B_subJetPt.Eta()) > 2.5){continue;}
-             if ( HadMETpt < 350){continue;}
+       // Bjets:
+       //    n = 1
+       //    pt > 70
+       //    eta bjet < 2.5
+       // non bjet 
+       //    n = 0
+       //    pt > 30
+       //    wta < 2.5
+       //N(l) = 0
+       //MET > 350
+       //m(j,j,b) < 450
+
+             if (nNotBjets > 0) continue;
+
+             if (nBjets != 1) continue;
+             if (TL_AK4_B_subJetPt.Pt() < 70) continue;
+             if ( abs(TL_AK4_B_subJetPt.Eta()) > 2.5) continue;
+
+             if (nLep > 0) continue;
+             
+             if ( HadMETpt < 350) continue;
+
+             if ( top->p().M() > 450) continue;
+
+          
              TH1F_had_AK4b_pt->Fill(TL_AK4_B_subJetPt.Pt());
              TH1F_gen_Ratio_After_Tag->Fill(gen_ratio);
              TH1F_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
@@ -465,7 +569,7 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
              for(const Constituent* constituent : constituents)
              {
                  nConstituents++;
-                 printf("\t\tConstituent properties: Constituent type: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf, nConstituents: %3i \n", constituent->getType(), constituent->p().Pt(), constituent->p().Eta(), constituent->p().Phi(), nConstituents);
+                 if (verbose) printf("\t\tConstituent properties: Constituent type: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf, nConstituents: %3i \n", constituent->getType(), constituent->p().Pt(), constituent->p().Eta(), constituent->p().Phi(), nConstituents);
              }    
 
              if(nConstituents ==1){
@@ -496,9 +600,9 @@ inputFile = "b2gtreeV5_MC_MonoTop_RH_2TeV_had.root";
          //Print properties of the remaining system
          //the remaining system is used as the second portion of the visible system to calculate MT2 in the NT = 1 bin
          const TopObject& rsys = ttr.getRsys();
-         printf("\tRsys properties: N constituents: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", rsys.getNConstituents(), rsys.p().Pt(), rsys.p().Eta(), rsys.p().Phi());
+         if (verbose) printf("\tRsys properties: N constituents: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", rsys.getNConstituents(), rsys.p().Pt(), rsys.p().Eta(), rsys.p().Phi());
      //
-         printf("\n");
+         if (verbose) printf("\n");
 
      }
 
