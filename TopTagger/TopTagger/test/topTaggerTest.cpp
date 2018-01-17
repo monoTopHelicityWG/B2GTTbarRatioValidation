@@ -11,6 +11,8 @@
 #include "optionparser.h"
 
 
+// ./topTaggerTest --input=b2gtreeV5_MC_MonoTop_rh_5.root --output=test.root -v
+
 //manditory includes to use top tagger
 #include "TopTagger/TopTagger/include/TopTagger.h"
 #include "TopTagger/TopTagger/include/TopTaggerResults.h"
@@ -317,6 +319,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     Float_t maxPt = 1000;
     Float_t bTagMax = 0;
 
+    TH1F* TH1F_cutflow = new TH1F("TH1F_cutflow", "Cutflow ;  Cuts ; count", 10, -.5, 9.5);
 
     TCanvas c1;
     TH1F* TH1F_gen_E_ratio_SUSY_top = new TH1F("TH1F_gen_E_ratio_SUSY_top", "Gen Top to SUSY energy ;  E(SUSY)/E(gen) ; count", nBins, .5,1.5 );
@@ -352,6 +355,79 @@ for (int i = 0; i < parse.optionsCount(); ++i)
    // TH1F* TH1F_three_gen_pT = new TH1F("TH1F_three_gen_pT", "Three Jet(s) Gen pT: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 2000 );
     TH1F* TH1F_three_gen_pT_After_Tag = new TH1F("TH1F_three_gen_pT_After_Tag", "Three Jet(s) Gen p_{T} After Tagging: p_{T} [GeV];  E(b)/E(t); count", nBins, 0, 2000 );
     TH1F* TH1F_three_had_pT = new TH1F("TH1F_three_had_pT", "Three Jet(s) p_{T}; p_{T} [GeV]; count", nBins, 0, 2000 );
+
+
+
+
+    TH1F* TH1F_topCount_0 = new TH1F("TH1F_topCount_0", "n Tops; n Tops ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_jetsNotAroundTop_0 = new TH1F("TH1F_jetsNotAroundTop_0", "n Jets not near Top; n Jets ; count", 10, -0.5, 9.5);
+    TH1F* TH1F_nBjets_0 = new TH1F("TH1F_nBjets_0", "n Bjets; n Bjets ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_TL_AK4_B_subJetPt_0 = new TH1F("TH1F_TL_AK4_B_subJetPt_0", "Top AK4 Bjet p_{T}; p_{T} [GEV]; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_AK4_B_subJetEta_0 = new TH1F("TH1F_TL_AK4_B_subJetEta_0", "Top AK4 Bjet #eta; #eta ; count", nBins, -2.6, 2.6);
+    TH1F* TH1F_nLep_0 = new TH1F("TH1F_nLep_0", "nLep; n Electrons or Muons ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_HadMETpt_0 = new TH1F("TH1F_HadMETpt_0", "MET; MET ; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_top_Mass_0 = new TH1F("TH1F_TL_top_Mass_0", "Top Mass; Mass [GEV] ; count", nBins, 0, 1000);
+    TH1F* TH1F_TL_top_Pt_0 = new TH1F("TH1F_TL_top_Pt_0", "Top p_{T}; p_{T} [GEV] ; count", nBins, 0, 2000);
+    TH1F* TH1F_ratio_0 = new TH1F("TH1F_ratio_0", "Ratio E(b)/E(t); E(b)/E(t) ; count", nBins, 0, 1.2);
+
+    TH1F* TH1F_topCount_1 = new TH1F("TH1F_topCount_1", "n Tops; n Tops ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_jetsNotAroundTop_1 = new TH1F("TH1F_jetsNotAroundTop_1", "n Jets not near Top; n Jets ; count", 10, -0.5, 9.5);
+    TH1F* TH1F_nBjets_1 = new TH1F("TH1F_nBjets_1", "n Bjets; n Bjets ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_TL_AK4_B_subJetPt_1 = new TH1F("TH1F_TL_AK4_B_subJetPt_1", "Top AK4 Bjet p_{T}; p_{T} [GEV]; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_AK4_B_subJetEta_1 = new TH1F("TH1F_TL_AK4_B_subJetEta_1", "Top AK4 Bjet #eta; #eta ; count", nBins, -2.6, 2.6);
+    TH1F* TH1F_nLep_1 = new TH1F("TH1F_nLep_1", "nLep; n Electrons or Muons ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_HadMETpt_1 = new TH1F("TH1F_HadMETpt_1", "MET; MET ; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_top_Mass_1 = new TH1F("TH1F_TL_top_Mass_1", "Top Mass; Mass [GEV] ; count", nBins, 0, 1000);
+    TH1F* TH1F_TL_top_Pt_1 = new TH1F("TH1F_TL_top_Pt_1", "Top p_{T}; p_{T} [GEV] ; count", nBins, 0, 2000);
+    TH1F* TH1F_ratio_1 = new TH1F("TH1F_ratio_1", "Ratio E(b)/E(t); E(b)/E(t) ; count", nBins, 0, 1.2);
+
+
+    TH1F* TH1F_topCount_2 = new TH1F("TH1F_topCount_2", "n Tops; n Tops ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_jetsNotAroundTop_2 = new TH1F("TH1F_jetsNotAroundTop_2", "n Jets not near Top; n Jets ; count", 10, -0.5, 9.5);
+    TH1F* TH1F_nBjets_2 = new TH1F("TH1F_nBjets_2", "n Bjets; n Bjets ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_TL_AK4_B_subJetPt_2 = new TH1F("TH1F_TL_AK4_B_subJetPt_2", "Top AK4 Bjet p_{T}; p_{T} [GEV]; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_AK4_B_subJetEta_2 = new TH1F("TH1F_TL_AK4_B_subJetEta_2", "Top AK4 Bjet #eta; #eta ; count", nBins, -2.6, 2.6);
+    TH1F* TH1F_nLep_2 = new TH1F("TH1F_nLep_2", "nLep; n Electrons or Muons ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_HadMETpt_2 = new TH1F("TH1F_HadMETpt_2", "MET; MET ; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_top_Mass_2 = new TH1F("TH1F_TL_top_Mass_2", "Top Mass; Mass [GEV] ; count", nBins, 0, 1000);
+    TH1F* TH1F_TL_top_Pt_2 = new TH1F("TH1F_TL_top_Pt_2", "Top p_{T}; p_{T} [GEV] ; count", nBins, 0, 2000);
+    TH1F* TH1F_ratio_2 = new TH1F("TH1F_ratio_2", "Ratio E(b)/E(t); E(b)/E(t) ; count", nBins, 0, 1.2);
+
+
+    TH1F* TH1F_topCount_3 = new TH1F("TH1F_topCount_3", "n Tops; n Tops ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_jetsNotAroundTop_3 = new TH1F("TH1F_jetsNotAroundTop_3", "n Jets not near Top; n Jets ; count", 10, -0.5, 9.5);
+    TH1F* TH1F_nBjets_3 = new TH1F("TH1F_nBjets_3", "n Bjets; n Bjets ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_TL_AK4_B_subJetPt_3 = new TH1F("TH1F_TL_AK4_B_subJetPt_3", "Top AK4 Bjet p_{T}; p_{T} [GEV]; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_AK4_B_subJetEta_3 = new TH1F("TH1F_TL_AK4_B_subJetEta_3", "Top AK4 Bjet #eta; #eta ; count", nBins, -2.6, 2.6);
+    TH1F* TH1F_nLep_3 = new TH1F("TH1F_nLep_3", "nLep; n Electrons or Muons ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_HadMETpt_3 = new TH1F("TH1F_HadMETpt_3", "MET; MET ; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_top_Mass_3 = new TH1F("TH1F_TL_top_Mass_3", "Top Mass; Mass [GEV] ; count", nBins, 0, 1000);
+    TH1F* TH1F_TL_top_Pt_3 = new TH1F("TH1F_TL_top_Pt_3", "Top p_{T}; p_{T} [GEV] ; count", nBins, 0, 2000);
+    TH1F* TH1F_ratio_3 = new TH1F("TH1F_ratio_3", "Ratio E(b)/E(t); E(b)/E(t) ; count", nBins, 0, 1.2);
+
+
+    TH1F* TH1F_topCount_4 = new TH1F("TH1F_topCount_4", "n Tops; n Tops ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_jetsNotAroundTop_4 = new TH1F("TH1F_jetsNotAroundTop_4", "n Jets not near Top; n Jets ; count", 10, -0.5, 9.5);
+    TH1F* TH1F_nBjets_4 = new TH1F("TH1F_nBjets_4", "n Bjets; n Bjets ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_TL_AK4_B_subJetPt_4 = new TH1F("TH1F_TL_AK4_B_subJetPt_4", "Top AK4 Bjet p_{T}; p_{T} [GEV]; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_AK4_B_subJetEta_4 = new TH1F("TH1F_TL_AK4_B_subJetEta_4", "Top AK4 Bjet #eta; #eta ; count", nBins, -2.6, 2.6);
+    TH1F* TH1F_nLep_4 = new TH1F("TH1F_nLep_4", "nLep; n Electrons or Muons ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_HadMETpt_4 = new TH1F("TH1F_HadMETpt_4", "MET; MET ; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_top_Mass_4 = new TH1F("TH1F_TL_top_Mass_4", "Top Mass; Mass [GEV] ; count", nBins, 0, 1000);
+    TH1F* TH1F_TL_top_Pt_4 = new TH1F("TH1F_TL_top_Pt_4", "Top p_{T}; p_{T} [GEV] ; count", nBins, 0, 2000);
+    TH1F* TH1F_ratio_4 = new TH1F("TH1F_ratio_4", "Ratio E(b)/E(t); E(b)/E(t) ; count", nBins, 0, 1.2);
+
+
+    TH1F* TH1F_topCount_5 = new TH1F("TH1F_topCount_5", "n Tops; n Tops ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_jetsNotAroundTop_5 = new TH1F("TH1F_jetsNotAroundTop_5", "n Jets not near Top; n Jets ; count", 10, -0.5, 9.5);
+    TH1F* TH1F_nBjets_5 = new TH1F("TH1F_nBjets_5", "n Bjets; n Bjets ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_TL_AK4_B_subJetPt_5 = new TH1F("TH1F_TL_AK4_B_subJetPt_5", "Top AK4 Bjet p_{T}; p_{T} [GEV]; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_AK4_B_subJetEta_5 = new TH1F("TH1F_TL_AK4_B_subJetEta_5", "Top AK4 Bjet #eta; #eta ; count", nBins, -2.6, 2.6);
+    TH1F* TH1F_nLep_5 = new TH1F("TH1F_nLep_5", "nLep; n Electrons or Muons ; count", 5, -0.5, 4.5);
+    TH1F* TH1F_HadMETpt_5 = new TH1F("TH1F_HadMETpt_5", "MET; MET ; count", nBins, 0, 1500);
+    TH1F* TH1F_TL_top_Mass_5 = new TH1F("TH1F_TL_top_Mass_5", "Top Mass; Mass [GEV] ; count", nBins, 0, 1000);
+    TH1F* TH1F_TL_top_Pt_5 = new TH1F("TH1F_TL_top_Pt_5", "Top p_{T}; p_{T} [GEV] ; count", nBins, 0, 2000);
+    TH1F* TH1F_ratio_5 = new TH1F("TH1F_ratio_5", "Ratio E(b)/E(t); E(b)/E(t) ; count", nBins, 0, 1.2);
 
  
 
@@ -505,6 +581,22 @@ for (int i = 0; i < parse.optionsCount(); ++i)
          //print the number of tops found in the event 
          if (verbose) printf("\tN tops: %ld\n", tops.size());
 
+//  88888888888                         
+//      888                             
+//      888                             
+//      888   .d88b.  88888b.  .d8888b  
+//      888  d88""88b 888 "88b 88K      
+//      888  888  888 888  888 "Y8888b. 
+//      888  Y88..88P 888 d88P      X88 
+//      888   "Y88P"  88888P"   88888P' 
+//                    888               
+//                    888               
+//                    888               
+
+         TLorentzVector TL_top;
+         int topCount = 0;
+         int nTopConstuents = 0;
+         int jetsNotAroundTop = 0;
          //print top properties
          for(const TopObject* top : tops)
          {
@@ -518,24 +610,71 @@ for (int i = 0; i < parse.optionsCount(); ++i)
              //get vector of top constituents 
              const std::vector<Constituent const *>& constituents = top->getConstituents();
 
-             TH1F_gen_E_ratio_SUSY_top->Fill( top->p().E()/TL_Gen_Top.E());
-             TH1F_gen_deltaR_SUSY_top->Fill( top->p().DeltaR(TL_Gen_Top));
-             TH1F_had_SUSY_pt->Fill( top->p().Pt());
 
-             bTagMax = 0;
-             for (uint i = 0; i < (*AK4JetLV)->size(); i++){
-                 if( (*AK4JetLV)->at(i).DeltaR(top->p()) < 2*172/top->p().Pt() ){
-                     if ((*AK4JetBtag)->at(i) > bTagMax){
-                         TL_AK4_B_subJetPt.SetPtEtaPhiM((*AK4JetLV)->at(i).Pt(),(*AK4JetLV)->at(i).Eta(),(*AK4JetLV)->at(i).Phi(),(*AK4JetLV)->at(i).M());
-                         bTagMax = (*AK4JetBtag)->at(i);
-                     }
-                     if (verbose) printf("\t\tAK4 properties: Pt: %6.1lf  BTag: %7.3lf\n" ,(*AK4JetLV)->at(i).Pt(),  (*AK4JetBtag)->at(i));
-                 }
+             if (topCount ==0) {
+
+                TH1F_gen_E_ratio_SUSY_top->Fill( top->p().E()/TL_Gen_Top.E());
+                TH1F_gen_deltaR_SUSY_top->Fill( top->p().DeltaR(TL_Gen_Top));
+                TH1F_had_SUSY_pt->Fill( top->p().Pt());
+    
+                nConstituents = 0;
+                //Print properties of individual top constituent jets 
+                for(const Constituent* constituent : constituents)
+                {
+                    nConstituents++;
+                    if (verbose) printf("\t\tConstituent properties: Constituent type: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf, nConstituents: %3i \n", constituent->getType(), constituent->p().Pt(), constituent->p().Eta(), constituent->p().Phi(), nConstituents);
+                }    
+    
+                nTopConstuents = nConstituents;
+
+                if(nConstituents ==1){
+                    TH1F_one_gen_Ratio_After_Tag->Fill(gen_ratio);
+                    TH1F_one_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
+    
+                    TH1F_one_gen_pT_After_Tag->Fill(TL_Gen_Top.Pt());
+                    TH1F_one_had_pT->Fill(top->p().Pt());
+                }
+                if(nConstituents ==2){
+                    TH1F_two_gen_Ratio_After_Tag->Fill(gen_ratio);
+                    TH1F_two_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
+    
+                    TH1F_two_gen_pT_After_Tag->Fill(TL_Gen_Top.Pt());
+                    TH1F_two_had_pT->Fill(top->p().Pt());
+                }
+                if(nConstituents ==3){
+                    TH1F_three_gen_Ratio_After_Tag->Fill(gen_ratio);
+                    TH1F_three_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
+    
+                    TH1F_three_gen_pT_After_Tag->Fill(TL_Gen_Top.Pt());
+                    TH1F_three_had_pT->Fill(top->p().Pt());
+                }
+
+               TL_top.SetPtEtaPhiM(top->p().Pt(), top->p().Eta(), top->p().Phi(), top->p().M() );
+              bTagMax = 0;
+                for (uint i = 0; i < (*AK4JetLV)->size(); i++){
+                    if( (*AK4JetLV)->at(i).DeltaR(top->p()) < 2*172/top->p().Pt() ){
+                        if ((*AK4JetBtag)->at(i) > bTagMax){
+                            TL_AK4_B_subJetPt.SetPtEtaPhiM((*AK4JetLV)->at(i).Pt(),(*AK4JetLV)->at(i).Eta(),(*AK4JetLV)->at(i).Phi(),(*AK4JetLV)->at(i).M());
+                            bTagMax = (*AK4JetBtag)->at(i);
+                        }
+                        if (verbose) printf("\t\tAK4 properties: Pt: %6.1lf  BTag: %7.3lf\n" ,(*AK4JetLV)->at(i).Pt(),  (*AK4JetBtag)->at(i));
+                    } else if ( (*AK4JetLV)->at(i).Pt() > 30  and abs((*AK4JetLV)->at(i).Eta()) < 2.5 ){
+                      jetsNotAroundTop++;
+
+                    }
+                }
+                if (verbose) printf("\t\t\t Gen b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_Gen_b.Pt(),  bTagMax);
+                if (verbose) printf("\t\t\t AK4 b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_AK4_B_subJetPt.Pt(),  bTagMax);
              }
-             if (verbose) printf("\t\t\t Gen b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_Gen_b.Pt(),  bTagMax);
-             if (verbose) printf("\t\t\t AK4 b properties: Pt: %6.1lf  BTag: %7.3lf\n" ,TL_AK4_B_subJetPt.Pt(),  bTagMax);
 
-       // Bjets:
+             
+             topCount++;
+
+
+
+         }
+
+                // Bjets:
        //    n = 1
        //    pt > 70
        //    eta bjet < 2.5
@@ -547,54 +686,133 @@ for (int i = 0; i < parse.optionsCount(); ++i)
        //MET > 350
        //m(j,j,b) < 450
 
-             if (nNotBjets > 0) continue;
 
+
+//   .d8888b.           888     .d888 888                        
+//  d88P  Y88b          888    d88P"  888                        
+//  888    888          888    888    888                        
+//  888        888  888 888888 888888 888  .d88b.  888  888  888 
+//  888        888  888 888    888    888 d88""88b 888  888  888 
+//  888    888 888  888 888    888    888 888  888 888  888  888 
+//  Y88b  d88P Y88b 888 Y88b.  888    888 Y88..88P Y88b 888 d88P 
+//   "Y8888P"   "Y88888  "Y888 888    888  "Y88P"   "Y8888888P"  
+//                                                               
+//                                                               
+//           
+
+
+
+
+            int cutflowCount = 0;                                 
+             TH1F_cutflow->Fill(cutflowCount);
+             cutflowCount++;
+
+            float matchedRatio = TL_AK4_B_subJetPt.E()/TL_top.E();
+
+            TH1F_topCount_0->Fill(topCount);
+            TH1F_jetsNotAroundTop_0->Fill(jetsNotAroundTop);
+            TH1F_nBjets_0->Fill(nBjets);
+            TH1F_TL_AK4_B_subJetPt_0->Fill(TL_AK4_B_subJetPt.Pt());
+            TH1F_TL_AK4_B_subJetEta_0->Fill(TL_AK4_B_subJetPt.Eta());
+            TH1F_nLep_0->Fill(nLep);
+            TH1F_HadMETpt_0->Fill(HadMETpt);
+            TH1F_TL_top_Mass_0->Fill(TL_top.M());
+            TH1F_TL_top_Pt_0->Fill(TL_top.Pt());
+            TH1F_ratio_0->Fill(matchedRatio);
+
+
+
+             if (verbose) printf("\tjetsNotAroundTop vs top constituents vs n tops: %3d, %3d, %3d \n",jetsNotAroundTop, nTopConstuents, topCount);
+             if (topCount != 1) continue;
+             TH1F_cutflow->Fill(cutflowCount);
+             cutflowCount++;
+
+            
+             if (jetsNotAroundTop > 1 ) continue;
+             TH1F_cutflow->Fill(cutflowCount);
+             cutflowCount++;
+
+            TH1F_topCount_1->Fill(topCount);
+            TH1F_jetsNotAroundTop_1->Fill(jetsNotAroundTop);
+            TH1F_nBjets_1->Fill(nBjets);
+            TH1F_TL_AK4_B_subJetPt_1->Fill(TL_AK4_B_subJetPt.Pt());
+            TH1F_TL_AK4_B_subJetEta_1->Fill(TL_AK4_B_subJetPt.Eta());
+            TH1F_nLep_1->Fill(nLep);
+            TH1F_HadMETpt_1->Fill(HadMETpt);
+            TH1F_TL_top_Mass_1->Fill(TL_top.M());
+            TH1F_TL_top_Pt_1->Fill(TL_top.Pt());
+            TH1F_ratio_1->Fill(matchedRatio);
+
+
+      
              if (nBjets != 1) continue;
              if (TL_AK4_B_subJetPt.Pt() < 70) continue;
              if ( abs(TL_AK4_B_subJetPt.Eta()) > 2.5) continue;
+             TH1F_cutflow->Fill(cutflowCount);
+             cutflowCount++;
 
+            TH1F_topCount_2->Fill(topCount);
+            TH1F_jetsNotAroundTop_2->Fill(jetsNotAroundTop);
+            TH1F_nBjets_2->Fill(nBjets);
+            TH1F_TL_AK4_B_subJetPt_2->Fill(TL_AK4_B_subJetPt.Pt());
+            TH1F_TL_AK4_B_subJetEta_2->Fill(TL_AK4_B_subJetPt.Eta());
+            TH1F_nLep_2->Fill(nLep);
+            TH1F_HadMETpt_2->Fill(HadMETpt);
+            TH1F_TL_top_Mass_2->Fill(TL_top.M());
+            TH1F_TL_top_Pt_2->Fill(TL_top.Pt());
+            TH1F_ratio_2->Fill(matchedRatio);
+      
              if (nLep > 0) continue;
-             
+             TH1F_cutflow->Fill(cutflowCount);
+             cutflowCount++;
+
+
+            TH1F_topCount_3->Fill(topCount);
+            TH1F_jetsNotAroundTop_3->Fill(jetsNotAroundTop);
+            TH1F_nBjets_3->Fill(nBjets);
+            TH1F_TL_AK4_B_subJetPt_3->Fill(TL_AK4_B_subJetPt.Pt());
+            TH1F_TL_AK4_B_subJetEta_3->Fill(TL_AK4_B_subJetPt.Eta());
+            TH1F_nLep_3->Fill(nLep);
+            TH1F_HadMETpt_3->Fill(HadMETpt);
+            TH1F_TL_top_Mass_3->Fill(TL_top.M());
+            TH1F_TL_top_Pt_3->Fill(TL_top.Pt());
+            TH1F_ratio_3->Fill(matchedRatio);
+                  
              if ( HadMETpt < 350) continue;
+             TH1F_cutflow->Fill(cutflowCount);
+             cutflowCount++;
 
-             if ( top->p().M() > 450) continue;
+            TH1F_topCount_4->Fill(topCount);
+            TH1F_jetsNotAroundTop_4->Fill(jetsNotAroundTop);
+            TH1F_nBjets_4->Fill(nBjets);
+            TH1F_TL_AK4_B_subJetPt_4->Fill(TL_AK4_B_subJetPt.Pt());
+            TH1F_TL_AK4_B_subJetEta_4->Fill(TL_AK4_B_subJetPt.Eta());
+            TH1F_nLep_4->Fill(nLep);
+            TH1F_HadMETpt_4->Fill(HadMETpt);
+            TH1F_TL_top_Mass_4->Fill(TL_top.M());
+            TH1F_TL_top_Pt_4->Fill(TL_top.Pt());
+            TH1F_ratio_4->Fill(matchedRatio);
+      
+             if ( TL_top.M() > 450) continue;
+             TH1F_cutflow->Fill(cutflowCount);
+             cutflowCount++;
 
+
+            TH1F_topCount_5->Fill(topCount);
+            TH1F_jetsNotAroundTop_5->Fill(jetsNotAroundTop);
+            TH1F_nBjets_5->Fill(nBjets);
+            TH1F_TL_AK4_B_subJetPt_5->Fill(TL_AK4_B_subJetPt.Pt());
+            TH1F_TL_AK4_B_subJetEta_5->Fill(TL_AK4_B_subJetPt.Eta());
+            TH1F_nLep_5->Fill(nLep);
+            TH1F_HadMETpt_5->Fill(HadMETpt);
+            TH1F_TL_top_Mass_5->Fill(TL_top.M());
+            TH1F_TL_top_Pt_5->Fill(TL_top.Pt());
+            TH1F_ratio_5->Fill(matchedRatio);
+      
           
              TH1F_had_AK4b_pt->Fill(TL_AK4_B_subJetPt.Pt());
              TH1F_gen_Ratio_After_Tag->Fill(gen_ratio);
-             TH1F_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
-
-             nConstituents = 0;
-             //Print properties of individual top constituent jets 
-             for(const Constituent* constituent : constituents)
-             {
-                 nConstituents++;
-                 if (verbose) printf("\t\tConstituent properties: Constituent type: %3d,   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf, nConstituents: %3i \n", constituent->getType(), constituent->p().Pt(), constituent->p().Eta(), constituent->p().Phi(), nConstituents);
-             }    
-
-             if(nConstituents ==1){
-                 TH1F_one_gen_Ratio_After_Tag->Fill(gen_ratio);
-                 TH1F_one_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
-
-                 TH1F_one_gen_pT_After_Tag->Fill(TL_Gen_Top.Pt());
-                 TH1F_one_had_pT->Fill(top->p().Pt());
-             }
-             if(nConstituents ==2){
-                 TH1F_two_gen_Ratio_After_Tag->Fill(gen_ratio);
-                 TH1F_two_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
-
-                 TH1F_two_gen_pT_After_Tag->Fill(TL_Gen_Top.Pt());
-                 TH1F_two_had_pT->Fill(top->p().Pt());
-             }
-             if(nConstituents ==3){
-                 TH1F_three_gen_Ratio_After_Tag->Fill(gen_ratio);
-                 TH1F_three_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/top->p().E());
-
-                 TH1F_three_gen_pT_After_Tag->Fill(TL_Gen_Top.Pt());
-                 TH1F_three_had_pT->Fill(top->p().Pt());
-             }
-
-         }
+             TH1F_had_Ratio->Fill(TL_AK4_B_subJetPt.E()/TL_top.E());
 
 
          //Print properties of the remaining system
