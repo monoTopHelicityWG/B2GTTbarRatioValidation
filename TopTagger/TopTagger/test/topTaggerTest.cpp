@@ -147,22 +147,22 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     //TFile *tf = TFile::Open("exampleInputs.root");
      
      
-    std::ifstream ifs(inputFile.c_str());
+    //std::ifstream ifs(inputFile.c_str());
 
-    std::string line;
+    //std::string line;
 
 
-    TChain ch("ana/TreeHad");
+    //TChain ch("ana/TreeHad");
 
-    while(std::getline(ifs, line))
-    {
-        if (verbose)printf(line.c_str());
-        if (verbose)printf("\n");
-        ch.Add(line.c_str());
-    }
+    //while(std::getline(ifs, line))
+    //{
+    //    if (verbose)printf(line.c_str());
+    //    if (verbose)printf("\n");
+    //    ch.Add(line.c_str());
+    //}
 
     
-    //TFile *tf = TFile::Open(inputFile.c_str()); //2 is LH mt_had_2tev_rh_miniaod.root mt_had_2tev_lh_miniaod.root
+    TFile *tf = TFile::Open(inputFile.c_str()); //2 is LH mt_had_2tev_rh_miniaod.root mt_had_2tev_lh_miniaod.root
     TFile* hadMonoTopLoopHists  = new TFile(outputFile.c_str(), "RECREATE");
     //TFile *tf = TFile::Open("exampleInputs.root");
 
@@ -170,17 +170,17 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
      
     //TTree *tree = (TTree*) ch.GetTree();
-    if (verbose) ch.ls();
-    if (verbose) printf("Entries: %i\n", ch.GetEntries());
+    //if (verbose) ch.ls();
+    //if (verbose) printf("Entries: %i\n", ch.GetEntries());
     //int nEntries = ch.GetEntries();
     int nEntries = 1275000;
-    //TTree *tree = (TTree*)tf->Get("ana/TreeHad");
+    TTree *tree = (TTree*)tf->Get("ana/TreeHad");
    // printf("Event #: %i\n", tree->GetEntries());
 
     
 
     //Deactivate all branches, then activate the branches of interest
-    ch.SetBranchStatus("*", 0);
+    tree->SetBranchStatus("*", 0);
 
     //Variables to hold inputs
     //AK4 jet variables
@@ -196,6 +196,23 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
     std::vector<TLorentzVector>* AK8JetLV_p = new std::vector<TLorentzVector>;
     std::vector<TLorentzVector>** AK8JetLV = &AK8JetLV_p;
+
+    std::vector<TLorentzVector>* tempAK8SubjetLV_p = new std::vector<TLorentzVector>;
+    std::vector<TLorentzVector>** tempAK8SubjetLV = &tempAK8SubjetLV_p;
+
+    std::vector<double>* tempAK8JetTau1_p = new std::vector<double>;
+    std::vector<double>** tempAK8JetTau1 = &tempAK8JetTau1_p;
+
+    std::vector<double>* tempAK8JetTau2_p = new std::vector<double>;
+    std::vector<double>** tempAK8JetTau2 = &tempAK8JetTau2_p;
+
+    std::vector<double>* tempAK8JetTau3_p = new std::vector<double>;
+    std::vector<double>** tempAK8JetTau3 = &tempAK8JetTau3_p;
+
+    std::vector<double>* tempAK8JetSoftdropMass_p = new std::vector<double>;
+    std::vector<double>** tempAK8JetSoftdropMass = &tempAK8JetSoftdropMass_p;
+
+
     //AK8 jet varaibles
 
     //The elements of each vector refer to one AK8 jet
@@ -212,26 +229,26 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
     //Activate branches of interest
     //AK4 jet lorentz vectors
-    //ch.SetBranchStatus( "jetsLVec_forTagger", 1);
-    //ch.SetBranchAddress("jetsLVec_forTagger", AK4JetLV);
+    //tree->SetBranchStatus( "jetsLVec_forTagger", 1);
+    //tree->SetBranchAddress("jetsLVec_forTagger", AK4JetLV);
     
     //AK4 jet b-tag values (0 not a b, 1 is a b)
-    ch.SetBranchStatus( "AK4JetBtag_p", 1);
-    ch.SetBranchAddress("AK4JetBtag_p", AK4JetBtag);
+    tree->SetBranchStatus( "AK4JetBtag_p", 1);
+    tree->SetBranchAddress("AK4JetBtag_p", AK4JetBtag);
     
     //AK8 jet lorentz vectors
-    //ch.SetBranchStatus( "puppiJetsLVec", 1);
-    //ch.SetBranchAddress("puppiJetsLVec", AK8JetLV);
+    //tree->SetBranchStatus( "puppiJetsLVec", 1);
+    //tree->SetBranchAddress("puppiJetsLVec", AK8JetLV);
     
     //AK8 subjet lorentz vectors (soft drop algo produces 2 subjets for each AK8 jet)
     //All are present in this list and dR matching associates them to the approperiate AK8 jet
-    //ch.SetBranchStatus( "puppiSubJetsLVec", 1);
-    //ch.SetBranchAddress("puppiSubJetsLVec", AK8SubjetLV);
+    //tree->SetBranchStatus( "puppiSubJetsLVec", 1);
+    //tree->SetBranchAddress("puppiSubJetsLVec", AK8SubjetLV);
  
     Float_t         HadMETpt;
     TBranch        *b_HadMETpt;   //!
-    ch.SetBranchStatus("HadMETpt", 1);
-    ch.SetBranchAddress("HadMETpt", &HadMETpt, &b_HadMETpt);
+    tree->SetBranchStatus("HadMETpt", 1);
+    tree->SetBranchAddress("HadMETpt", &HadMETpt, &b_HadMETpt);
 
 
     Float_t         Gen_array_t_p4[4];
@@ -241,18 +258,18 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     Float_t         Gen_array_Wd1_p4[4];
     Float_t         Gen_array_Wd2_p4[4];
 
-    ch.SetBranchStatus("Gen_array_t_p4", 1);
-    ch.SetBranchAddress("Gen_array_t_p4", Gen_array_t_p4);
-    ch.SetBranchStatus("Gen_array_final_t_p4", 1);
-    ch.SetBranchAddress("Gen_array_final_t_p4", Gen_array_final_t_p4);
-    ch.SetBranchStatus("Gen_array_b_p4", 1);
-    ch.SetBranchAddress("Gen_array_b_p4", Gen_array_b_p4);
-    ch.SetBranchStatus("Gen_array_W_p4", 1);
-    ch.SetBranchAddress("Gen_array_W_p4", Gen_array_W_p4);
-    ch.SetBranchStatus("Gen_array_Wd1_p4", 1);
-    ch.SetBranchAddress("Gen_array_Wd1_p4", Gen_array_Wd1_p4);
-    ch.SetBranchStatus("Gen_array_Wd2_p4", 1);
-    ch.SetBranchAddress("Gen_array_Wd2_p4", Gen_array_Wd2_p4);
+    tree->SetBranchStatus("Gen_array_t_p4", 1);
+    tree->SetBranchAddress("Gen_array_t_p4", Gen_array_t_p4);
+    tree->SetBranchStatus("Gen_array_final_t_p4", 1);
+    tree->SetBranchAddress("Gen_array_final_t_p4", Gen_array_final_t_p4);
+    tree->SetBranchStatus("Gen_array_b_p4", 1);
+    tree->SetBranchAddress("Gen_array_b_p4", Gen_array_b_p4);
+    tree->SetBranchStatus("Gen_array_W_p4", 1);
+    tree->SetBranchAddress("Gen_array_W_p4", Gen_array_W_p4);
+    tree->SetBranchStatus("Gen_array_Wd1_p4", 1);
+    tree->SetBranchAddress("Gen_array_Wd1_p4", Gen_array_Wd1_p4);
+    tree->SetBranchStatus("Gen_array_Wd2_p4", 1);
+    tree->SetBranchAddress("Gen_array_Wd2_p4", Gen_array_Wd2_p4);
     
     std::vector<double>** AK4JetLV_pt = new std::vector<double>*();
     std::vector<double>** AK4JetLV_eta = new std::vector<double>*();
@@ -270,64 +287,64 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
 
     
-    ch.SetBranchStatus("AK4JetLV_pt", 1);
-    ch.SetBranchAddress("AK4JetLV_pt", AK4JetLV_pt);
-    ch.SetBranchStatus("AK4JetLV_eta", 1);
-    ch.SetBranchAddress("AK4JetLV_eta", AK4JetLV_eta);
-    ch.SetBranchStatus("AK4JetLV_phi", 1);
-    ch.SetBranchAddress("AK4JetLV_phi", AK4JetLV_phi);
-    ch.SetBranchStatus("AK4JetLV_mass", 1);
-    ch.SetBranchAddress("AK4JetLV_mass", AK4JetLV_mass);
-    ch.SetBranchStatus("AK8JetLV_pt", 1);
-    ch.SetBranchAddress("AK8JetLV_pt", AK8JetLV_pt);
-    ch.SetBranchStatus("AK8JetLV_eta", 1);
-    ch.SetBranchAddress("AK8JetLV_eta", AK8JetLV_eta);
-    ch.SetBranchStatus("AK8JetLV_phi", 1);
-    ch.SetBranchAddress("AK8JetLV_phi", AK8JetLV_phi);
-    ch.SetBranchStatus("AK8JetLV_mass", 1);
-    ch.SetBranchAddress("AK8JetLV_mass", AK8JetLV_mass);
-    ch.SetBranchStatus("AK8SubjetLV_pt", 1);
-    ch.SetBranchAddress("AK8SubjetLV_pt", AK8SubjetLV_pt);
-    ch.SetBranchStatus("AK8SubjetLV_eta", 1);
-    ch.SetBranchAddress("AK8SubjetLV_eta", AK8SubjetLV_eta);
-    ch.SetBranchStatus("AK8SubjetLV_phi", 1);
-    ch.SetBranchAddress("AK8SubjetLV_phi", AK8SubjetLV_phi);
-    ch.SetBranchStatus("AK8SubjetLV_mass", 1);
-    ch.SetBranchAddress("AK8SubjetLV_mass", AK8SubjetLV_mass);
+    tree->SetBranchStatus("AK4JetLV_pt", 1);
+    tree->SetBranchAddress("AK4JetLV_pt", AK4JetLV_pt);
+    tree->SetBranchStatus("AK4JetLV_eta", 1);
+    tree->SetBranchAddress("AK4JetLV_eta", AK4JetLV_eta);
+    tree->SetBranchStatus("AK4JetLV_phi", 1);
+    tree->SetBranchAddress("AK4JetLV_phi", AK4JetLV_phi);
+    tree->SetBranchStatus("AK4JetLV_mass", 1);
+    tree->SetBranchAddress("AK4JetLV_mass", AK4JetLV_mass);
+    tree->SetBranchStatus("AK8JetLV_pt", 1);
+    tree->SetBranchAddress("AK8JetLV_pt", AK8JetLV_pt);
+    tree->SetBranchStatus("AK8JetLV_eta", 1);
+    tree->SetBranchAddress("AK8JetLV_eta", AK8JetLV_eta);
+    tree->SetBranchStatus("AK8JetLV_phi", 1);
+    tree->SetBranchAddress("AK8JetLV_phi", AK8JetLV_phi);
+    tree->SetBranchStatus("AK8JetLV_mass", 1);
+    tree->SetBranchAddress("AK8JetLV_mass", AK8JetLV_mass);
+    tree->SetBranchStatus("AK8SubjetLV_pt", 1);
+    tree->SetBranchAddress("AK8SubjetLV_pt", AK8SubjetLV_pt);
+    tree->SetBranchStatus("AK8SubjetLV_eta", 1);
+    tree->SetBranchAddress("AK8SubjetLV_eta", AK8SubjetLV_eta);
+    tree->SetBranchStatus("AK8SubjetLV_phi", 1);
+    tree->SetBranchAddress("AK8SubjetLV_phi", AK8SubjetLV_phi);
+    tree->SetBranchStatus("AK8SubjetLV_mass", 1);
+    tree->SetBranchAddress("AK8SubjetLV_mass", AK8SubjetLV_mass);
 
 
     std::vector<float>** MuPt = new std::vector<float>*();
-    ch.SetBranchStatus("MuPt", 1);
-    ch.SetBranchAddress("MuPt", MuPt);
+    tree->SetBranchStatus("MuPt", 1);
+    tree->SetBranchAddress("MuPt", MuPt);
 
     std::vector<float>** MuPhi = new std::vector<float>*();
-    ch.SetBranchStatus("MuPhi", 1);
-    ch.SetBranchAddress("MuPhi", MuPhi);
+    tree->SetBranchStatus("MuPhi", 1);
+    tree->SetBranchAddress("MuPhi", MuPhi);
 
     std::vector<float>** Electron_Pt = new std::vector<float>*();
-    ch.SetBranchStatus("Electron_Pt", 1);
-    ch.SetBranchAddress("Electron_Pt", Electron_Pt);
+    tree->SetBranchStatus("Electron_Pt", 1);
+    tree->SetBranchAddress("Electron_Pt", Electron_Pt);
 
     std::vector<float>** Electron_Phi = new std::vector<float>*();
-    ch.SetBranchStatus("Electron_Phi", 1);
-    ch.SetBranchAddress("Electron_Phi", Electron_Phi);
+    tree->SetBranchStatus("Electron_Phi", 1);
+    tree->SetBranchAddress("Electron_Phi", Electron_Phi);
 
 
     //AK8 jet tau1 variable
-    ch.SetBranchStatus( "AK8JetTau1_p", 1);
-    ch.SetBranchAddress("AK8JetTau1_p", AK8JetTau1);
+    tree->SetBranchStatus( "AK8JetTau1_p", 1);
+    tree->SetBranchAddress("AK8JetTau1_p", AK8JetTau1);
     
     //AK8 jet tau2 variable
-    ch.SetBranchStatus( "AK8JetTau2_p", 1);
-    ch.SetBranchAddress("AK8JetTau2_p", AK8JetTau2);
+    tree->SetBranchStatus( "AK8JetTau2_p", 1);
+    tree->SetBranchAddress("AK8JetTau2_p", AK8JetTau2);
     
     //AK8 jet tau3 variable
-    ch.SetBranchStatus( "AK8JetTau3_p", 1);
-    ch.SetBranchAddress("AK8JetTau3_p", AK8JetTau3);
+    tree->SetBranchStatus( "AK8JetTau3_p", 1);
+    tree->SetBranchAddress("AK8JetTau3_p", AK8JetTau3);
     
     //AK8 jet softdrop mass
-    ch.SetBranchStatus( "AK8JetSoftdropMass_p", 1);
-    ch.SetBranchAddress("AK8JetSoftdropMass_p", AK8JetSoftdropMass);
+    tree->SetBranchStatus( "AK8JetSoftdropMass_p", 1);
+    tree->SetBranchAddress("AK8JetSoftdropMass_p", AK8JetSoftdropMass);
 
     //Create top tagger object
     TopTagger tt;
@@ -469,9 +486,9 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
      //Loop over events
      int Nevt = 0;
-     if (verbose) printf("tree entries: %i\n",  ch.GetEntries());
+     if (verbose) printf("tree entries: %i\n",  tree->GetEntries());
      
-     while(ch.GetEntry(Nevt))
+     while(tree->GetEntry(Nevt))
      {
 
         if (Nevt%1000 ==0) printf("Nevt: %i,  %d%\n", Nevt, (double)nEntries/(double)Nevt);
@@ -488,6 +505,11 @@ for (int i = 0; i < parse.optionsCount(); ++i)
          //increment event number
          ++Nevt;
          AK8JetLV_p->clear();
+         tempAK8SubjetLV_p->clear();
+         tempAK8JetTau1_p->clear();
+         tempAK8JetTau2_p->clear();
+         tempAK8JetTau3_p->clear();
+         tempAK8JetSoftdropMass_p->clear();
          AK4JetLV_p->clear();
          AK8SubjetLV_p->clear();
          AK4JetBtagBinary_p->clear();
@@ -495,12 +517,95 @@ for (int i = 0; i < parse.optionsCount(); ++i)
          
 
 
+         printf("Event #: %i %i %i %i %i %i\n", (*AK8JetLV_pt)->size(),(*AK8SubjetLV_eta)->size(), (*tempAK8JetTau1)->size(),(*tempAK8JetTau2)->size(),(*tempAK8JetTau3)->size(),(*tempAK8JetSoftdropMass)->size());
+
+       // for(unsigned int i=0; i<(*AK8JetLV_pt)->size() ;i++){
+
+       //    for (unsigned int j=0; j<(*AK8SubjetLV)->size() ;j++){
+       //        if   ((*AK8SubjetLV)->at(j).Pt() == (*AK8SubjetLV_pt)->at(i) ) break;
+       //    }
+
+       //    temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
+       //    (*AK8SubjetLV)->push_back(temp);
+       //    if (verbose) printf("\tAK8 Subjets   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8SubjetLV)->at(i).Pt(),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i));
+       //    
+       //    }
+
+
+        for(unsigned int i=0; i<(*AK8SubjetLV_pt)->size() ;i++){
+           //cout << AK8SubjetLV_pt->at(i) << endl;
+           //if ((*AK8JetLV_pt)->at(i) < 200) break;
+            bool breakVar =  false;
+            for (unsigned int j=0; j<(*AK8SubjetLV)->size() ;j++){
+                if   ((*AK8SubjetLV)->at(j).Pt() == (*AK8SubjetLV_pt)->at(i) ) breakVar=true;
+
+            }
+            if (breakVar) break;
+
+           temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
+           (*AK8SubjetLV)->push_back(temp);
+           if (verbose) printf("\tAK8 Subjets   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8SubjetLV)->at(i).Pt(),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i));
+           
+         }
+
+
+         int ak8count = 0;
+         int ak8Subcount = 0;
          for(unsigned int i=0; i<(*AK8JetLV_pt)->size() ;i++){
            //printf("ak8 jets: %i\n", i);
            temp.SetPtEtaPhiM( (*AK8JetLV_pt)->at(i),(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i),(*AK8JetLV_mass)->at(i));
-           if (verbose) printf("\tAK8   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8JetLV_pt)->at(i),(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i));
+
+            bool breakVar =  false;
+            for (unsigned int j=0; j<(*AK8JetLV)->size() ;j++){
+                if   ((*AK8JetLV)->at(j).Pt() == (*AK8JetLV_pt)->at(i) ) breakVar=true;
+            }
+            if (breakVar) break;
+
+             if (verbose) printf("\tAK8   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8JetLV_pt)->at(i),(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i));
+            //(*AK8JetLV)->push_back(temp);
+
+            (*AK8JetLV)->push_back(temp);
+            
+
+            (*tempAK8JetTau1)->push_back((*AK8JetTau1)->at(i));
+            (*tempAK8JetTau2)->push_back((*AK8JetTau2)->at(i));
+            (*tempAK8JetTau3)->push_back((*AK8JetTau3)->at(i));
+            (*tempAK8JetSoftdropMass)->push_back((*AK8JetSoftdropMass)->at(i));
+
+            //ak8Subcount++;
+            //temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
+            //(*tempAK8SubjetLV)->push_back(temp);
+            ////ak8Subcount++;
+            //temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
+            //(*tempAK8SubjetLV)->push_back(temp);
+            ////ak8Subcount++;
+
+
+
+            //break;
+       
+         //  bool match = false;
+         //  for (unsigned int j=0; j<(*AK8JetLV_pt)->size() ;j++){
+         //  
+
+    
+         //   }
+         //  
+         //  if (match == false){
+         //       if (verbose) printf("\tAK8   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8JetLV_pt)->at(i),(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i));
+         //  }
+            //if (match == false){
+            //    if (verbose) printf("\tAK8   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8JetLV_pt)->at(i),(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i));
+            //    (*AK8JetLV)->push_back(temp);
+            //    temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
+            //    (*tempAK8SubjetLV)->push_back(temp);
+            //    (*tempAK8JetTau1)->push_back((*AK8JetTau1)->at(i));
+            //    (*tempAK8JetTau2)->push_back((*AK8JetTau2)->at(i));
+            //    (*tempAK8JetTau3)->push_back((*AK8JetTau3)->at(i));
+            //    (*tempAK8JetSoftdropMass)->push_back((*AK8JetSoftdropMass)->at(i));
+            //}
+
           // printf("ak8 jets: %4.2f \n", (*AK8JetLV_pt)->at(i));
-           (*AK8JetLV)->push_back(temp);
          }
 
 
@@ -573,13 +678,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
         }
         int nLep = nMu + nEl;
    //
-         for(unsigned int i=0; i<(*AK8SubjetLV_pt)->size() ;i++){
-           //cout << AK8SubjetLV_pt->at(i) << endl;
-           //if ((*AK8JetLV_pt)->at(i) < 200) break;
-           temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
-           (*AK8SubjetLV)->push_back(temp);
-           
-         }
+
    
 
          //Print event number 
@@ -590,13 +689,14 @@ for (int i = 0; i < parse.optionsCount(); ++i)
          //Create AK4 inputs object
          ttUtility::ConstAK4Inputs AK4Inputs = ttUtility::ConstAK4Inputs(**AK4JetLV, **AK4JetBtagBinary);
 
+         printf("Event #: %i %i %i %i %i %i\n", (*AK8JetLV)->size(),(*AK8SubjetLV_eta)->size(), (*tempAK8JetTau1)->size(),(*tempAK8JetTau2)->size(),(*tempAK8JetTau3)->size(),(*tempAK8JetSoftdropMass)->size());
          //Create AK8 inputs object
          ttUtility::ConstAK8Inputs AK8Inputs = ttUtility::ConstAK8Inputs(
              **AK8JetLV,
-             **AK8JetTau1,
-             **AK8JetTau2,
-             **AK8JetTau3,
-             **AK8JetSoftdropMass,
+             **tempAK8JetTau1,
+             **tempAK8JetTau2,
+             **tempAK8JetTau3,
+             **tempAK8JetSoftdropMass,
              **AK8SubjetLV
              );
 
@@ -903,13 +1003,13 @@ for (int i = 0; i < parse.optionsCount(); ++i)
   hadMonoTopLoopHists->Close();
 
     //clean up pointers 
-   delete AK4JetLV;
-   delete AK4JetBtag;
-   delete AK8JetLV;
-   delete AK8SubjetLV;
-   delete AK8JetTau1;
-   delete AK8JetTau2;
-   delete AK8JetTau3;
-   delete AK8JetSoftdropMass;
-   delete AK4JetBtagBinary;
+ //  delete AK4JetLV;
+ //  delete AK4JetBtag;
+ //  delete AK8JetLV;
+ //  delete AK8SubjetLV;
+ //  delete AK8JetTau1;
+ //  delete AK8JetTau2;
+ //  delete AK8JetTau3;
+ //  delete AK8JetSoftdropMass;
+ //  delete AK4JetBtagBinary;
 }
