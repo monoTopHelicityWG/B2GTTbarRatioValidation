@@ -174,7 +174,12 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     //if (verbose) printf("Entries: %i\n", ch.GetEntries());
     //int nEntries = ch.GetEntries();
     int nEntries = 1275000;
+    tf->ls();
     TTree *tree = (TTree*)tf->Get("ana/TreeHad");
+    TH1D* cutflow = (TH1D*)tf->Get("ana/h_cutflow_had");
+
+    TCanvas c1;
+
    // printf("Event #: %i\n", tree->GetEntries());
 
     
@@ -363,9 +368,21 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     Float_t maxPt = 1000;
     Float_t bTagMax = 0;
 
-    TH1F* TH1F_cutflow = new TH1F("TH1F_cutflow", "Cutflow ;  Cuts ; count", 10, -.5, 9.5);
+    TH1F* TH1F_cutflow = new TH1F("TH1F_cutflow", "Cutflow ;  Cuts ; count", 20, -.5, 19.5);
 
-    TCanvas c1;
+ int cutflowCount = 0;      
+ cutflow->Draw();
+ c1.SaveAs("test.png"); 
+    for(int i=2; i< 8; i++ ){
+       
+        printf("cutflow: %d %f\n",   cutflow->GetBin(i), cutflow->GetBinContent(i));
+        if (cutflow->GetBinContent(i) ==0) break;
+        //cutflow->GetBinContent(i);
+        TH1F_cutflow->SetBinContent(i-1,cutflow->GetBinContent(i));
+        cutflowCount++;
+    }                     
+
+   
     TH1F* TH1F_gen_E_ratio_SUSY_top = new TH1F("TH1F_gen_E_ratio_SUSY_top", "Gen Top to SUSY energy ;  E(SUSY)/E(gen) ; count", nBins, .5,1.5 );
     TH1F* TH1F_gen_deltaR_SUSY_top = new TH1F("TH1F_gen_deltaR_SUSY_top", "Gen SUSY #delta R Top ;  #delta_{R} ; count", nBins, 0, .5 );
     TH1F* TH1F_had_SUSY_pt = new TH1F("TH1F_had_SUSY_pt", "SUSY p_{T}; p_{T} [GeV]; count", nBins, 0, maxPt );
@@ -517,7 +534,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
          
 
 
-         printf("Event #: %i %i %i %i %i %i\n", (*AK8JetLV_pt)->size(),(*AK8SubjetLV_eta)->size(), (*tempAK8JetTau1)->size(),(*tempAK8JetTau2)->size(),(*tempAK8JetTau3)->size(),(*tempAK8JetSoftdropMass)->size());
+         //printf("Event #: %i %i %i %i %i %i\n", (*AK8JetLV_pt)->size(),(*AK8SubjetLV_eta)->size(), (*tempAK8JetTau1)->size(),(*tempAK8JetTau2)->size(),(*tempAK8JetTau3)->size(),(*tempAK8JetSoftdropMass)->size());
 
        // for(unsigned int i=0; i<(*AK8JetLV_pt)->size() ;i++){
 
@@ -536,13 +553,15 @@ for (int i = 0; i < parse.optionsCount(); ++i)
            //cout << AK8SubjetLV_pt->at(i) << endl;
            //if ((*AK8JetLV_pt)->at(i) < 200) break;
             bool breakVar =  false;
+            temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
             for (unsigned int j=0; j<(*AK8SubjetLV)->size() ;j++){
                 if   ((*AK8SubjetLV)->at(j).Pt() == (*AK8SubjetLV_pt)->at(i) ) breakVar=true;
+                if   ((*AK8SubjetLV)->at(j).DeltaR(temp) < .001 ) breakVar=true;
 
             }
             if (breakVar) break;
 
-           temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
+          
            (*AK8SubjetLV)->push_back(temp);
            if (verbose) printf("\tAK8 Subjets   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8SubjetLV)->at(i).Pt(),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i));
            
@@ -558,6 +577,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
             bool breakVar =  false;
             for (unsigned int j=0; j<(*AK8JetLV)->size() ;j++){
                 if   ((*AK8JetLV)->at(j).Pt() == (*AK8JetLV_pt)->at(i) ) breakVar=true;
+                if   ((*AK8JetLV)->at(j).DeltaR(temp) < .001 ) breakVar=true;
             }
             if (breakVar) break;
 
@@ -689,7 +709,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
          //Create AK4 inputs object
          ttUtility::ConstAK4Inputs AK4Inputs = ttUtility::ConstAK4Inputs(**AK4JetLV, **AK4JetBtagBinary);
 
-         printf("Event #: %i %i %i %i %i %i\n", (*AK8JetLV)->size(),(*AK8SubjetLV_eta)->size(), (*tempAK8JetTau1)->size(),(*tempAK8JetTau2)->size(),(*tempAK8JetTau3)->size(),(*tempAK8JetSoftdropMass)->size());
+         //printf("Event #: %i %i %i %i %i %i\n", (*AK8JetLV)->size(),(*AK8SubjetLV_eta)->size(), (*tempAK8JetTau1)->size(),(*tempAK8JetTau2)->size(),(*tempAK8JetTau3)->size(),(*tempAK8JetSoftdropMass)->size());
          //Create AK8 inputs object
          ttUtility::ConstAK8Inputs AK8Inputs = ttUtility::ConstAK8Inputs(
              **AK8JetLV,
@@ -838,9 +858,13 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
 
 
-            int cutflowCount = 0;                                 
-             TH1F_cutflow->Fill(cutflowCount);
-             cutflowCount++;
+
+            int newCutFlowCount = cutflowCount;
+
+            
+            //TH1F_cutflow->Fill(newCutFlowCount);
+            //newCutFlowCount++;
+
 
             float matchedRatio = TL_AK4_B_subJetPt.E()/TL_top.E();
 
@@ -859,13 +883,14 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
              if (verbose) printf("\tjetsNotAroundTop vs top constituents vs n tops: %3d, %3d, %3d \n",jetsNotAroundTop, nTopConstuents, topCount);
              if (topCount != 1) continue;
-             TH1F_cutflow->Fill(cutflowCount);
-             cutflowCount++;
+             TH1F_cutflow->Fill(newCutFlowCount);
+             newCutFlowCount++;
+
 
             
              if (jetsNotAroundTop > 1 ) continue;
-             TH1F_cutflow->Fill(cutflowCount);
-             cutflowCount++;
+             TH1F_cutflow->Fill(newCutFlowCount);
+             newCutFlowCount++;
 
             TH1F_topCount_1->Fill(topCount);
             TH1F_jetsNotAroundTop_1->Fill(jetsNotAroundTop);
@@ -883,8 +908,8 @@ for (int i = 0; i < parse.optionsCount(); ++i)
              if (nBjets != 1) continue;
              if (TL_AK4_B_subJetPt.Pt() < 70) continue;
              if ( abs(TL_AK4_B_subJetPt.Eta()) > 2.5) continue;
-             TH1F_cutflow->Fill(cutflowCount);
-             cutflowCount++;
+             TH1F_cutflow->Fill(newCutFlowCount);
+             newCutFlowCount++;
 
             TH1F_topCount_2->Fill(topCount);
             TH1F_jetsNotAroundTop_2->Fill(jetsNotAroundTop);
@@ -898,8 +923,8 @@ for (int i = 0; i < parse.optionsCount(); ++i)
             TH1F_ratio_2->Fill(matchedRatio);
       
              if (nLep > 0) continue;
-             TH1F_cutflow->Fill(cutflowCount);
-             cutflowCount++;
+             TH1F_cutflow->Fill(newCutFlowCount);
+             newCutFlowCount++;
 
 
             TH1F_topCount_3->Fill(topCount);
@@ -914,8 +939,8 @@ for (int i = 0; i < parse.optionsCount(); ++i)
             TH1F_ratio_3->Fill(matchedRatio);
                   
              if ( HadMETpt < 350) continue;
-             TH1F_cutflow->Fill(cutflowCount);
-             cutflowCount++;
+             TH1F_cutflow->Fill(newCutFlowCount);
+             newCutFlowCount++;
 
             TH1F_topCount_4->Fill(topCount);
             TH1F_jetsNotAroundTop_4->Fill(jetsNotAroundTop);
@@ -929,8 +954,8 @@ for (int i = 0; i < parse.optionsCount(); ++i)
             TH1F_ratio_4->Fill(matchedRatio);
       
              if ( TL_top.M() > 450) continue;
-             TH1F_cutflow->Fill(cutflowCount);
-             cutflowCount++;
+             TH1F_cutflow->Fill(newCutFlowCount);
+             newCutFlowCount++;
 
 
             TH1F_topCount_5->Fill(topCount);
