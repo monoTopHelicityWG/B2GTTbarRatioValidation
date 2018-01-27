@@ -280,15 +280,39 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     std::vector<double>** AK4JetLV_eta = new std::vector<double>*();
     std::vector<double>** AK4JetLV_phi = new std::vector<double>*();
     std::vector<double>** AK4JetLV_mass = new std::vector<double>*();
+
+    std::vector<double>** AK4JetLV_corr = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_corrUp = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_corrDn = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_SF = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_SFUp = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_SFDn = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_ptsmear = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_ptsmearUp = new std::vector<double>*();
+    std::vector<double>** AK4JetLV_ptsmearDn = new std::vector<double>*();
+
     std::vector<double>** AK8JetLV_pt = new std::vector<double>*();
     std::vector<double>** AK8JetLV_eta = new std::vector<double>*();
     std::vector<double>** AK8JetLV_phi = new std::vector<double>*();
     std::vector<double>** AK8JetLV_mass = new std::vector<double>*();
+
+    std::vector<double>** AK8JetLV_corr = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_corrUp = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_corrDn = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_SF = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_SFUp = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_SFDn = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_ptsmear = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_ptsmearUp = new std::vector<double>*();
+    std::vector<double>** AK8JetLV_ptsmearDn = new std::vector<double>*();
     
     std::vector<double>** AK8SubjetLV_pt = new std::vector<double>*();
     std::vector<double>** AK8SubjetLV_eta = new std::vector<double>*();
     std::vector<double>** AK8SubjetLV_phi = new std::vector<double>*();
     std::vector<double>** AK8SubjetLV_mass = new std::vector<double>*();
+
+
+
 
 
     
@@ -300,6 +324,27 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     tree->SetBranchAddress("AK4JetLV_phi", AK4JetLV_phi);
     tree->SetBranchStatus("AK4JetLV_mass", 1);
     tree->SetBranchAddress("AK4JetLV_mass", AK4JetLV_mass);
+
+    tree->SetBranchStatus("AK4JetLV_corr", 1);
+    tree->SetBranchAddress("AK4JetLV_corr", AK4JetLV_corr);
+    tree->SetBranchStatus("AK4JetLV_corrUp", 1);
+    tree->SetBranchAddress("AK4JetLV_corrUp", AK4JetLV_corrUp);
+    tree->SetBranchStatus("AK4JetLV_corrDn", 1);
+    tree->SetBranchAddress("AK4JetLV_corrDn", AK4JetLV_corrDn);
+    tree->SetBranchStatus("AK4JetLV_SF", 1);
+    tree->SetBranchAddress("AK4JetLV_SF", AK4JetLV_SF);
+    tree->SetBranchStatus("AK4JetLV_SFUp", 1);
+    tree->SetBranchAddress("AK4JetLV_SFUp", AK4JetLV_SFUp);
+    tree->SetBranchStatus("AK4JetLV_SFDn", 1);
+    tree->SetBranchAddress("AK4JetLV_SFDn", AK4JetLV_SFDn);
+    tree->SetBranchStatus("AK4JetLV_ptsmear", 1);
+    tree->SetBranchAddress("AK4JetLV_ptsmear", AK4JetLV_ptsmear);
+    tree->SetBranchStatus("AK4JetLV_ptsmearUp", 1);
+    tree->SetBranchAddress("AK4JetLV_ptsmearUp", AK4JetLV_ptsmearUp);
+    tree->SetBranchStatus("AK4JetLV_ptsmearDn", 1);
+    tree->SetBranchAddress("AK4JetLV_ptsmearDn", AK4JetLV_ptsmearDn);
+
+
     tree->SetBranchStatus("AK8JetLV_pt", 1);
     tree->SetBranchAddress("AK8JetLV_pt", AK8JetLV_pt);
     tree->SetBranchStatus("AK8JetLV_eta", 1);
@@ -316,6 +361,26 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     tree->SetBranchAddress("AK8SubjetLV_phi", AK8SubjetLV_phi);
     tree->SetBranchStatus("AK8SubjetLV_mass", 1);
     tree->SetBranchAddress("AK8SubjetLV_mass", AK8SubjetLV_mass);
+
+    tree->SetBranchStatus("AK8JetLV_corr", 1);
+    tree->SetBranchAddress("AK8JetLV_corr", AK8JetLV_corr);
+    tree->SetBranchStatus("AK8JetLV_corrUp", 1);
+    tree->SetBranchAddress("AK8JetLV_corrUp", AK8JetLV_corrUp);
+    tree->SetBranchStatus("AK8JetLV_corrDn", 1);
+    tree->SetBranchAddress("AK8JetLV_corrDn", AK8JetLV_corrDn);
+    tree->SetBranchStatus("AK8JetLV_SF", 1);
+    tree->SetBranchAddress("AK8JetLV_SF", AK8JetLV_SF);
+    tree->SetBranchStatus("AK8JetLV_SFUp", 1);
+    tree->SetBranchAddress("AK8JetLV_SFUp", AK8JetLV_SFUp);
+    tree->SetBranchStatus("AK8JetLV_SFDn", 1);
+    tree->SetBranchAddress("AK8JetLV_SFDn", AK8JetLV_SFDn);
+    tree->SetBranchStatus("AK8JetLV_ptsmear", 1);
+    tree->SetBranchAddress("AK8JetLV_ptsmear", AK8JetLV_ptsmear);
+    tree->SetBranchStatus("AK8JetLV_ptsmearUp", 1);
+    tree->SetBranchAddress("AK8JetLV_ptsmearUp", AK8JetLV_ptsmearUp);
+    tree->SetBranchStatus("AK8JetLV_ptsmearDn", 1);
+    tree->SetBranchAddress("AK8JetLV_ptsmearDn", AK8JetLV_ptsmearDn);
+
 
     std::vector<bool> *HadTrigPass      = new std::vector<bool> ;
     tree->SetBranchStatus("HadTrigPass", 1);
@@ -677,14 +742,14 @@ for (int i = 0; i < parse.optionsCount(); ++i)
         for(unsigned int i=0; i<(*AK8SubjetLV_pt)->size() ;i++){
            //cout << AK8SubjetLV_pt->at(i) << endl;
            //if ((*AK8JetLV_pt)->at(i) < 200) break;
-            bool breakVar =  false;
+            //bool breakVar =  false;
             temp.SetPtEtaPhiM((*AK8SubjetLV_pt)->at(i),(*AK8SubjetLV_eta)->at(i),(*AK8SubjetLV_phi)->at(i),(*AK8SubjetLV_mass)->at(i));
-            for (unsigned int j=0; j<(*AK8SubjetLV)->size() ;j++){
-                if   ((*AK8SubjetLV)->at(j).Pt() == (*AK8SubjetLV_pt)->at(i) ) breakVar=true;
-                if   ((*AK8SubjetLV)->at(j).DeltaR(temp) < .001 ) breakVar=true;
-
-            }
-            if (breakVar) break;
+            //for (unsigned int j=0; j<(*AK8SubjetLV)->size() ;j++){
+            //    if   ((*AK8SubjetLV)->at(j).Pt() == (*AK8SubjetLV_pt)->at(i) ) breakVar=true;
+            //    if   ((*AK8SubjetLV)->at(j).DeltaR(temp) < .001 ) breakVar=true;
+//
+            //}
+            //if (breakVar) break;
 
           
            (*AK8SubjetLV)->push_back(temp);
@@ -706,18 +771,20 @@ for (int i = 0; i < parse.optionsCount(); ++i)
                
          int ak8count = 0;
          int ak8Subcount = 0;
+         double AK8JetPt = 0;
          for(unsigned int i=0; i<(*AK8JetLV_pt)->size() ;i++){
            //printf("ak8 jets: %i\n", i);
-           temp.SetPtEtaPhiM( (*AK8JetLV_pt)->at(i),(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i),(*AK8JetLV_mass)->at(i));
+            AK8JetPt = (*AK8JetLV_ptsmear)->at(i)*(*AK8JetLV_corr)->at(i)*(*AK8JetLV_pt)->at(i);
+            temp.SetPtEtaPhiM( AK8JetPt,(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i),(*AK8JetLV_mass)->at(i));
 
-            bool breakVar =  false;
-            for (unsigned int j=0; j<(*AK8JetLV)->size() ;j++){
-                if   ((*AK8JetLV)->at(j).Pt() == (*AK8JetLV_pt)->at(i) ) breakVar=true;
-                if   ((*AK8JetLV)->at(j).DeltaR(temp) < .001 ) breakVar=true;
-            }
-            if (breakVar) break;
+            //bool breakVar =  false;
+            //for (unsigned int j=0; j<(*AK8JetLV)->size() ;j++){
+            //    if   ((*AK8JetLV)->at(j).Pt() == AK8JetPt ) breakVar=true;
+            //    if   ((*AK8JetLV)->at(j).DeltaR(temp) < .001 ) breakVar=true;
+            //}
+            //if (breakVar) break;
 
-             if (verbose) printf("\tAK8   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK8JetLV_pt)->at(i),(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i));
+            if (verbose) printf("\tAK8   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", AK8JetPt,(*AK8JetLV_eta)->at(i),(*AK8JetLV_phi)->at(i));
             //(*AK8JetLV)->push_back(temp);
 
             (*AK8JetLV)->push_back(temp);
@@ -779,6 +846,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
         double BtagBinary = 0.0;
         int nNotBjets = 0;
         int nBjets = 0;
+        double AK4Pt = 0;
          for(unsigned int i=0; i<(*AK4JetLV_pt)->size() ;i++){
            //cout << AK4JetLV_pt->at(i) << endl;
           //printf("ak4 jets: %i\n", i);
@@ -790,13 +858,16 @@ for (int i = 0; i < parse.optionsCount(); ++i)
            if ((*AK4JetBtag)->at(i) > .62 ) BtagBinary = 1.0;
 
            (*AK4JetBtagBinary)->push_back(BtagBinary);
-           temp.SetPtEtaPhiM((*AK4JetLV_pt)->at(i),(*AK4JetLV_eta)->at(i),(*AK4JetLV_phi)->at(i),(*AK4JetLV_mass)->at(i));
+
+           AK4Pt = (*AK4JetLV_ptsmear)->at(i)*(*AK4JetLV_corr)->at(i)*(*AK4JetLV_pt)->at(i);
+
+           temp.SetPtEtaPhiM(AK4Pt,(*AK4JetLV_eta)->at(i),(*AK4JetLV_phi)->at(i),(*AK4JetLV_mass)->at(i));
            (*AK4JetLV)->push_back(temp);
 
-            if (verbose) printf("\tAK4   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", (*AK4JetLV_pt)->at(i),(*AK4JetLV_eta)->at(i),(*AK4JetLV_phi)->at(i));
-            if ( (*AK4JetLV_pt)->at(i) > 70 && abs((*AK4JetLV_eta)->at(i)) < 2.5 && BtagBinary){
+            if (verbose) printf("\tAK4   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", AK4Pt,(*AK4JetLV_eta)->at(i),(*AK4JetLV_phi)->at(i));
+            if ( AK4Pt > 70 && abs((*AK4JetLV_eta)->at(i)) < 2.5 && BtagBinary){
                 nBjets++;
-            } else if ( (*AK4JetLV_pt)->at(i) > 30 && abs((*AK4JetLV_eta)->at(i)) < 2.5 ){
+            } else if ( AK4Pt > 30 && abs((*AK4JetLV_eta)->at(i)) < 2.5 ){
                 nNotBjets++;
             }
           // printf("btag #: %f\n", (*AK4JetBtagBinary)->at(i));
