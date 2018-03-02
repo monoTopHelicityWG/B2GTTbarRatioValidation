@@ -382,6 +382,22 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     tree->SetBranchAddress("AK8JetLV_ptsmearDn", AK8JetLV_ptsmearDn);
 
 
+    std::vector<std::string> *HLTtriggers      = new std::vector<std::string> ;
+    tree->SetBranchStatus("HLTtriggers", 1);
+    tree->SetBranchAddress("HLTtriggers", &HLTtriggers);
+
+
+    std::vector<bool> *HLTtriggersPass      = new std::vector<bool> ;
+    tree->SetBranchStatus("HLTtriggersPass", 1);
+    tree->SetBranchAddress("HLTtriggersPass", &HLTtriggersPass);
+
+
+    std::vector<int> *HLTtriggersPrescales      = new std::vector<int> ;
+    tree->SetBranchStatus("HLTtriggersPrescales", 1);
+    tree->SetBranchAddress("HLTtriggersPrescales", &HLTtriggersPrescales);
+
+
+
     std::vector<bool> *HadTrigPass      = new std::vector<bool> ;
     tree->SetBranchStatus("HadTrigPass", 1);
     tree->SetBranchAddress("HadTrigPass", &HadTrigPass);
@@ -452,6 +468,8 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
     TH1F* TH1F_cutflow = new TH1F("TH1F_cutflow", "Cutflow ;  Cuts ; count", 20, -.5, 19.5);
 
+    std::vector <std::string> cutName;
+
  int cutflowCount = 0;      
  //cutflow->Draw();
  //c1.SaveAs("test.png"); 
@@ -461,6 +479,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
         if (cutflow->GetBinContent(i) ==0) break;
         //cutflow->GetBinContent(i);
         TH1F_cutflow->SetBinContent(i-1,cutflow->GetBinContent(i));
+        cutName.push_back("preselection");
         cutflowCount++;
     }                     
 
@@ -673,8 +692,23 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     Int_t nConstituents;
 
     std::vector<std::string> trigsToRun;
-    trigsToRun.push_back("HLT_PFMET120_NoiseCleaned_BTagCSV07_v1");
-    trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v2");
+    //trigsToRun.push_back("HLT_PFMET120_NoiseCleaned_BTagCSV07_v");
+    //trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v");
+    //trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v");
+
+
+  //trigsToRunHad.push_back("HLT_PFMET120_NoiseCleaned_BTagCSV07_v");
+  //trigsToRunHad.push_back("HLT_PFMET300_v");
+  //trigsToRunHad.push_back("HLT_PFMET400_v");
+  //trigsToRunHad.push_back("HLT_PFMET500_v");
+  //trigsToRunHad.push_back("HLT_PFMET600_v");
+
+
+    trigsToRun.push_back("HLT_PFMET300_v");
+    //trigsToRun.push_back("HLT_PFMET120_NoiseCleaned_BTagCSV07_v");
+    //trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v");
+    //trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v");
+    //trigsToRun.push_back("HLT_PFMET120_Mu5_v");
     //trigsToRun.push_back("HLT_PFHT300_v");
     //trigsToRun.push_back("HLT_PFHT350_v");
     //trigsToRun.push_back("HLT_PFHT400_v");
@@ -684,63 +718,63 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     //trigsToRun.push_back("HLT_PFHT800_v");
     //trigsToRun.push_back("HLT_PFHT900_v");
 
-    std::vector<std::string> trigsRun;
-    trigsRun.push_back("HLT_PFMET120_NoiseCleaned_BTagCSV07_v1");
-    trigsRun.push_back("HLT_PFMET120_BTagCSV_p067_v2");
-    trigsRun.push_back("HLT_PFMET120_Mu5_v2");
-    trigsRun.push_back("HLT_Ele10_CaloIdM_TrackIdM_CentralPFJet30_BTagCSV_p13_v2");
-    trigsRun.push_back("HLT_PFHT300_v");
-    trigsRun.push_back("HLT_PFHT350_v");
-    trigsRun.push_back("HLT_PFHT400_v");
-    trigsRun.push_back("HLT_PFHT475_v");
-    trigsRun.push_back("HLT_PFHT600_v");
-    trigsRun.push_back("HLT_PFHT650_v");
-    trigsRun.push_back("HLT_PFHT800_v");
-    trigsRun.push_back("HLT_PFHT900_v");
-    trigsRun.push_back("HLT_PFHT650_WideJetMJJ900"); //HLT_PFHT650_WideJetMJJ900DEtaJJ1p5_v6
-    trigsRun.push_back("HLT_PFHT650_WideJetMJJ950"); //HLT_PFHT650_WideJetMJJ950DEtaJJ1p5_v6
-    
-    //// Single jet
-    trigsRun.push_back("HLT_CaloJet500_NoJetID_v");
-    trigsRun.push_back("HLT_PFJet320_v");
-    trigsRun.push_back("HLT_PFJet400_v");
-    trigsRun.push_back("HLT_PFJet450_v");
-    trigsRun.push_back("HLT_PFJet500_v");
-    trigsRun.push_back("HLT_AK8PFJet450_v");
-    trigsRun.push_back("HLT_AK8PFJet500_v");
-    
-    //// Substructure
-    trigsRun.push_back("HLT_AK8PFJet360_TrimMass30_v");
-    trigsRun.push_back("HLT_AK8PFHT650_TrimR0p1PT0p03Mass50_v");
-    trigsRun.push_back("HLT_AK8PFHT700_TrimR0p1PT0p03Mass50_v");
-    
-    //// Substructure + b-tag
-    trigsRun.push_back("HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_v");
-    trigsRun.push_back("HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_v");
-    
-    //// Muon
-    trigsRun.push_back("HLT_Mu45_eta2p1_v");
-    trigsRun.push_back("HLT_Mu50_v");
-    trigsRun.push_back("HLT_Mu55_v");
-    trigsRun.push_back("HLT_TkMu50_v");
-    trigsRun.push_back("HLT_IsoMu22_eta2p1_v");
-    trigsRun.push_back("HLT_IsoMu24_v");
-    trigsRun.push_back("HLT_IsoMu27_v");
-    
-    //// Muon + jet
-    trigsRun.push_back("HLT_Mu30_eta2p1_PFJet150_PFJet50_v");
-    trigsRun.push_back("HLT_Mu40_eta2p1_PFJet200_PFJet50_v");
-    
-    //// Electron
-    trigsRun.push_back("HLT_Ele32_eta2p1_WPTight_Gsf_v");
-    trigsRun.push_back("HLT_Ele35_WPLoose_Gsf_v");
-    trigsRun.push_back("HLT_Ele105_CaloIdVT_GsfTrkIdT_v");
-    trigsRun.push_back("HLT_Ele115_CaloIdVT_GsfTrkIdT_v");
-    
-    // Electron + jet
-    trigsRun.push_back("HLT_Ele45_CaloIdVT_GsfTrkIdT_PFJet200_PFJet50_v");
-    trigsRun.push_back("HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet140_v");
-    trigsRun.push_back("HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165_v");
+ std::vector<std::string> trigsRun;
+// trigsRun.push_back("HLT_PFMET120_NoiseCleaned_BTagCSV07_v");
+// trigsRun.push_back("HLT_PFMET120_BTagCSV_p067_v");
+// trigsRun.push_back("HLT_PFMET120_Mu5_v");
+// trigsRun.push_back("HLT_Ele10_CaloIdM_TrackIdM_CentralPFJet30_BTagCSV_p13_v");
+// trigsRun.push_back("HLT_PFHT300_v");
+// trigsRun.push_back("HLT_PFHT350_v");
+// trigsRun.push_back("HLT_PFHT400_v");
+// trigsRun.push_back("HLT_PFHT475_v");
+// trigsRun.push_back("HLT_PFHT600_v");
+// trigsRun.push_back("HLT_PFHT650_v");
+// trigsRun.push_back("HLT_PFHT800_v");
+// trigsRun.push_back("HLT_PFHT900_v");
+// trigsRun.push_back("HLT_PFHT650_WideJetMJJ900"); //HLT_PFHT650_WideJetMJJ900DEtaJJ1p5_v6
+// trigsRun.push_back("HLT_PFHT650_WideJetMJJ950"); //HLT_PFHT650_WideJetMJJ950DEtaJJ1p5_v6
+// 
+// //// Single jet
+// trigsRun.push_back("HLT_CaloJet500_NoJetID_v");
+// trigsRun.push_back("HLT_PFJet320_v");
+// trigsRun.push_back("HLT_PFJet400_v");
+// trigsRun.push_back("HLT_PFJet450_v");
+// trigsRun.push_back("HLT_PFJet500_v");
+// trigsRun.push_back("HLT_AK8PFJet450_v");
+// trigsRun.push_back("HLT_AK8PFJet500_v");
+// 
+// //// Substructure
+// trigsRun.push_back("HLT_AK8PFJet360_TrimMass30_v");
+// trigsRun.push_back("HLT_AK8PFHT650_TrimR0p1PT0p03Mass50_v");
+// trigsRun.push_back("HLT_AK8PFHT700_TrimR0p1PT0p03Mass50_v");
+// 
+// //// Substructure + b-tag
+// trigsRun.push_back("HLT_AK8PFHT600_TrimR0p1PT0p03Mass50_BTagCSV_p20_v");
+// trigsRun.push_back("HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20_v");
+// 
+// //// Muon
+// trigsRun.push_back("HLT_Mu45_eta2p1_v");
+// trigsRun.push_back("HLT_Mu50_v");
+// trigsRun.push_back("HLT_Mu55_v");
+// trigsRun.push_back("HLT_TkMu50_v");
+// trigsRun.push_back("HLT_IsoMu22_eta2p1_v");
+// trigsRun.push_back("HLT_IsoMu24_v");
+// trigsRun.push_back("HLT_IsoMu27_v");
+// 
+// //// Muon + jet
+// trigsRun.push_back("HLT_Mu30_eta2p1_PFJet150_PFJet50_v");
+// trigsRun.push_back("HLT_Mu40_eta2p1_PFJet200_PFJet50_v");
+// 
+// //// Electron
+// trigsRun.push_back("HLT_Ele32_eta2p1_WPTight_Gsf_v");
+// trigsRun.push_back("HLT_Ele35_WPLoose_Gsf_v");
+// trigsRun.push_back("HLT_Ele105_CaloIdVT_GsfTrkIdT_v");
+// trigsRun.push_back("HLT_Ele115_CaloIdVT_GsfTrkIdT_v");
+// 
+// // Electron + jet
+// trigsRun.push_back("HLT_Ele45_CaloIdVT_GsfTrkIdT_PFJet200_PFJet50_v");
+// trigsRun.push_back("HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet140_v");
+// trigsRun.push_back("HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165_v");
 
     //try-catch on TTException which are thrown by the top tagger
    try
@@ -809,8 +843,46 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 //                                
 //                                
 //           
-
         bool passTrig = false;
+        std::string passedTrigger;
+        for(int j =0; j<trigsToRun.size(); j++){
+          passedTrigger = trigsToRun[j];
+
+
+          for(int i=0; i< HLTtriggers->size(); i++){
+   
+            std::size_t found = HLTtriggers->at(i).find(passedTrigger);
+            if(found !=std::string::npos && HLTtriggersPass->at(i) == 1){
+              if(verbose) std::cout <<  passedTrigger << std::endl;
+              passTrig =  true;
+              passedTrigger = passedTrigger;
+
+              break;
+            }
+          }
+          if (passTrig) break;
+        }
+        if (verbose and passTrig) std::cout << "Passed Trig: " << passedTrigger << std::endl;
+        if (verbose and not passTrig){
+          std::cout << "Failed Trig" << std::endl;
+          //continue;
+        } 
+
+        /*for(int i=0; i< HLTtriggers->size(); i++){
+          //if(verbose) std::cout << "Trigger and Pass "<<  HLTtriggers->at(i) <<  " " << HLTtriggersPass->at(i) << std::endl;
+   
+          }
+          if(passTrig) break;
+        }
+
+        if (verbose and passTrig) std::cout << "Passed Trig: " << passedTrigger << std::endl;
+        if (verbose and not passTrig){
+          std::cout << "Failed Trig" << std::endl;
+          continue;
+        } */
+
+
+       /* bool passTrig = false;
         passTrig = true;
         for(int i=0; i< HadTrigPass->size(); i++){
            
@@ -831,7 +903,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
             if (verbose) std::cout << "Failed Trigger" << std::endl;
             continue;
         }
-        if (verbose) std::cout << "Passed Trigger!" << std::endl;
+        if (verbose && passTrig) std::cout << "Passed Trigger!" << std::endl; */
 
 
 /* //         d8888 888    d8P   .d8888b.        .d8888b.           888   888888          888             
@@ -1003,6 +1075,8 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
         double d_MuIso = -1;                                      
         int nMu = 0;
+
+        //std::cout << "muon size " << (*MuPt)->size() << std::endl;
         for(unsigned int i=0; i<(*MuPt)->size() ;i++){
             if (verbose) printf("muon #: %f\n", (*MuPt)->at(i));
             if( (*MuPt)->at(i) > 30 and (*MuPhi)->at(i) < 2.1){
@@ -1125,16 +1199,27 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
 
 
+            //std::cout << "==----=--=--" << std::endl;
             //for trigger (see above)
+            if (not passTrig) continue;
             TH1F_cutflow->Fill(newCutFlowCount);
             newCutFlowCount++;
+            if(verbose) std:: cout << "HLT" << std::endl;
 
+
+            cutName.push_back("HLT");
 
             if (nBjets != 1) continue;
             if (TL_AK4_B_subJetPt.Pt() < 70) continue;
             if ( abs(TL_AK4_B_subJetPt.Eta()) > 2.5) continue;
+            cutName.push_back("BJet");
+
+            if(verbose) std:: cout << "BJet" << std::endl;
+
             TH1F_cutflow->Fill(newCutFlowCount);
             newCutFlowCount++;
+
+
 
             TH1F_jetsNotAroundTop_1->Fill(nNotBjets);
             TH1F_nBjets_1->Fill(nBjets);
@@ -1157,7 +1242,10 @@ for (int i = 0; i < parse.optionsCount(); ++i)
       
             if (nNotBjets > 2) continue;
             TH1F_cutflow->Fill(newCutFlowCount);
+            cutName.push_back("non BJet");
             newCutFlowCount++;
+
+            if(verbose) std:: cout << "non BJet" << std::endl;
 
             TH1F_jetsNotAroundTop_2->Fill(nNotBjets);
             TH1F_nBjets_2->Fill(nBjets);
@@ -1176,9 +1264,13 @@ for (int i = 0; i < parse.optionsCount(); ++i)
             TH1F_MuISO_2->Fill(d_MuIso);
 
       
+
             if (nMu != 1) continue;
             TH1F_cutflow->Fill(newCutFlowCount);
+            cutName.push_back("nMu != 1");
             newCutFlowCount++;
+
+            if(verbose) std::cout << "nMu != 1" << std::endl;
 
 
             TH1F_jetsNotAroundTop_3->Fill(nNotBjets);
@@ -1199,8 +1291,11 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
 
             if (abs(deltaPhi) > 1.7) continue;
+            cutName.push_back("deltaPhi > 1.7");
             TH1F_cutflow->Fill(newCutFlowCount);
             newCutFlowCount++;
+
+            if(verbose) std:: cout << "deltaPhi > 1.7" << std::endl;
 
             TH1F_jetsNotAroundTop_4->Fill(nNotBjets);
             TH1F_nBjets_4->Fill(nBjets);
@@ -1220,9 +1315,11 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
 
             if (d_MuIso > .05) continue;
+            cutName.push_back("muISO");
             TH1F_cutflow->Fill(newCutFlowCount);
             newCutFlowCount++;
 
+            if(verbose) std:: cout << "muISO" << std::endl;
 
             TH1F_jetsNotAroundTop_5->Fill(nNotBjets);
             TH1F_nBjets_5->Fill(nBjets);
@@ -1243,8 +1340,11 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
                  
             if ( HadMETpt < 100) continue;
+            cutName.push_back("met");
             TH1F_cutflow->Fill(newCutFlowCount);
             newCutFlowCount++;
+
+            if(verbose) std:: cout << "met" << std::endl;
 
             TH1F_jetsNotAroundTop_6->Fill(nNotBjets);
             TH1F_nBjets_6->Fill(nBjets);
@@ -1265,8 +1365,11 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
             
             if ( transverseMass < 400) continue;
+            cutName.push_back("transverseMass");
             TH1F_cutflow->Fill(newCutFlowCount);
             newCutFlowCount++;
+
+            if(verbose) std:: cout << "transverseMass" << std::endl;
 
 
             TH1F_jetsNotAroundTop_7->Fill(nNotBjets);
@@ -1344,6 +1447,10 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
   hadMonoTopLoopHists->Write();
   hadMonoTopLoopHists->Close();
+
+  /*for(int i =1; i <= cutName.size();i++){
+    std::cout << cutName[i] << " " << TH1F_cutflow->GetBinContent(i) << std::endl;
+  }*/
 
     //clean up pointers 
  //  delete AK4JetLV;
