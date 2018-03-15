@@ -1,9 +1,16 @@
 #!/bin/bash
 
-#LH lep 1 TeV:
+#V10 adds tracker iso
 
+name_prefix="pfmet_300_hlt_"
+#LH lep 1 TeV:
+'''
 ./topTaggerTest --input=root://cmsxrootd.fnal.gov//store/user/rmueller/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/CRAB_UserFiles/crab_monotopTreeV1_MT_LH_13TeV_lep_V9/180130_232048/0000/b2gtreeV5_MC_MonoTop_rh_1.root --output=temphists/MT_1TeV_lep_LH_V9_1.root
 ./topTaggerTest --input=root://cmsxrootd.fnal.gov//store/user/rmueller/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/CRAB_UserFiles/crab_monotopTreeV1_MT_LH_13TeV_lep_V9/180130_232048/0000/b2gtreeV5_MC_MonoTop_rh_2.root --output=temphists/MT_1TeV_lep_LH_V9_2.root
+'''
+./topTaggerTest --input=root://cmsxrootd.fnal.gov//store/user/rmueller/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/CRAB_UserFiles/crab_monotopTreeV1_MT_LH_13TeV_lep_V10/180314_180453/0000/b2gtreeV5_MC_MonoTop_rh_1.root --output=temphists/MT_1TeV_lep_LH_V10_1.root
+./topTaggerTest --input=root://cmsxrootd.fnal.gov//store/user/rmueller/MonoTop/Youngdo_MT_Private_Samples_B2GEDM/CRAB_UserFiles/crab_monotopTreeV1_MT_LH_13TeV_lep_V10/180314_180453/0000/b2gtreeV5_MC_MonoTop_rh_2.root --output=temphists/MT_1TeV_lep_LH_V10_2.root
+
 
 #hadd hists/MT_1TeV_lep_LH_V9.root temphists/MT_1TeV_lep_LH_V9_*
 
@@ -1094,17 +1101,18 @@
 ./topTaggerTest --input=root://cmsxrootd.fnal.gov//store/user/rmueller/MonoTop/BackgroundSamples/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/crab_monotopTree_DYJetsToLL_Pt-650ToInf_RunIISummer16MiniAODv2_v9/180131_174829/0000/b2gtreeV5_MC_MonoTop_rh_9.root --output=temphists/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV_9.root
 
 
-hadd -f hists/MT_1TeV_lep_LH_V9.root temphists/MT_1TeV_lep_LH_V9_*
-hadd -f hists/MT_1TeV_lep_RH_V9.root temphists/MT_1TeV_lep_RH_V9_*
-hadd -f hists/TTJets_TuneCUETP8M2T4_13TeV-amcatnloFXFX_V9.root temphists/TTJets_TuneCUETP8M2T4_13TeV-amcatnloFXFX_*
-hadd -f hists/ST_tW_top_5f_inclusiveDecays_13TeV-powheg_V9.root temphists/ST_tW_top_5f_inclusiveDecays_13TeV-powheg_*
-hadd -f hists/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg_V9.root temphists/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg_*
-hadd -f hists/ST_t-channel_top_4f_inclusiveDecays_13TeV_V9.root temphists/ST_t-channel_top_4f_inclusiveDecays_13TeV_*
-hadd -f hists/ST_t-channel_antitop_4f_inclusiveDecays_13TeV_V9.root temphists/ST_t-channel_antitop_4f_inclusiveDecays_13TeV_*
-hadd -f hists/ST_s-channel_4f_leptonDecays_13TeV_V9.root temphists/ST_s-channel_4f_leptonDecays_13TeV_*
-hadd -f hists/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV_*
-hadd -f hists/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV_*
-hadd -f hists/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV_*
-hadd -f hists/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_MT_1TeV_lep_LH_V9.root temphists/MT_1TeV_lep_LH_V9_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_MT_1TeV_lep_LH_V10.root temphists/MT_1TeV_lep_LH_V10_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_MT_1TeV_lep_RH_V9.root temphists/MT_1TeV_lep_RH_V9_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_TTJets_TuneCUETP8M2T4_13TeV-amcatnloFXFX_V9.root temphists/TTJets_TuneCUETP8M2T4_13TeV-amcatnloFXFX_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_ST_tW_top_5f_inclusiveDecays_13TeV-powheg_V9.root temphists/ST_tW_top_5f_inclusiveDecays_13TeV-powheg_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg_V9.root temphists/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_ST_t-channel_top_4f_inclusiveDecays_13TeV_V9.root temphists/ST_t-channel_top_4f_inclusiveDecays_13TeV_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_ST_t-channel_antitop_4f_inclusiveDecays_13TeV_V9.root temphists/ST_t-channel_antitop_4f_inclusiveDecays_13TeV_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_ST_s-channel_4f_leptonDecays_13TeV_V9.root temphists/ST_s-channel_4f_leptonDecays_13TeV_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV_*
+hadd -f hists/pfmet_300_deltaR_test_hlt_DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV_V9.root temphists/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV_*
 
 

@@ -3,30 +3,37 @@ import math
 
 c1 = r.TCanvas("c1", "c1",500, 600)
 
+prefix =  "pfmet_300_hlt_"
+prefix =  "pfmet_300_deltaR_test_hlt_"
 
 #LH = r.TFile("./output/MT_1TeV_lep_LH.root", "read")
-RH_1 = r.TFile("./hists/MT_1TeV_lep_RH_V9.root", "read")
-LH_1 = r.TFile("./hists/MT_1TeV_lep_LH_V9.root", "read")
+RH_1 = r.TFile("./hists/{}MT_1TeV_lep_RH_V9.root".format(prefix), "read")
+LH_1 = r.TFile("./hists/{}MT_1TeV_lep_LH_V9.root".format(prefix), "read")
 
-DY_100_250 = r.TFile("./hists/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV_V9.root", "read")
-DY_250_400 = r.TFile("./hists/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV_V9.root", "read")
-DY_400_650 = r.TFile("./hists/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV_V9.root", "read")
-DY_650_Inf = r.TFile("./hists/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV_V9.root", "read")
+DY_100_250 = r.TFile("./hists/{}DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV_V9.root".format(prefix), "read")
+DY_250_400 = r.TFile("./hists/{}DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV_V9.root".format(prefix), "read")
+DY_400_650 = r.TFile("./hists/{}DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV_V9.root".format(prefix), "read")
+DY_650_Inf = r.TFile("./hists/{}DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV_V9.root".format(prefix), "read")
 
-ST_t_anti = r.TFile("./hists/ST_t-channel_antitop_4f_inclusiveDecays_13TeV_V9.root", "read")
-ST_t_top = r.TFile("./hists/ST_t-channel_top_4f_inclusiveDecays_13TeV_V9.root", "read")
-ST_tw_anti = r.TFile("./hists/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg_V9.root", "read")
-ST_tw_top = r.TFile("./hists/ST_tW_top_5f_inclusiveDecays_13TeV-powheg_V9.root", "read")
-ST_s = r.TFile("./hists/ST_s-channel_4f_leptonDecays_13TeV_V9.root", "read")
+ST_t_anti = r.TFile("./hists/{}ST_t-channel_antitop_4f_inclusiveDecays_13TeV_V9.root".format(prefix), "read")
+ST_t_top = r.TFile("./hists/{}ST_t-channel_top_4f_inclusiveDecays_13TeV_V9.root".format(prefix), "read")
+ST_tw_anti = r.TFile("./hists/{}ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg_V9.root".format(prefix), "read")
+ST_tw_top = r.TFile("./hists/{}ST_tW_top_5f_inclusiveDecays_13TeV-powheg_V9.root".format(prefix), "read")
+ST_s = r.TFile("./hists/{}ST_s-channel_4f_leptonDecays_13TeV_V9.root".format(prefix), "read")
 
 TTJets = r.TFile("./hists/TTJets_TuneCUETP8M2T4_13TeV-amcatnloFXFX_V9.root", "read")
 
+def rebinTHStack(THStack,rebin):
+    for hist in THStack.GetHists():
+        hist.Rebin(rebin)
+
 r.gStyle.SetOptStat(0)
 
-#Lumi = 35900
-Lumi = 100000
+Lumi = 35900
+#Lumi = 100000
 
-output_text = "THStack"
+output_text = "THStack_{}".format(Lumi)
+output_text = output_text + "_" + prefix
 
 no_xsection = False
 
@@ -45,9 +52,9 @@ if log:
 RH_1_h = RH_1.Get("TH1F_cutflow")
 RH_1_xsection = 0.118
 if no_xsection: RH_1_xsection = 1
-RH_1_events = RH_1_xsection*Lumi
-RH_1_Entries = RH_1_h.GetBinContent(1)
-RH_1_norm = RH_1_events/RH_1_Entries
+RH_1_events = float(RH_1_xsection)*float(Lumi)
+RH_1_Entries = float(RH_1_h.GetBinContent(1))
+RH_1_norm = float(RH_1_events)/float(RH_1_Entries)
 print "RH_1 norm, entries, expected events", RH_1_norm , RH_1_Entries, RH_1_events
 
 LH_1_h = LH_1.Get("TH1F_cutflow")
@@ -236,15 +243,41 @@ for k1 in dirList:
         hs.Add(ST_tw_top_h)
         hs.Add(ST_s_h)
         hs.Add(TTJets_h)
-
+        '''
+        rebinTHStack(hs,10)
+        #hs.Rebin(10)
+        RH_h.Rebin(10)
+        LH_h.Rebin(10)
+        '''
         hs.Draw("HIST")
         hs.SetMinimum(.1)
         RH_h.Draw("same")
         LH_h.Draw("same")
         if draw_leg: leg.Draw()
         c1.SaveAs("hists/lep_output/{}_{}.png".format(output_text, name ))
-        
 
+'''
+        if name == "TH1F_cutflow":
+            for bins in RH_h:
+                print bins
+            DY_100_250_h.Add(DY_250_400_h)
+            DY_100_250_h.Add(DY_400_650_h)
+            DY_100_250_h.Add(DY_650_Inf_h)
+            DY_100_250_h.Add(ST_t_anti_h)
+            DY_100_250_h.Add(ST_t_top_h)
+            DY_100_250_h.Add(ST_tw_anti_h)
+            DY_100_250_h.Add(ST_tw_top_h)
+            DY_100_250_h.Add(ST_s_h)
+            DY_100_250_h.Add(TTJets_h)
+            for bins in DY_100_250_h:
+                print bins  
+'''        
+
+
+RH_1_h = RH_1.Get("TH1F_cutflow")
+RH_1_h.Scale(RH_1_norm)
+for bins in RH_1_h:
+    print bins
 
 #  LH_h = k1.ReadObj()
 #  name =  LH_h.GetName()
