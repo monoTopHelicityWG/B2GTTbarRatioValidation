@@ -245,9 +245,9 @@ void HadTree_Oct_8_17::Loop(std::string outFileName, Bool_t gen)
                TH1F_had_B_subJetPt->Fill(TL_B_subJetPt.Pt());
                if(JetPuppiSDsubjet0tau2/JetPuppiSDsubjet0tau1 > .5){
                         TH1F_had_Ratio->Fill(had_ratio+.5);
-                        std::cout << "first" << std::endl;
+                       // std::cout << "first" << std::endl;
                      } else {
-                        std::cout << "else" << std::endl;
+                       // std::cout << "else" << std::endl;
                         TH1F_had_Ratio->Fill(had_ratio);
                      }
          

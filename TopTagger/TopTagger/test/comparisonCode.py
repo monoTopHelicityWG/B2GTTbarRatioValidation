@@ -5,19 +5,19 @@ c1 = r.TCanvas("c1", "c1",500, 600)
 
 
 #LH = r.TFile("./output/MT_1TeV_lep_LH.root", "read")
-RH_2 = r.TFile("./hists/MT_RH_2TeV.root", "read")
-LH_2 = r.TFile("./hists/MC_MT_2TeV_LH.root", "read")
+RH_1 = r.TFile("./hists/MT_1TeV_RH_V8.root", "read")
+LH_1 = r.TFile("./hists/MT_1TeV_LH_V8.root", "read")
 
-DY_100_250 = r.TFile("./hists/DYJetsTLL_Pt-100To250.root", "read")
-DY_250_400 = r.TFile("./hists/DY-250to400.root", "read")
-DY_400_650 = r.TFile("./hists/DY-400to650.root", "read")
-DY_650_Inf = r.TFile("./hists/DY-650toInf.root", "read")
+DY_100_250 = r.TFile("./hists/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV.root", "read")
+DY_250_400 = r.TFile("./hists/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV.root", "read")
+DY_400_650 = r.TFile("./hists/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV.root", "read")
+DY_650_Inf = r.TFile("./hists/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV.root", "read")
 
 
-ST_t_anti = r.TFile("./hists/ST-t-anti.root", "read")
-ST_t_top = r.TFile("./hists/ST-t-top.root", "read")
-ST_tw_anti = r.TFile("./hists/ST_tw_anti.root", "read")
-ST_tw_top = r.TFile("./hists/ST_tw_top.root", "read")
+ST_t_anti = r.TFile("./hists/ST_t-channel_antitop_4f_inclusiveDecays_13TeV.root", "read")
+ST_t_top = r.TFile("./hists/ST_t-channel_top_4f_inclusiveDecays_13TeV.root", "read")
+ST_tw_anti = r.TFile("./hists/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg.root", "read")
+ST_tw_top = r.TFile("./hists/ST_tW_top_5f_inclusiveDecays_13TeV-powheg.root", "read")
 
 r.gStyle.SetOptStat(0)
 
@@ -29,27 +29,27 @@ no_xsection = False
 
 if no_xsection: output_text = output_text+"_no_xsection"
 
-log = True
+log = False
 if log: 
     r.gPad.SetLogy()
     output_text = output_text+"_log"
 
 
-RH_2_h = RH_2.Get("TH1F_cutflow")
-RH_2_xsection = 0.01564
-if no_xsection: RH_2_xsection = 1
-RH_2_events = RH_2_xsection*Lumi
-RH_2_Entries = RH_2_h.GetBinContent(1)
-RH_2_norm = RH_2_events/RH_2_Entries
-print "RH_2 norm, entries, expected events", RH_2_norm , RH_2_Entries, RH_2_events
+RH_1_h = RH_1.Get("TH1F_cutflow")
+RH_1_xsection = 0.118
+if no_xsection: RH_1_xsection = 1
+RH_1_events = RH_1_xsection*Lumi
+RH_1_Entries = RH_1_h.GetBinContent(1)
+RH_1_norm = RH_1_events/RH_1_Entries
+print "RH_1 norm, entries, expected events", RH_1_norm , RH_1_Entries, RH_1_events
 
-LH_2_h = LH_2.Get("TH1F_cutflow")
-LH_2_xsection = 0.01564
-if no_xsection: LH_2_xsection = 1
-LH_2_events = LH_2_xsection*Lumi
-LH_2_Entries = LH_2_h.GetBinContent(1)
-LH_2_norm = LH_2_events/LH_2_Entries
-print "LH_2 norm, entries, expected events", LH_2_norm , LH_2_Entries, LH_2_events
+LH_1_h = LH_1.Get("TH1F_cutflow")
+LH_1_xsection = 0.118
+if no_xsection: LH_1_xsection = 1
+LH_1_events = LH_1_xsection*Lumi
+LH_1_Entries = LH_1_h.GetBinContent(1)
+LH_1_norm = LH_1_events/LH_1_Entries
+print "LH_1 norm, entries, expected events", LH_1_norm , LH_1_Entries, LH_1_events
 
 DY_100_250_h = DY_100_250.Get("TH1F_cutflow")
 DY_100_250_xsection = 83.12
@@ -117,13 +117,13 @@ print "ST_tw_top norm, entries, expected events", ST_tw_top_norm , ST_tw_top_Ent
 
 
 
-RH_2.cd()
+RH_1.cd()
 dirList = r.gDirectory.GetListOfKeys()
 leg = r.TLegend(.6, .5, .89, .89)
 for k1 in dirList: 
     RH_h = k1.ReadObj()
     name =  RH_h.GetName()
-    LH_h = LH_2.Get(name)
+    LH_h = LH_1.Get(name)
     DY_100_250_h = DY_100_250.Get(name)
     DY_250_400_h = DY_250_400.Get(name)
     DY_400_650_h = DY_400_650.Get(name)
@@ -138,8 +138,8 @@ for k1 in dirList:
 
 
 
-        RH_h.Scale(RH_2_norm)
-        LH_h.Scale(LH_2_norm)
+        RH_h.Scale(RH_1_norm)
+        LH_h.Scale(LH_1_norm)
         DY_100_250_h.Scale(DY_100_250_norm)
         DY_250_400_h.Scale(DY_250_400_norm)
         DY_400_650_h.Scale(DY_400_650_norm)

@@ -51,12 +51,9 @@ void semiLepTTBarLoop::Loop(std::string outFileName, Bool_t gen)
    TH1F* TH1F_had_Ratio = new TH1F("TH1F_had_Ratio", "Ratio: E(b)/E(t);  E(b)/E(t); count", nBins, 0, 1.5 );
    TH1F* TH1F_had_deltaR = new TH1F("TH1F_had_deltaR", "#delta R BJet and Other Subjet; #theta_{jb}; count", nBins, 0, 1.5 );
 
-<<<<<<< HEAD
    TH1F* TH1F_had_AK4_mass = new TH1F("TH1F_had_AK4_mass", "AK4 Mass; Mass [GeV]; count", nBins, 0, 1000 );
 
-=======
    TH2F* TH2F_pt_SD_mass = new TH2F("TH2F_pt_SD_mass", "SD p_{T} vs SD AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
->>>>>>> 7b01282
    //gen level plots
    TH2F* TH2F_gen_pt_raw_mass = new TH2F("TH2F_gen_pt_raw_mass", "Gen p_{T} vs Raw AK8 Jet Mass; Gen p_{T}; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );
    TH2F* TH2F_gen_mass_raw_mass = new TH2F("TH2F_gen_mass_raw_mass", "Gen Mass vs Raw AK8 Jet Mass; Gen Mass; Raw Mass [GeV]", nBins, 0, 1000, nBins, 0, 500 );

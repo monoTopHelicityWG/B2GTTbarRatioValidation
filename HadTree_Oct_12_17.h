@@ -325,6 +325,13 @@ public :
    Float_t         AK4W2Jet_CorrUp;
    Float_t         AK4W2Jet_CorrDn;
    Float_t         AK4W2Jet_bDisc;
+   Float_t         MuPhi;
+   Float_t         MuPt;
+   Float_t         MuEta;
+   Float_t         MuMass;
+   Int_t           MuMedium;
+   Int_t           MuTight;
+   Float_t         MuIso;
 
    // List of branches
    TBranch        *b_HadTrigPrescales;   //!
@@ -627,6 +634,14 @@ public :
    TBranch        *b_AK4W2Jet_CorrUp;   //!
    TBranch        *b_AK4W2Jet_CorrDn;   //!
    TBranch        *b_AK4W2Jet_bDisc;   //!
+   TBranch        *b_MuPhi;   //!
+   TBranch        *b_MuPt;   //!
+   TBranch        *b_MuEta;   //!
+   TBranch        *b_MuMass;   //!
+   TBranch        *b_MuMedium;   //!
+   TBranch        *b_MuTight;   //!
+   TBranch        *b_MuIso;   //!
+
 
    HadTree_Oct_12_17(TTree *tree=0);
    virtual ~HadTree_Oct_12_17();
@@ -1003,6 +1018,13 @@ void HadTree_Oct_12_17::Init(TTree *tree)
    fChain->SetBranchAddress("AK4W2Jet_CorrUp", &AK4W2Jet_CorrUp, &b_AK4W2Jet_CorrUp);
    fChain->SetBranchAddress("AK4W2Jet_CorrDn", &AK4W2Jet_CorrDn, &b_AK4W2Jet_CorrDn);
    fChain->SetBranchAddress("AK4W2Jet_bDisc", &AK4W2Jet_bDisc, &b_AK4W2Jet_bDisc);
+   fChain->SetBranchAddress("MuPhi", &MuPhi, &b_MuPhi);
+   fChain->SetBranchAddress("MuPt", &MuPt, &b_MuPt);
+   fChain->SetBranchAddress("MuEta", &MuEta, &b_MuEta);
+   fChain->SetBranchAddress("MuMass", &MuMass, &b_MuMass);
+   fChain->SetBranchAddress("MuMedium", &MuMedium, &b_MuMedium);
+   fChain->SetBranchAddress("MuTight", &MuTight, &b_MuTight);
+   fChain->SetBranchAddress("MuIso", &MuIso, &b_MuIso);
    Notify();
 }
 

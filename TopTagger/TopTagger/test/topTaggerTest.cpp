@@ -410,10 +410,10 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     tree->SetBranchAddress("MuIso", MuIso);
 
 //if V10 https://twiki.cern.ch/twiki/bin/viewauth/CMS/SWGuideMuonIdRun2
-    std::vector<float>** MuIsoTrk = new std::vector<float>*();
+    /*std::vector<float>** MuIsoTrk = new std::vector<float>*();
     tree->SetBranchStatus("MuIsoTrk", 1);
     tree->SetBranchAddress("MuIsoTrk", MuIsoTrk);
-
+    */
     
 
     std::vector<float>** MuPt = new std::vector<float>*();
@@ -525,6 +525,16 @@ for (int i = 0; i < parse.optionsCount(); ++i)
     TH1F* TH1F_three_gen_pT_After_Tag = new TH1F("TH1F_three_gen_pT_After_Tag", "Three Jet(s) Gen p_{T} After Tagging: p_{T} [GeV];  E(b)/E(t); count", nBins, 0, 2000 );
     TH1F* TH1F_three_had_pT = new TH1F("TH1F_three_had_pT", "Three Jet(s) p_{T}; p_{T} [GeV]; count", nBins, 0, 2000 );
 
+
+   
+    TH1F* TH1F_TL_AK4_B_subJetPt_zoomed_0 = new TH1F("TH1F_TL_AK4_B_subJetPt_zoomed_0", "Top AK4 Bjet p_{T}; p_{T} [GEV]; count", nBins*2, 30, 150);
+    TH1F* TH1F_HadMETpt_zoomed_0 = new TH1F("TH1F_HadMETpt_zoomed_0", "MET; MET ; count", nBins*2, 0, 300);
+    TH1F* TH1F_TL_top_Mass_zoomed_0 = new TH1F("TH1F_TL_top_Mass_zoomed_0", "Top Mass; Mass [GEV] ; count", nBins*2, 100, 300);
+    TH1F* TH1F_MuPt_zoomed_0 = new TH1F("TH1F_MuPt_zoomed_0", "Muon p_{T}; p_{T} [GEV] ; count", nBins*2, 0, 100);
+    TH1F* TH1F_Mt_zoomed_0 = new TH1F("TH1F_Mt_zoomed_0", "Transverse Mass between Muon, B jet ; [GeV]; count", nBins*2, 0, 400);
+    TH1F* TH1F_deltaR_zoomed_0 = new TH1F("TH1F_deltaR_zoomed_0", "Muon Bjet #delta R; #delta R ; count", nBins*2, 0, .1);
+    TH1F* TH1F_MuISO_zoomed_0 = new TH1F("TH1F_MuISO_zoomed_0", "Muon Isolation; MuISO ; count", nBins*2, 0, .1);
+    TH1F* TH1F_MuISOTrk_zoomed_0 = new TH1F("TH1F_MuISOTrk_zoomed_0", "Muon Isolation Track; MuISO ; count", nBins*2, 0, .1);
 
 
 
@@ -722,7 +732,14 @@ for (int i = 0; i < parse.optionsCount(); ++i)
   //trigsToRunHad.push_back("HLT_PFMET600_v");
 
 
-    trigsToRun.push_back("HLT_PFMET300_v");
+   // trigsToRun.push_back("HLT_PFMET300_v");
+
+    //trigsToRun.push_back("HLT_PFMET170_NoiseCleaned");
+    //trigsToRun.push_back("HLT_PFMET170_JetIdCleaned");
+    //trigsToRun.push_back("HLT_PFMET170_HBHECleaned");
+
+    trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v2");
+    trigsToRun.push_back("HLT_PFMET120_Mu5_v2");
     //trigsToRun.push_back("HLT_PFMET120_NoiseCleaned_BTagCSV07_v");
     //trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v");
     //trigsToRun.push_back("HLT_PFMET120_BTagCSV_p067_v");
@@ -1063,7 +1080,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
            (*AK4JetLV)->push_back(temp);
 
             if (verbose) printf("\tAK4   Pt: %6.1lf,   Eta: %7.3lf,   Phi: %7.3lf\n", AK4Pt,(*AK4JetLV_eta)->at(i),(*AK4JetLV_phi)->at(i));
-            if ( AK4Pt > 70 && abs((*AK4JetLV_eta)->at(i)) < 2.5 && BtagBinary){
+            if ( AK4Pt > 30 /*70*/ && abs((*AK4JetLV_eta)->at(i)) < 2.5 && BtagBinary){
                 if(nBjets == 0){
                     TL_AK4_B_subJetPt.SetPtEtaPhiM(AK4Pt,(*AK4JetLV_eta)->at(i),(*AK4JetLV_phi)->at(i),(*AK4JetLV_mass)->at(i));
                 }
@@ -1098,11 +1115,12 @@ for (int i = 0; i < parse.optionsCount(); ++i)
         //std::cout << "muon size " << (*MuPt)->size() << std::endl;
         for(unsigned int i=0; i<(*MuPt)->size() ;i++){
             if (verbose) printf("muon #: %f\n", (*MuPt)->at(i));
-            if( (*MuPt)->at(i) > 30 and (*MuPhi)->at(i) < 2.1){
+            if( (*MuPt)->at(i) > 1/*30*/ and (*MuPhi)->at(i) < 2.1){
                 if(nMu ==0 ){
                     TL_Mu.SetPtEtaPhiM((*MuPt)->at(i), (*MuEta)->at(i), (*MuPhi)->at(i), 0.0);
                     d_MuIso = (*MuIso)->at(i);
-                    d_MuIsoTrk = (*MuIsoTrk)->at(i);
+                    //d_MuIsoTrk = (*MuIsoTrk)->at(i);
+
                 }
                 nMu++;
             }
@@ -1110,7 +1128,7 @@ for (int i = 0; i < parse.optionsCount(); ++i)
         int nEl = 0;
         for(unsigned int i=0; i<(*Electron_Pt)->size() ;i++){
             if (verbose) printf("muon #: %f\n", (*Electron_Pt)->at(i));
-            if( (*Electron_Pt)->at(i) > 30 and (*Electron_Phi)->at(i) < 2.1){
+            if( (*Electron_Pt)->at(i) >  30 and (*Electron_Phi)->at(i) < 2.1){
                 nEl++;
             }
         }
@@ -1200,6 +1218,15 @@ for (int i = 0; i < parse.optionsCount(); ++i)
 
             float deltaPhi = (TL_Mu.DeltaPhi(TL_AK4_B_subJetPt));
             float transverseMass =  (TL_Mu+TL_AK4_B_subJetPt).Mt();
+
+            TH1F_TL_AK4_B_subJetPt_zoomed_0->Fill(TL_AK4_B_subJetPt.Pt());
+            TH1F_HadMETpt_zoomed_0->Fill(HadMETpt);
+            TH1F_TL_top_Mass_zoomed_0->Fill(lep_b_Mt);
+            TH1F_MuPt_zoomed_0->Fill(TL_Mu.Pt());
+            TH1F_Mt_zoomed_0->Fill(transverseMass);
+            TH1F_deltaR_zoomed_0->Fill(TL_Mu.DeltaR(TL_AK4_B_subJetPt));
+            TH1F_MuISO_zoomed_0->Fill(d_MuIso);
+            TH1F_MuISOTrk_zoomed_0->Fill(d_MuIsoTrk);
 
             TH1F_jetsNotAroundTop_0->Fill(nNotBjets);
             TH1F_nBjets_0->Fill(nBjets);
@@ -1339,9 +1366,9 @@ for (int i = 0; i < parse.optionsCount(); ++i)
             TH1F_MuISOTrk_4->Fill(d_MuIsoTrk);
 
 
-            if (d_MuIso > .05) continue;
+            if (d_MuIso > .15) continue;
             //if (TL_Mu.DeltaR(TL_AK4_B_subJetPt) < .3) continue;
-            //if (d_MuIsoTrk > 0.05) continue; 
+            //if (d_MuIsoTrk > .05) continue; 
             cutName.push_back("muISO");
             TH1F_cutflow->Fill(newCutFlowCount);
             newCutFlowCount++;

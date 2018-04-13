@@ -60,10 +60,12 @@ for inFile in filter(None,popen("xrdfs root://cmseos.fnal.gov/ ls -u "+options.i
   count = count+ 1
   if ".root" in inFile:
     inFiles.append(inFile)
-    #if count > 100: break
+    if count > 1: break
 for sample in inFiles:
   chain.Add(sample)
 
+#inFiles = []
+#inFiles.append("/uscms_data/d3/rmueller/MonoTop/B2GAnaFW_ttbar/custom_B2GTTbar/CMSSW_8_0_26/src/Analysis/B2GMonoTop/test/mt_mu_2tev_2h_miniaod.root")
 ###   HATS comment:
 # By default, gSystem.CompileMacro will compile your ROOT class, load it on its own, and then delete it
 # once your pyROOT script is closed. Instead, we want to be able to just compile it once, keep the

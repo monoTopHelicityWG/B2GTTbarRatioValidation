@@ -6,6 +6,8 @@ c1 = r.TCanvas("c1", "c1",500, 600)
 prefix =  "pfmet_300_hlt_"
 prefix =  "pfmet_300_deltaR_test_hlt_"
 
+prefix =  "PFMET170_test_hlt_"
+
 #LH = r.TFile("./output/MT_1TeV_lep_LH.root", "read")
 RH_1 = r.TFile("./hists/{}MT_1TeV_lep_RH_V9.root".format(prefix), "read")
 LH_1 = r.TFile("./hists/{}MT_1TeV_lep_LH_V9.root".format(prefix), "read")
@@ -21,7 +23,7 @@ ST_tw_anti = r.TFile("./hists/{}ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg_V9
 ST_tw_top = r.TFile("./hists/{}ST_tW_top_5f_inclusiveDecays_13TeV-powheg_V9.root".format(prefix), "read")
 ST_s = r.TFile("./hists/{}ST_s-channel_4f_leptonDecays_13TeV_V9.root".format(prefix), "read")
 
-TTJets = r.TFile("./hists/TTJets_TuneCUETP8M2T4_13TeV-amcatnloFXFX_V9.root", "read")
+TTJets = r.TFile("./hists/{}TTJets_TuneCUETP8M2T4_13TeV-amcatnloFXFX_V9.root".format(prefix), "read")
 
 def rebinTHStack(THStack,rebin):
     for hist in THStack.GetHists():
@@ -165,6 +167,7 @@ for k1 in dirList:
     ST_s_h = ST_s.Get(name)
     TTJets_h = TTJets.Get(name)
 
+    print "get {}".format(name)
     hs = r.THStack("hs",name)
     if(RH_h.GetEntries() > 0):
 
@@ -255,6 +258,39 @@ for k1 in dirList:
         LH_h.Draw("same")
         if draw_leg: leg.Draw()
         c1.SaveAs("hists/lep_output/{}_{}.png".format(output_text, name ))
+
+        RH_h.Add(LH_h)
+        RH_h.Scale(.5)
+
+        DY_100_250_h.Add(DY_250_400_h)
+        DY_100_250_h.Add(DY_400_650_h)
+        DY_100_250_h.Add(DY_650_Inf_h)
+        DY_100_250_h.Add(ST_t_anti_h)
+        DY_100_250_h.Add(ST_t_top_h)
+        DY_100_250_h.Add(ST_tw_anti_h)
+        DY_100_250_h.Add(ST_tw_top_h)
+        DY_100_250_h.Add(ST_s_h)
+        DY_100_250_h.Add(TTJets_h)
+
+        for i in reversed(xrange(DY_100_250_h.GetNbinsX() +1 )):
+            #print i
+            #print DY_100_250_h.GetBinContent(i), DY_100_250_h.GetBinContent(i+1)
+
+            DY_100_250_h.SetBinContent(i,  DY_100_250_h.GetBinContent(i) + DY_100_250_h.GetBinContent(i+1) )
+
+            RH_h.SetBinContent(i,  RH_h.GetBinContent(i) + RH_h.GetBinContent(i+1) )
+
+
+        DY_100_250_h.Add(RH_h)
+
+        RH_h.Multiply(RH_h)
+
+        RH_h.Divide(DY_100_250_h)
+
+
+        RH_h.Draw()
+        c1.SaveAs("hists/lep_output/{}_{}_significance_left_cut.png".format(output_text, name ))
+
 
 '''
         if name == "TH1F_cutflow":

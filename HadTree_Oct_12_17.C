@@ -66,7 +66,7 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
    TH1F* TH1F_had_sum_ratio_btau21 = new TH1F("TH1F_had_sum_ratio_btau21", "(E(b)/E(T)+#Tau_{2}/#Tau_{1});  (E(b)/E(T)+#Tau_{2}/#Tau_{1}); count", nBins, 0, 2 );
    
 
-    TH2F* TH2F_leading_tau21_ratio = new TH2F("TH2F_leading_tau21_ratio", "Leading Subjet #Tau_{2}/#Tau_{1}vs. Ratio: E(b)/E(t); Leading Subjet  #Tau_{2}/#Tau_{1};  E(b)/E(t)", nBins, 0, 1, nBins, 0, 1 );
+   TH2F* TH2F_leading_tau21_ratio = new TH2F("TH2F_leading_tau21_ratio", "Leading Subjet #Tau_{2}/#Tau_{1}vs. Ratio: E(b)/E(t); Leading Subjet  #Tau_{2}/#Tau_{1};  E(b)/E(t)", nBins, 0, 1, nBins, 0, 1 );
 
 
    TH2F* TH2F_bTau21_ratio_rotated = new TH2F("TH2F_bTau21_ratio_rotated", "Subjet b #Tau_{2}/#Tau_{1}vs. Ratio: E(b)/E(t) rotated; Subjet b #Tau_{2}/#Tau_{1};  E(b)/E(t)", nBins, -1, 1, nBins, 0, 1 );
@@ -246,7 +246,6 @@ void HadTree_Oct_12_17::Loop(std::string outFileName, Bool_t gen)
       if (ientry < 0) break;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
-
 
 
       if (JetPuppiSDsubjet0bdisc > JetPuppiSDsubjet1bdisc){
